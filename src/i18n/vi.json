@@ -1,0 +1,178 @@
+{
+  "app": {
+    "name": "Bida League",
+    "signedIn": "Bạn đã đăng nhập. Phiên làm việc nằm trong cookie và vẫn còn sau khi tải lại trang."
+  },
+  "auth": {
+    "title": "Đăng nhập",
+    "subtitle": "Đăng nhập để tiếp tục.",
+    "signInWithGoogle": "Đăng nhập với Google",
+    "signOut": "Đăng xuất",
+    "signingOut": "Đang đăng xuất…",
+    "account": "Tài khoản",
+    "loading": "Đang tải…",
+    "tagline": "Điều hành buổi đấu ngay trên điện thoại.",
+    "continueWithGoogle": "Tiếp tục với Google",
+    "signingIn": "Đang mở Google…",
+    "legal": "Khi tiếp tục, bạn đồng ý với <rules>luật giải</rules> và <privacy>chính sách bảo mật</privacy>.",
+    "brandHeadline": "Điều hành buổi đấu mà không cần bảng điểm giấy.",
+    "brandPointPutUp": "Ra năm người mà không vượt mức 23.",
+    "brandPointResults": "Nhập kết quả và theo dõi tỉ số tăng dần.",
+    "brandPointSubmit": "Chốt buổi đấu khi ván cuối kết thúc.",
+    "brandSeason": "Fall 2026 · 8-Ball Open"
+  },
+  "notFound": {
+    "title": "Không tìm thấy trang",
+    "backHome": "Về trang chủ"
+  },
+  "apiError": {
+    "40001": "Một số dữ liệu gửi lên không hợp lệ.",
+    "40003": "Thành viên này chưa đóng phí cho bảng đấu.",
+    "40004": "Không thể chọn người này nữa — danh sách đã thay đổi.",
+    "40005": "Không tìm thấy mã thành viên này. Hãy kiểm tra lại thẻ của bạn.",
+    "40006": "Mã thành viên này đã liên kết với tài khoản khác. Hãy liên hệ quản trị viên giải.",
+    "40007": "Tài khoản này đã liên kết với một thành viên khác.",
+    "40101": "Phiên đăng nhập đã hết hạn. Vui lòng đăng nhập lại.",
+    "40102": "Phiên đăng nhập đã hết hạn. Vui lòng đăng nhập lại.",
+    "40103": "Phiên đăng nhập đã hết hạn. Vui lòng đăng nhập lại.",
+    "40104": "Phiên đăng nhập đã hết hạn. Vui lòng đăng nhập lại.",
+    "40301": "Không thể thực hiện yêu cầu. Hãy tải lại trang và thử lại.",
+    "40302": "Không thể thực hiện yêu cầu. Hãy tải lại trang và thử lại.",
+    "40304": "Không thể thực hiện yêu cầu. Hãy tải lại trang và thử lại.",
+    "40401": "Nội dung này không còn tồn tại.",
+    "42901": "Quá nhiều yêu cầu. Hãy đợi một phút rồi thử lại.",
+    "50001": "Đã xảy ra lỗi. Vui lòng thử lại.",
+    "50201": "Không kết nối được tới dịch vụ bên ngoài. Vui lòng thử lại."
+  },
+  "loginError": {
+    "cancelled": "Bạn đã huỷ đăng nhập.",
+    "login_failed": "Đăng nhập không thành công. Vui lòng thử lại.",
+    "server_error": "Đã xảy ra lỗi phía chúng tôi. Vui lòng thử lại."
+  },
+  "common": {
+    "back": "Quay lại",
+    "retry": "Thử lại",
+    "loading": "Đang tải…",
+    "cancel": "Huỷ",
+    "theme": {
+      "toggle": "Đổi giao diện",
+      "light": "Sáng",
+      "dark": "Tối",
+      "system": "Theo hệ thống"
+    }
+  },
+  "matchStatus": {
+    "scheduled": "Chưa đấu",
+    "in_progress": "Đang đấu",
+    "submitted": "Đã chốt"
+  },
+  "schedule": {
+    "title": "Lịch đấu",
+    "session": "Giải",
+    "selectSession": "Chọn giải",
+    "week": "Tuần {{n}}",
+    "weekShort": "T{{n}}",
+    "weeks": "Các tuần",
+    "vs": "vs",
+    "emptyTitle": "Tuần này chưa có trận",
+    "emptyBody": "Hãy chọn tuần hoặc giải khác.",
+    "noSessionTitle": "Chưa có mùa giải",
+    "noSessionBody": "Quản trị viên cần tạo mùa giải và bảng đấu trước."
+  },
+  "roster": {
+    "home": "Chủ nhà",
+    "away": "Khách",
+    "player": "Người chơi",
+    "skillLevel": "SL",
+    "record": "T/TĐ",
+    "points": "Điểm",
+    "startMatch": "Bắt đầu trận",
+    "addPaidMember": "Thêm thành viên đã đóng phí",
+    "emptyTitle": "Đội này chưa có người chơi",
+    "emptyBody": "Đội trưởng có thể thêm thành viên đã đóng phí của bảng đấu.",
+    "caption": "Danh sách đội kèm trình độ, thành tích và điểm",
+    "unpaid": "Chưa đóng phí"
+  },
+  "putUp": {
+    "title": "Trận {{n}} / 5",
+    "homeFirst": "Chủ nhà ra người trước",
+    "awayFirst": "Khách ra người trước",
+    "yourPick": "Lượt chọn của bạn",
+    "opponentPutUp": "Đối thủ đã ra",
+    "slUsed": "Tổng SL {{used}}/{{cap}}",
+    "confirm": "Xác nhận",
+    "selectPlayer": "Chọn người chơi",
+    "raceUnknown": "Số game cần thắng xác định khi cả hai đã ra người",
+    "reason": {
+      "would_break_23": "Vượt mức 23",
+      "already_put_up": "Đã đấu tối nay",
+      "not_on_roster": "Không thuộc đội này",
+      "side_complete": "Đã ra đủ năm người"
+    },
+    "staleList": "Không thể chọn người này nữa — danh sách đã thay đổi.",
+    "emptyTitle": "Không còn người chơi",
+    "emptyBody": "Mọi người trong đội đều đã đấu hoặc sẽ vượt mức 23."
+  },
+  "result": {
+    "title": "Trận {{n}} / 5",
+    "gamesWon": "Số game thắng",
+    "innings": "Lượt cầm cơ",
+    "defensiveShots": "Cú phòng thủ",
+    "racesTo": "{{name}} (SL {{skillLevel}}) cần {{race}} game",
+    "ofRace": "/ {{race}}",
+    "verdictPending": "Nhập số game để xem kết quả.",
+    "verdictInvalid": "Tỉ số này không hợp lệ.",
+    "verdict": "{{winner}} thắng {{winnerGames}}–{{loserGames}}",
+    "verdictPoints": "{{winnerPoints}}–{{loserPoints}} điểm",
+    "save": "Lưu kết quả",
+    "decrease": "Giảm {{field}}",
+    "increase": "Tăng {{field}}"
+  },
+  "night": {
+    "summaryTitle": "Tổng kết buổi đấu",
+    "submit": "Chốt buổi đấu",
+    "confirmTitle": "Chốt buổi đấu này?",
+    "confirmBody": "Sau khi chốt, đội trưởng không sửa được nữa. Quản trị viên vẫn có thể điều chỉnh.",
+    "submittedBy": "Chốt bởi {{name}}",
+    "matchN": "Trận {{n}}",
+    "notPlayed": "Chưa đấu"
+  },
+  "admin": {
+    "playersTitle": "Người chơi",
+    "search": "Tên hoặc mã thành viên",
+    "searchHint": "Nhập ít nhất hai ký tự.",
+    "clearSearch": "Xoá tìm kiếm",
+    "noResults": "Không tìm thấy người chơi nào.",
+    "team": "Đội",
+    "noTeam": "Chưa có đội",
+    "skillLevel": "Trình độ",
+    "racePreview": "với SL 5: cần {{now}} game (trước là {{before}})",
+    "reason": "Lý do",
+    "reasonHelp": "Bắt buộc. Sẽ hiển thị trong lịch sử của người chơi.",
+    "saveSkillLevel": "Lưu trình độ",
+    "transfer": "Chuyển đội",
+    "transferAction": "Chuyển",
+    "history": "Lịch sử",
+    "historyEmpty": "Chưa có thay đổi.",
+    "changedBy": "bởi {{name}}",
+    "appliesNextMatch": "Áp dụng từ trận kế tiếp. Các trận đã đấu giữ nguyên trình độ lúc đó."
+  },
+  "rules": {
+    "title": "Luật giải",
+    "body": "Bộ luật đầy đủ do quản trị viên giải cung cấp. Trang này là bản tạm."
+  },
+  "privacy": {
+    "title": "Chính sách bảo mật",
+    "body": "Chúng tôi lưu tên, email và ảnh đại diện Google của bạn để đồng đội nhận ra bạn, cùng với các trận bạn đã đấu. Không gì khác. Trang này là bản tạm."
+  },
+  "link": {
+    "title": "Tìm mã thành viên của bạn",
+    "signedInAs": "Đang đăng nhập bằng {{email}}",
+    "memberId": "Mã thành viên",
+    "memberIdHelp": "Dãy số trên thẻ thành viên của bạn.",
+    "confirm": "Đúng là tôi · tiếp tục",
+    "wrongAccount": "Không phải bạn? Đăng xuất",
+    "captain": "Đội trưởng",
+    "noTeam": "Chưa có đội"
+  }
+}

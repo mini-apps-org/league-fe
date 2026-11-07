@@ -1,0 +1,178 @@
+{
+  "app": {
+    "name": "Bida League",
+    "signedIn": "You are signed in. The session lives in a cookie and survives a reload."
+  },
+  "auth": {
+    "title": "Sign in",
+    "subtitle": "Sign in to continue.",
+    "signInWithGoogle": "Sign in with Google",
+    "signOut": "Sign out",
+    "signingOut": "Signing out…",
+    "account": "Account",
+    "loading": "Loading…",
+    "tagline": "Run your league night from your phone.",
+    "continueWithGoogle": "Continue with Google",
+    "signingIn": "Opening Google…",
+    "legal": "By continuing you agree to the <rules>league rules</rules> and the <privacy>privacy notice</privacy>.",
+    "brandHeadline": "Run league night without the paper scoresheet.",
+    "brandPointPutUp": "Put up five players without breaking 23.",
+    "brandPointResults": "Enter results and watch the score build.",
+    "brandPointSubmit": "Submit the night when the last rack drops.",
+    "brandSeason": "Fall 2026 · 8-Ball Open"
+  },
+  "notFound": {
+    "title": "Page not found",
+    "backHome": "Back to home"
+  },
+  "apiError": {
+    "40001": "Some of the submitted data is invalid.",
+    "40003": "That member has not paid dues for this division yet.",
+    "40004": "That player can no longer be put up. The list has changed.",
+    "40005": "We can't find that member ID. Check your league card.",
+    "40006": "This member ID is linked to another account. Ask your league admin.",
+    "40007": "This account is already linked to a different member.",
+    "40101": "Your session has expired. Please sign in again.",
+    "40102": "Your session has expired. Please sign in again.",
+    "40103": "Your session has expired. Please sign in again.",
+    "40104": "Your session has expired. Please sign in again.",
+    "40301": "That request could not be completed. Reload the page and try again.",
+    "40302": "That request could not be completed. Reload the page and try again.",
+    "40304": "That request could not be completed. Reload the page and try again.",
+    "40401": "That item no longer exists.",
+    "42901": "Too many requests. Wait a minute and try again.",
+    "50001": "Something went wrong. Please try again.",
+    "50201": "Could not reach an upstream service. Please try again."
+  },
+  "loginError": {
+    "cancelled": "You cancelled the sign-in.",
+    "login_failed": "Sign-in did not complete. Please try again.",
+    "server_error": "Something went wrong on our side. Please try again."
+  },
+  "common": {
+    "back": "Back",
+    "retry": "Retry",
+    "loading": "Loading…",
+    "cancel": "Cancel",
+    "theme": {
+      "toggle": "Change theme",
+      "light": "Light",
+      "dark": "Dark",
+      "system": "System"
+    }
+  },
+  "matchStatus": {
+    "scheduled": "Scheduled",
+    "in_progress": "In progress",
+    "submitted": "Submitted"
+  },
+  "schedule": {
+    "title": "Schedule",
+    "session": "Session",
+    "selectSession": "Select a session",
+    "week": "Week {{n}}",
+    "weekShort": "W{{n}}",
+    "weeks": "Weeks",
+    "vs": "vs",
+    "emptyTitle": "No fixtures this week",
+    "emptyBody": "Try another week or session.",
+    "noSessionTitle": "No active season",
+    "noSessionBody": "An admin needs to create a season and a division first."
+  },
+  "roster": {
+    "home": "Home",
+    "away": "Away",
+    "player": "Player",
+    "skillLevel": "SL",
+    "record": "MW/MP",
+    "points": "Pts",
+    "startMatch": "Start match",
+    "addPaidMember": "Add paid member",
+    "emptyTitle": "No players on this roster",
+    "emptyBody": "A captain can add a paid member of this division.",
+    "caption": "Roster with skill level, record and points",
+    "unpaid": "Unpaid"
+  },
+  "putUp": {
+    "title": "Match {{n}} of 5",
+    "homeFirst": "Home puts up first",
+    "awayFirst": "Away puts up first",
+    "yourPick": "Your pick",
+    "opponentPutUp": "Opponent put up",
+    "slUsed": "SL used {{used}}/{{cap}}",
+    "confirm": "Confirm put-up",
+    "selectPlayer": "Select a player",
+    "raceUnknown": "Race decided once both players are up",
+    "reason": {
+      "would_break_23": "Would break 23",
+      "already_put_up": "Already playing tonight",
+      "not_on_roster": "Not on this roster",
+      "side_complete": "Five players already put up"
+    },
+    "staleList": "That player can't be put up any more — the list has changed.",
+    "emptyTitle": "No players available",
+    "emptyBody": "Every player on this roster is already playing or would break 23."
+  },
+  "result": {
+    "title": "Match {{n}} of 5",
+    "gamesWon": "Games won",
+    "innings": "Innings",
+    "defensiveShots": "Defensive shots",
+    "racesTo": "{{name}} (SL {{skillLevel}}) races to {{race}}",
+    "ofRace": "/ {{race}}",
+    "verdictPending": "Enter games to see the result.",
+    "verdictInvalid": "That score is not possible.",
+    "verdict": "{{winner}} wins {{winnerGames}}–{{loserGames}}",
+    "verdictPoints": "{{winnerPoints}}–{{loserPoints}} points",
+    "save": "Save result",
+    "decrease": "Decrease {{field}}",
+    "increase": "Increase {{field}}"
+  },
+  "night": {
+    "summaryTitle": "Night summary",
+    "submit": "Submit night",
+    "confirmTitle": "Submit this night?",
+    "confirmBody": "Scores are final for captains after submitting. An admin can still make corrections.",
+    "submittedBy": "Submitted by {{name}}",
+    "matchN": "Match {{n}}",
+    "notPlayed": "Not played"
+  },
+  "admin": {
+    "playersTitle": "Players",
+    "search": "Name or member ID",
+    "searchHint": "Type at least two characters.",
+    "clearSearch": "Clear search",
+    "noResults": "No players match that search.",
+    "team": "Team",
+    "noTeam": "No team",
+    "skillLevel": "Skill level",
+    "racePreview": "vs SL 5: races to {{now}} (was {{before}})",
+    "reason": "Reason",
+    "reasonHelp": "Required. Shown in this player's history.",
+    "saveSkillLevel": "Save skill level",
+    "transfer": "Transfer team",
+    "transferAction": "Transfer",
+    "history": "History",
+    "historyEmpty": "No changes yet.",
+    "changedBy": "by {{name}}",
+    "appliesNextMatch": "Applies from the next match. Played matches keep their snapshot."
+  },
+  "rules": {
+    "title": "League rules",
+    "body": "The full rule sheet lives with your league administrator. This page is a placeholder."
+  },
+  "privacy": {
+    "title": "Privacy notice",
+    "body": "We store your Google name, email address and profile picture so your team can recognise you, plus the matches you play. Nothing else. This page is a placeholder."
+  },
+  "link": {
+    "title": "Find your member ID",
+    "signedInAs": "Signed in as {{email}}",
+    "memberId": "Member ID",
+    "memberIdHelp": "The number on your league card.",
+    "confirm": "This is me · continue",
+    "wrongAccount": "Not you? Sign out",
+    "captain": "Captain",
+    "noTeam": "No team yet"
+  }
+}
