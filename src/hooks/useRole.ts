@@ -11,5 +11,5 @@ export function useRole(): Role {
 }
 
 export function useIsAdmin(): boolean {
-  return useRole() === 'admin';
+  return useRole() === 'ADMIN';
 }

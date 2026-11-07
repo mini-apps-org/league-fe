@@ -4,7 +4,7 @@ import type { Role } from '@/types/league';
 // (`avatarUrl`), set by the json tags in internal/auth/model_handlers.go — not the
 // snake_case used by the envelope's own fields.
 export interface User {
-  id: number;
+  id: string;
   email: string;
   name: string;
   avatarUrl: string;
@@ -23,7 +23,7 @@ export interface User {
 // Least privilege when the server has not said otherwise. The frontend uses the role only to
 // hide controls — league-be enforces it, and a hidden button is not a permission check.
 export function roleOf(user: User | undefined): Role {
-  return user?.role ?? 'player';
+  return user?.role ?? 'PLAYER';
 }
 
 // True only when the API has said, explicitly, that this account has claimed no player.

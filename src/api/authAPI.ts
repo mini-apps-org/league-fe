@@ -7,7 +7,6 @@ class BaseAuthAPI extends BaseAPI {
   // A full-page navigation, never an XHR: axios cannot follow Google's 302, and the user
   // must see accounts.google.com in the address bar.
   getGoogleSignInURL(): string {
-    console.log()
     return new URL(ENDPOINTS.AUTH_GOOGLE_LOGIN, API_BASE).toString();
   }
 

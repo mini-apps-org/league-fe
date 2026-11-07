@@ -35,17 +35,8 @@ export const ERROR_CODE = {
 
 export type ErrorCode = (typeof ERROR_CODE)[keyof typeof ERROR_CODE];
 
-// The wire shape of every failed request: league-be's handler.ErrorResponse.
-export interface ApiErrorBody {
-  error: {
-    code: ErrorCode;
-    message: string;
-  };
-}
-
-// A separate set from ERROR_CODE: these are the ?error= values on the redirect back to
-// /login, so they are slugs rather than codes. A failed navigation never carries a JSON
-// body, so it could not use the code registry even if we wanted it to.
+// Slugs, not codes: these are the ?error= values on the redirect back to /login. A failed
+// navigation carries no JSON body, so it cannot use the code registry.
 export const LOGIN_ERROR = {
   CANCELLED: 'cancelled', // user pressed Cancel at Google
   LOGIN_FAILED: 'login_failed', // bad state, bad id_token, expired transaction

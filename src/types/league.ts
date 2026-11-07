@@ -1,15 +1,9 @@
-// The league API contract.
-//
-// TEMPORARY: the prompt requires these to be generated from league-be's swagger with
-// openapi-typescript into src/lib/api.types.ts, and they must not be hand-maintained. Phase 3
-// has not written the endpoints yet, so there is nothing to generate from. When it lands,
-// generate the types and delete this file — the shapes below are the contract phase 3 is
-// expected to emit.
-//
-// Wire format is camelCase, matching the existing auth.UserResponse json tags, not the
-// snake_case of the envelope's own fields.
+// TEMPORARY: generate these from league-be's swagger with openapi-typescript once phase 3
+// ships the endpoints, then delete this file. Do not hand-maintain it beyond that point.
+// Payload fields are camelCase; only the envelope's own fields are snake_case.
 
-export type Role = 'admin' | 'captain' | 'player';
+// Uppercase to match league-be's UserRole constants, so no translation step is needed.
+export type Role = 'ADMIN' | 'CAPTAIN' | 'PLAYER';
 
 export type Side = 'home' | 'away';
 

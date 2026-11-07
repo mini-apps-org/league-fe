@@ -4,16 +4,8 @@ import axiosInstance from './axios';
 
 export { default as axiosInstance } from './axios';
 
-export interface HttpAPI {
-  get<T>(url: string, params?: object, options?: AxiosRequestConfig): Promise<T>;
-  post<T>(url: string, input?: object, options?: AxiosRequestConfig): Promise<T>;
-  put<T>(url: string, input?: object, options?: AxiosRequestConfig): Promise<T>;
-  patch<T>(url: string, input?: object, options?: AxiosRequestConfig): Promise<T>;
-  delete<T>(url: string, options?: AxiosRequestConfig): Promise<T>;
-}
-
-// Skips null, undefined and '' so an absent filter does not become the literal string
-// "undefined" in the query, and repeats the key for an array rather than joining it.
+// Skips null/undefined/'' so an absent filter does not become the string "undefined", and
+// repeats the key for arrays rather than joining.
 export function serializeParams(params?: object): string {
   const search = new URLSearchParams();
 
@@ -41,9 +33,9 @@ export function withQuery(url: string, params?: object): string {
   return search === '' ? url : `${url}?${search}`;
 }
 
-// The verbs every API shares. Nothing here knows about auth: the CSRF header and the 401
-// redirect live on the shared axios instance, so they apply to any API that extends this.
-export class BaseAPI implements HttpAPI {
+// Nothing here knows about auth: the CSRF header and 401 redirect live on the shared axios
+// instance, so they apply to every API extending this.
+export class BaseAPI {
   public async get<T>(url: string, params?: object, options?: AxiosRequestConfig): Promise<T> {
     const { data } = await axiosInstance.get<T>(withQuery(url, params), options);
 
