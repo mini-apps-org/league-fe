@@ -4,15 +4,11 @@ import { useTranslation } from 'react-i18next';
 import GoogleMark from '@/components/auth/GoogleMark';
 import { AuthAPI } from '@/api/authAPI';
 import { LoaderCircle } from '@/lib/icons';
-import { rememberNextPath } from '@/lib/next-path';
 
-// An <a>, never a <button onClick>: sign-in is a full-page navigation to league-be's 302, and
-// XHR cannot follow a cross-origin redirect to Google — the user also has to see Google's own
-// origin in the address bar.
-//
-// The pending state is therefore cosmetic: the page is already leaving, so it exists only to
-// stop a second tap looking unresponsive. It must not preventDefault.
-export default function GoogleSignInButton({ nextPath }: { nextPath?: string }) {
+// An <a>, never a <button>: XHR cannot follow league-be's cross-origin 302 to Google, and
+// the user must see Google's origin in the address bar. The pending state is cosmetic — the
+// page is already leaving — so it must not preventDefault.
+export default function GoogleSignInButton() {
   const { t } = useTranslation();
   const [isLeaving, setIsLeaving] = useState(false);
 
@@ -20,9 +16,6 @@ export default function GoogleSignInButton({ nextPath }: { nextPath?: string }) 
     <a
       href={AuthAPI.getGoogleSignInURL()}
       onClick={() => {
-        // Stored here, in the handler, because the navigation that follows destroys the SPA
-        // and takes any React state with it.
-        rememberNextPath(nextPath);
         setIsLeaving(true);
       }}
       aria-disabled={isLeaving}
