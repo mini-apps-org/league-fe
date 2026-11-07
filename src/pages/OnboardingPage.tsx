@@ -18,8 +18,7 @@ export default function OnboardingPage() {
   const { mutate: signOut, isPending: isSigningOut } = useLogout();
 
   const [memberId, setMemberId] = useState('');
-  // The preview fires on blur, or as soon as the id looks complete, rather than on every
-  // keystroke: each keystroke would be a request for an id nobody has finished typing.
+  // Fires on blur or once the id looks complete; per-keystroke would request half-typed ids.
   const [lookupId, setLookupId] = useState('');
 
   const preview = useMemberPreview(lookupId);
@@ -29,8 +28,7 @@ export default function OnboardingPage() {
   const error = preview.error ?? linkMember.error;
   const errorMessage = error === null || error === undefined ? null : messageFor(error);
 
-  // Focus follows the error so a screen reader or keyboard user is taken to what went wrong
-  // instead of being left on an input that looks unchanged.
+  // Focus follows the error, so a keyboard user is taken to what went wrong.
   useEffect(() => {
     if (errorMessage !== null) {
       errorRef.current?.focus();
@@ -118,7 +116,7 @@ export default function OnboardingPage() {
           {t('link.confirm')}
         </Button>
 
-        {/* The way out when someone signed in with the wrong Google account. */}
+        {/* The way out of a wrong Google account. */}
         <Button
           variant="ghost"
           className="h-11 w-full"

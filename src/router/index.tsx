@@ -9,11 +9,9 @@ import PrivacyPage from '@/pages/PrivacyPage';
 import RulesPage from '@/pages/RulesPage';
 import LoginPage from '@/pages/auth/LoginPage';
 
-// Auth and login only. The league routes — schedule, match night, put-up, result entry and
-// admin players — are parked in /_parked with a restore manifest, to be brought back once the
-// sign-in flow is complete and stable.
+// Auth and login only. The league routes are parked in /_parked; see its RESTORE.md.
 export const router = createBrowserRouter([
-  // Outside the gate: RequireAuth redirects here, so gating it would loop.
+  // Gating this would loop: RequireAuth redirects here.
   {
     path: '/login',
     element: <LoginPage />,
@@ -33,16 +31,14 @@ export const router = createBrowserRouter([
       {
         element: <AppLayout />,
         children: [
-          // The landing route. Also where a completed sign-in arrives, so the stored `next`
-          // path is consumed here — see RequireAuth.
+          // Where a completed sign-in arrives, so the stored `next` is consumed here.
           {
             path: '/',
             element: <HomePage />,
           },
         ],
       },
-      // No AppLayout: this screen has its own sign-out, and the header's nav would offer
-      // links the gate is about to bounce the user back from.
+      // No AppLayout: the header's nav would offer links the gate bounces the user back from.
       {
         path: '/onboarding',
         element: <OnboardingPage />,

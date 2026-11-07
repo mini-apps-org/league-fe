@@ -14,8 +14,7 @@ function initialsOf(name: string): string {
     .join('');
 }
 
-// Shown before anything is written: this is the whole point of the step, so a mistyped digit
-// shows somebody else's details rather than silently claiming their record.
+// Shown before anything is written, so a mistyped digit cannot silently claim someone's record.
 export default function MemberPreviewCard({ preview }: { preview: MemberPreview }) {
   const { t } = useTranslation();
   const isTaken = preview.alreadyLinked && !preview.linkedToMe;

@@ -26,10 +26,9 @@ axiosInstance.interceptors.request.use((config) => {
 axiosInstance.interceptors.response.use(undefined, (error: AxiosError) => {
   const apiErr = toApiError(error);
 
-  // A 401 is terminal: there is no refresh endpoint, so the only recovery is a fresh Google
-  // login. /api/v1/me is exempt because a 401 there just means "not signed in" and
-  // RequireAuth owns it — it renders <Navigate>, which a hard redirect would rob of
-  // location.state.from.
+  // A 401 is terminal: no refresh endpoint, so recovery is a fresh Google login. /me is
+  // exempt — a 401 there means "not signed in", and RequireAuth renders <Navigate>, which a
+  // hard redirect would rob of location.state.from.
   const isSessionProbe = (error.config?.url ?? '').includes(ENDPOINTS.ME);
 
   if (apiErr.status === 401 && !isSessionProbe) {

@@ -26,14 +26,13 @@ export default function LoginPage() {
 
   return (
     <main className="min-h-dvh lg:grid lg:grid-cols-2">
-      {/* Brand panel: desktop only. On a phone the same content would push the button below
-          the fold, and the button is the only thing anyone came here to tap. */}
+      {/* Desktop only: on a phone this would push the button — the only thing anyone came
+          here to tap — below the fold. */}
       <aside className="hidden flex-col justify-between bg-accent p-10 lg:flex">
         <AppMark className="size-14 text-2xl" />
 
-        {/* On accentSoft, `accent` as text is 3.93:1 in light mode — fine for the 30px
-            headline as large text, but under 4.5:1 for the 16px points. So the body copy
-            uses `foreground` (13.1:1) and the accent is carried by the check marks. */}
+        {/* `accent` text on this background is 3.93:1 — fine for the large headline, under
+            4.5:1 for the 16px points. Body copy uses `foreground`; the accent is in the checks. */}
         <div className="space-y-6">
           <h2 className="max-w-md text-3xl font-bold text-foreground">{t('auth.brandHeadline')}</h2>
 
@@ -53,8 +52,8 @@ export default function LoginPage() {
       </aside>
 
       <div className="flex min-h-dvh flex-col justify-between p-6 lg:min-h-0 lg:justify-center">
-        {/* Mobile: mark and name centred in the space above the button. Desktop: a 400px
-            card, so the two columns read as one composition rather than two pages. */}
+        {/* Mobile: centred above the button. Desktop: a 400px card, so the two columns read
+            as one composition. */}
         <div className="flex flex-1 flex-col items-center justify-center gap-4 text-center lg:mx-auto lg:w-100 lg:flex-none lg:items-stretch lg:gap-2 lg:text-left">
           <AppMark className="lg:hidden" />
 

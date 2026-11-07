@@ -5,8 +5,7 @@ interface SkillLevelSquareProps {
   className?: string;
 }
 
-// Appears in every roster, candidate and scoresheet row, so it is one component rather than
-// a repeated class string.
+// Appears in every roster and scoresheet row, so it is a component, not a repeated class.
 export default function SkillLevelSquare({ skillLevel, className }: SkillLevelSquareProps) {
   return (
     <span

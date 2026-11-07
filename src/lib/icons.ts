@@ -1,5 +1,5 @@
-// Every icon the UI uses, re-exported from one place so a swap of icon library touches one
-// file and no component imports lucide directly.
+// One place to swap icon libraries. The shadcn primitives in components/ui are generated and
+// import lucide directly, so they are deliberately not routed through here.
 export {
   ArrowLeft,
   ArrowRightLeft,

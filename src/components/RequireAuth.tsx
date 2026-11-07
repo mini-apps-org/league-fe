@@ -18,10 +18,8 @@ export default function RequireAuth() {
     return <Navigate to={LOGIN_PATH} replace state={{ from: location.pathname }} />;
   }
 
-  // Signed in but no league player claimed yet. Every write path authorises through
-  // players.user_id, so an unlinked user would land in an app where nothing is actionable and
-  // nothing explains why. The guard lives here because this component already owns the
-  // session check and already holds the /api/v1/me response.
+  // Every write authorises through players.user_id, so an unlinked user would land in an app
+  // where nothing works and nothing says why. Guarded here, where the /me response already is.
   if (needsMemberLink(me.data?.user) && location.pathname !== ONBOARDING_PATH) {
     return <Navigate to={ONBOARDING_PATH} replace state={{ from: location.pathname }} />;
   }

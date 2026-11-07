@@ -33,8 +33,7 @@ class BaseLeagueAPI extends BaseAPI {
     return data;
   }
 
-  // week_no is optional: the schedule fetches a division's whole fixture list once and
-  // derives its week chips from it, rather than guessing how many weeks a season has.
+  // week_no is optional: the schedule fetches the whole list once and derives its chips.
   async fetchFixtures(divisionId: string, weekNo?: number): Promise<TeamMatchSummary[]> {
     const { data } = await this.get<ApiEnvelope<TeamMatchSummary[]>>(ENDPOINTS.TEAM_MATCHES, {
       division_id: divisionId,
@@ -52,8 +51,8 @@ class BaseLeagueAPI extends BaseAPI {
     return data;
   }
 
-  // Each row carries can_put_up and, when false, a machine-readable reason. The client never
-  // sums skill levels to decide: two captains on two phones make any local list stale.
+  // Each row carries can_put_up plus a machine-readable reason. The client never sums skill
+  // levels itself: two captains on two phones make any local list stale.
   async fetchAvailablePlayers(
     teamMatchId: string,
     side: Side,
@@ -76,8 +75,7 @@ class BaseLeagueAPI extends BaseAPI {
     return data;
   }
 
-  // The triggers do the scoring, so the response is the authority on points — render it,
-  // not the local preview from rules.ts.
+  // The triggers score, so render the response, not the local preview from rules.ts.
   async saveResult(individualMatchId: string, input: ResultInput): Promise<IndividualMatch> {
     const { data } = await this.put<ApiEnvelope<IndividualMatch>>(
       `${ENDPOINTS.INDIVIDUAL_MATCHES}/${individualMatchId}/result`,
@@ -101,7 +99,7 @@ class BaseLeagueAPI extends BaseAPI {
     return data;
   }
 
-  // Added for the admin transfer control, which plan 3 did not specify an endpoint for.
+  // For the admin transfer control; plan 3 specified no endpoint.
   async fetchTeams(divisionId: string): Promise<TeamRef[]> {
     const { data } = await this.get<ApiEnvelope<TeamRef[]>>(ENDPOINTS.TEAMS, {
       division_id: divisionId,
@@ -110,8 +108,7 @@ class BaseLeagueAPI extends BaseAPI {
     return data;
   }
 
-  // Read-only look-up shown before anything is written, so a mistyped digit surfaces
-  // somebody else's details instead of silently claiming their record.
+  // Read-only, shown before any write, so a mistyped digit cannot claim someone's record.
   async fetchMemberPreview(memberId: string): Promise<MemberPreview> {
     const { data } = await this.get<ApiEnvelope<MemberPreview>>(ENDPOINTS.MEMBERS_PREVIEW, {
       member_id: memberId,
@@ -130,8 +127,8 @@ class BaseLeagueAPI extends BaseAPI {
     return data;
   }
 
-  // 204 with no body: the admin screen refetches the player list rather than reading a
-  // response, because a skill-level change also moves the race previews beside it.
+  // 204: the admin screen refetches instead of reading a response, because a skill-level
+  // change also moves the race previews beside it.
   async changeSkillLevel(playerId: string, input: SkillLevelInput): Promise<void> {
     await this.post<void>(`${ENDPOINTS.PLAYERS}/${playerId}/skill-level`, {
       newSkillLevel: input.newSkillLevel,

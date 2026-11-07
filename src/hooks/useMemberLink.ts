@@ -7,8 +7,7 @@ import { isLookupableMemberId } from '@/lib/member-id';
 import type { MemberPreview } from '@/types/league';
 import { ME_QUERY_KEY } from './useMe';
 
-// retry:false because "no such member" is an answer, not a flake, and repeating it just makes
-// the user wait to be told the same thing.
+// retry:false because "no such member" is an answer, not a flake.
 export function useMemberPreview(memberId: string): UseQueryResult<MemberPreview> {
   return useQuery({
     queryKey: ['member-preview', memberId],
@@ -27,9 +26,8 @@ export function useLinkMember(): UseMutationResult<void, ApiRequestError, string
     mutationFn: (memberId) => {
       return LeagueAPI.linkMember(memberId);
     },
-    // Awaited, and therefore finished before the caller's own onSuccess runs. The gate reads
-    // playerId from the cached `me`, so navigating on a stale cache would bounce the user
-    // straight back to this screen — the most likely bug in this flow.
+    // Awaited, so it finishes before the caller's onSuccess. The gate reads playerId from
+    // the cached `me`; navigating on a stale cache would bounce the user back here.
     onSuccess: async () => {
       await queryClient.invalidateQueries({ queryKey: ME_QUERY_KEY });
     },

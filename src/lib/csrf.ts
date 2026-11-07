@@ -1,10 +1,8 @@
-// The `csrf` cookie is deliberately not HttpOnly so this module can echo it into a header:
-// reading it proves the request came from a page on this origin. The credential is `sid`,
-// which stays HttpOnly.
+// The `csrf` cookie is deliberately readable so it can be echoed into a header, proving the
+// request came from this origin. The credential is `sid`, which stays HttpOnly.
 export const CSRF_HEADER = 'X-CSRF-Token';
 
-// Production adds the __Host- prefix, so try both — prefixed first, so a plain-name match
-// cannot shadow it.
+// Production adds the __Host- prefix. Prefixed first, so a plain name cannot shadow it.
 const CSRF_COOKIE_NAMES = ['__Host-csrf', 'csrf'];
 
 export function readCSRFToken(): string | null {
@@ -26,8 +24,7 @@ export function readCSRFToken(): string | null {
   return null;
 }
 
-// The backend's safeMethod() lets these through untokened, which is why the Google login
-// GETs need no exemption list.
+// league-be's safeMethod() lets these through untokened, so login GETs need no exemption.
 const SAFE_METHODS = ['get', 'head', 'options', 'trace'];
 
 export function needsCSRFToken(method: string | undefined): boolean {

@@ -9,9 +9,8 @@ import type { MeResponse } from '@/types/auth';
 
 export const ME_QUERY_KEY = ['me'] as const;
 
-// GET /api/v1/me is the session check: the `sid` cookie is HttpOnly, so the SPA cannot read
-// its own session and has to ask. retry:false because a 401 here is an answer, not a
-// failure worth repeating.
+// The session check: `sid` is HttpOnly, so the SPA has to ask. retry:false because a 401
+// here is an answer, not a flake.
 export function useMe(): UseQueryResult<MeResponse> {
   return useQuery<MeResponse>({
     queryKey: ME_QUERY_KEY,
@@ -22,8 +21,7 @@ export function useMe(): UseQueryResult<MeResponse> {
   });
 }
 
-// The error type is ApiRequestError, not Error: the axios interceptor normalises every
-// failure into one before it reaches here.
+// ApiRequestError, not Error: the axios interceptor normalises every failure before this.
 export function useLogout(): UseMutationResult<void, ApiRequestError, void> {
   const queryClient = useQueryClient();
   const navigate = useNavigate();
@@ -32,9 +30,8 @@ export function useLogout(): UseMutationResult<void, ApiRequestError, void> {
     mutationFn: () => {
       return AuthAPI.logout();
     },
-    // onSettled, not onSuccess: the cookies are gone either way once the request has been
-    // attempted, so keeping a cached `me` around would show a signed-in header to a
-    // signed-out user.
+    // onSettled, not onSuccess: the cookies are gone either way, and a cached `me` would
+    // show a signed-in header to a signed-out user.
     onSettled: () => {
       queryClient.clear();
       void navigate(LOGIN_PATH, { replace: true });

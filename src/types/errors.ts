@@ -1,13 +1,8 @@
-// Codes are 5-digit *strings*, not numbers: the first three digits are the HTTP status, the
-// last two the case within it. So '40302' is "the second distinct 403". The registry is
-// league-be's `internal/platform/handler/error.go` — a code may be added there but never
-// reassigned, so this file only ever grows.
-//
-// They arrive as JSON strings. A code sent as the number 40101 is rejected and degrades to
-// INTERNAL, which keeps the wire format unambiguous in one direction only.
+// 5-digit *strings*: status + case within it, so '40302' is the second distinct 403. Mirrors
+// league-be's handler/error.go, where codes are added but never reassigned. A code sent as a
+// number degrades to INTERNAL, keeping the wire format unambiguous.
 export const ERROR_CODE = {
-  // 400 — the request itself is malformed. 40002 is retired (was the app-id check);
-  // do not reassign it.
+  // 400 — malformed request. 40002 is retired (app-id check); do not reassign.
   VALIDATION_FAILED: '40001',
   UNPAID_MEMBER: '40003',
   PUT_UP_REJECTED: '40004',
@@ -15,14 +10,13 @@ export const ERROR_CODE = {
   MEMBER_TAKEN: '40006',
   ACCOUNT_ALREADY_LINKED: '40007',
 
-  // 401 — the caller is not identified. All four are terminal: there is no refresh endpoint.
+  // 401 — unidentified. All terminal: there is no refresh endpoint.
   NO_SESSION: '40101',
   SESSION_INVALID: '40102',
   NO_USER_IN_CONTEXT: '40103',
   UNAUTHENTICATED: '40104',
 
-  // 403 — identified, but refused. 40303 is retired (was the app-id allow-list);
-  // do not reassign it.
+  // 403 — identified but refused. 40303 is retired (app-id allow-list); do not reassign.
   CSRF_COOKIE_MISSING: '40301',
   CSRF_TOKEN_MISMATCH: '40302',
   FORBIDDEN: '40304',

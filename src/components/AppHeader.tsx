@@ -36,8 +36,6 @@ export default function AppHeader() {
 
           <DropdownMenu>
             <DropdownMenuTrigger asChild>
-              {/* Icon-only, so it needs an aria-label; size-11 overrides the 36px Nova
-                primitive to clear the 44px touch target. */}
               <Button
                 variant="ghost"
                 size="icon-lg"

@@ -17,9 +17,8 @@ export const isApiError = (err: unknown): err is ApiRequestError => {
   return err instanceof ApiRequestError;
 };
 
-// A code this client does not model degrades to INTERNAL rather than rendering a missing
-// i18n key. Adding a code to league-be without adding copy here is therefore silent —
-// add both in the same change.
+// An unmodelled code degrades to INTERNAL rather than rendering a missing i18n key, so
+// adding a code to league-be without copy here is silent. Add both together.
 const KNOWN_CODES: ReadonlySet<string> = new Set(Object.values(ERROR_CODE));
 
 function readErrorBody(body: unknown): { code: ErrorCode | null; message: string | null } {
@@ -43,8 +42,7 @@ export function toApiError(err: unknown): ApiRequestError {
     message?: string;
   };
 
-  // `message` is the backend's own text, kept for debugging only. Render messageFor(err) in
-  // the UI, never err.message — only the former goes through the active locale.
+  // `message` is for debugging only. Render messageFor(err); it goes through the locale.
   if (maybeAxios?.response) {
     const body = readErrorBody(maybeAxios.response.data);
     const code = body.code ?? ERROR_CODE.INTERNAL;
@@ -56,7 +54,7 @@ export function toApiError(err: unknown): ApiRequestError {
     );
   }
 
-  // A request that left but got no response: offline, DNS, CORS, timeout.
+  // Left but got no response: offline, DNS, CORS, timeout.
   if (maybeAxios?.request) {
     return new ApiRequestError(0, ERROR_CODE.INTERNAL, 'Could not reach the server.');
   }
@@ -72,9 +70,8 @@ export const messageFor = (err: unknown): string => {
 
 const KNOWN_LOGIN_REASONS: ReadonlySet<string> = new Set(Object.values(LOGIN_ERROR));
 
-// `?error=` is untrusted input from the URL, so it is checked against the known set.
-// Anything else — empty, misspelt, an unmodelled reason — yields null and the page renders
-// no error banner at all, rather than an "unknown error" the user cannot act on.
+// `?error=` is untrusted. Anything unrecognised yields null and renders no banner, rather
+// than an "unknown error" the user cannot act on.
 export const parseLoginErrorReason = (value: string | null): LoginErrorReason | null => {
   if (value === null) {
     return null;

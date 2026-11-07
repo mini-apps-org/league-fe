@@ -1,6 +1,5 @@
-// Google's official "G", unmodified, as their branding terms require beside a "Sign in with
-// Google" label. These four brand colours are the ONE deliberate exemption from the 15-token
-// palette in ui-spec.md — do not retokenise them, and do not redraw the mark.
+// Google's official "G", unmodified, as their branding terms require. These four brand
+// colours are the one exemption from the ui-spec.md palette: do not retokenise or redraw.
 export default function GoogleMark({ className }: { className?: string }) {
   return (
     <svg className={className} viewBox="0 0 48 48" aria-hidden focusable="false">

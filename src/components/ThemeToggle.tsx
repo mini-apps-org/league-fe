@@ -28,8 +28,6 @@ export default function ThemeToggle() {
   const Icon = ICON[choice];
 
   return (
-    // Cycles system -> light -> dark. The label names the *current* state, so a screen
-    // reader user knows what is active rather than only what the button does.
     <Button
       variant="ghost"
       size="icon-lg"

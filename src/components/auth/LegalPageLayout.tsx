@@ -9,8 +9,7 @@ interface LegalPageLayoutProps {
   body: string;
 }
 
-// Outside the auth gate: both pages are linked from the signed-out login screen, so gating
-// them would bounce the reader back to where they already are.
+// Outside the auth gate: both pages are linked from the signed-out login screen.
 export default function LegalPageLayout({ title, body }: LegalPageLayoutProps) {
   const { t } = useTranslation();
 

@@ -10,15 +10,14 @@ class BaseAuthAPI extends BaseAPI {
     return new URL(ENDPOINTS.AUTH_GOOGLE_LOGIN, API_BASE).toString();
   }
 
-  // This *is* the session check. The SPA cannot read the HttpOnly `sid` cookie, so it has to
-  // ask; never infer auth from document.cookie.
+  // The session check: `sid` is HttpOnly, so never infer auth from document.cookie.
   async fetchMe(): Promise<MeResponse> {
     const { data } = await this.get<ApiEnvelope<MeResponse>>(ENDPOINTS.ME);
 
     return data;
   }
 
-  // 204 with no body, so there is nothing to unwrap.
+  // 204, no body to unwrap.
   async logout(): Promise<void> {
     await this.post<void>(ENDPOINTS.AUTH_LOGOUT);
   }

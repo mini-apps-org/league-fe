@@ -1,5 +1,4 @@
-// Every successful response is wrapped in this envelope by league-be's
-// config.SuccessResponse. `count` and `metadata` are null/absent for the auth endpoints.
+// league-be's config.SuccessResponse. `count`/`metadata` are null for the auth endpoints.
 export interface ApiEnvelope<T> {
   session_id: string;
   count: number | null;
