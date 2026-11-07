@@ -1,7 +1,6 @@
 import { useTranslation } from 'react-i18next';
 import { Link } from 'react-router-dom';
 
-import { Avatar, AvatarFallback, AvatarImage } from '@/components/ui/avatar';
 import { Button } from '@/components/ui/button';
 import {
   DropdownMenu,
@@ -12,6 +11,7 @@ import {
   DropdownMenuTrigger,
 } from '@/components/ui/dropdown-menu';
 import ThemeToggle from '@/components/ThemeToggle';
+import UserAvatar from '@/components/UserAvatar';
 import { useLogout, useMe } from '@/hooks/useMe';
 
 export default function AppHeader() {
@@ -20,7 +20,6 @@ export default function AppHeader() {
   const { mutate: signOut, isPending } = useLogout();
 
   const user = data?.user;
-  const initial = user?.name.slice(0, 1).toUpperCase() ?? '?';
 
   return (
     <header
@@ -45,10 +44,7 @@ export default function AppHeader() {
                 className="size-11"
                 aria-label={t('auth.account')}
               >
-                <Avatar className="size-8">
-                  <AvatarImage src={user?.avatarUrl || undefined} alt="" />
-                  <AvatarFallback>{initial}</AvatarFallback>
-                </Avatar>
+                <UserAvatar user={user} className="size-8" />
               </Button>
             </DropdownMenuTrigger>
 
