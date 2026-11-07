@@ -1,0 +1,114 @@
+name: Deploy
+
+on:
+  push:
+    tags: ['*.*.*']
+
+# Queue rather than cancel, so an older release can never finish last and overwrite a newer one.
+concurrency:
+  group: deploy-${{ github.ref_name }}
+  cancel-in-progress: false
+
+permissions:
+  contents: read
+
+env:
+  VERCEL_ORG_ID: ${{ secrets.VERCEL_ORG_ID }}
+  VERCEL_PROJECT_ID: ${{ secrets.VERCEL_PROJECT_ID }}
+
+jobs:
+  # The same gate a pull request runs, reused rather than copied. A tag bypasses branch
+  # protection entirely, so it never arrives already verified.
+  verify:
+    uses: ./.github/workflows/ci.yaml
+
+  # A tag can point at any commit in the repo, including one that was never reviewed.
+  # A separate job so a bad tag fails before anyone is asked to approve production.
+  guard:
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+    steps:
+      - uses: actions/checkout@v7.0.1
+        with:
+          fetch-depth: 0
+
+      - name: Require the tagged commit to be on master
+        run: |
+          # Explicit refspec: after a tag checkout, fetching a bare branch name updates
+          # FETCH_HEAD but not refs/remotes/origin/master, and the compare below needs the ref.
+          git fetch --no-tags origin +refs/heads/master:refs/remotes/origin/master
+          commit=$(git rev-parse 'HEAD^{commit}')
+          if ! git merge-base --is-ancestor "$commit" origin/master; then
+            echo "::error::$GITHUB_REF_NAME ($commit) is not an ancestor of origin/master."
+            exit 1
+          fi
+
+  deploy:
+    needs: [verify, guard]
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    # GitHub's Deployments page then records each release and its URL.
+    environment:
+      name: production
+      url: ${{ steps.deploy.outputs.url }}
+    steps:
+      - uses: actions/checkout@v7.0.1
+
+      # Must run before setup-node, whose pnpm cache needs the pnpm binary.
+      # Pinned to a commit, not a tag: a third-party tag can be repointed, and the steps
+      # below hold a production deploy credential.
+      - uses: pnpm/action-setup@73e46992e05b19abd31f2f3c20e0e7370d762115 # v6.1.1
+
+      - uses: actions/setup-node@v7.1.0
+        with:
+          node-version: '22'
+          cache: pnpm
+
+      - name: Install dependencies
+        run: pnpm install --frozen-lockfile
+
+      # Pinned so a CLI release cannot change deploy behaviour unannounced.
+      - name: Install Vercel CLI
+        run: npm install --global vercel@65.10.0
+
+      # VITE_* values are baked in at build time, so they must be pulled before building.
+      - name: Pull Vercel environment
+        env:
+          VERCEL_TOKEN: ${{ secrets.VERCEL_TOKEN }}
+        run: vercel pull --yes --environment=production --token="$VERCEL_TOKEN"
+
+      - name: Build
+        env:
+          VERCEL_TOKEN: ${{ secrets.VERCEL_TOKEN }}
+        run: vercel build --prod --token="$VERCEL_TOKEN"
+
+      # endpoints.ts falls back to localhost when VITE_API_URL is unset and the build still
+      # succeeds. grep exits 2 on error, so prove the directory exists before trusting it.
+      - name: Reject builds pointing at localhost
+        run: |
+          test -d .vercel/output/static || { echo "::error::no build output"; exit 1; }
+          if grep -rlE 'localhost:9200' .vercel/output/static; then
+            echo "::error::Bundle contains a localhost API URL. Check the Vercel environment variables."
+            exit 1
+          fi
+
+      # githubDeployment and githubCommitSha link the deployment to its ref and commit.
+      # tail -n1: the URL is the last line of stdout, whatever else the CLI prints.
+      - name: Deploy
+        id: deploy
+        env:
+          VERCEL_TOKEN: ${{ secrets.VERCEL_TOKEN }}
+        run: |
+          url=$(vercel deploy --prebuilt --prod --token="$VERCEL_TOKEN" \
+            --meta githubDeployment=1 \
+            --meta githubCommitRef="$GITHUB_REF_NAME" \
+            --meta githubCommitSha="$GITHUB_SHA" | tail -n1)
+          echo "url=$url" >> "$GITHUB_OUTPUT"
+
+      - name: Record release
+        run: |
+          {
+            echo "### Released \`$GITHUB_REF_NAME\`"
+            echo "- Commit: \`$GITHUB_SHA\`"
+            echo "- URL: ${{ steps.deploy.outputs.url }}"
+          } >> "$GITHUB_STEP_SUMMARY"
