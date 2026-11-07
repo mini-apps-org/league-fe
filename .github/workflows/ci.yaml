@@ -1,0 +1,53 @@
+name: CI
+
+on:
+  pull_request:
+    branches: [dev, master]
+  # Reusable: cd.yaml runs this same gate before shipping, so the checks live here only.
+  workflow_call:
+
+# Keyed on the PR number when there is one, the ref otherwise, so a called run cannot cancel
+# an unrelated one.
+concurrency:
+  group: ci-${{ github.event.pull_request.number || github.ref_name }}
+  cancel-in-progress: true
+
+permissions:
+  contents: read
+
+jobs:
+  # The job name is the required status check in the master ruleset, so renaming it breaks
+  # merging. Calling this workflow does not change that name.
+  build:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@v7.0.1
+
+      # Must run before setup-node, whose pnpm cache needs the pnpm binary.
+      # The version comes from "packageManager" in package.json.
+      # Pinned to a commit, not a tag: a third-party tag can be repointed.
+      - uses: pnpm/action-setup@73e46992e05b19abd31f2f3c20e0e7370d762115 # v6.1.1
+
+      - uses: actions/setup-node@v7.1.0
+        with:
+          node-version: '22'
+          cache: pnpm
+
+      - name: Install dependencies
+        run: pnpm install --frozen-lockfile
+
+      - name: Check formatting
+        run: pnpm format:check
+
+      - name: Lint
+        run: pnpm lint
+
+      - name: Type check
+        run: pnpm typecheck
+
+      - name: Unit tests
+        run: pnpm test
+
+      - name: Production test build
+        run: pnpm build
