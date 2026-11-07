@@ -1,0 +1,8 @@
+node_modules
+dist
+*.js
+package-lock.json
+pnpm-lock.yaml
+yarn.lock
+src/components/ui
+_parked

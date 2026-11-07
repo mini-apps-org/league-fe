@@ -1,0 +1,203 @@
+@import 'tailwindcss';
+@import 'tw-animate-css';
+@import 'shadcn/tailwind.css';
+
+/* Inter is the only family, per the design system. Static weights, so one import each. */
+@import '@fontsource/inter/400.css';
+@import '@fontsource/inter/500.css';
+@import '@fontsource/inter/600.css';
+@import '@fontsource/inter/700.css';
+
+@custom-variant dark (&:is(.dark *));
+
+@theme inline {
+  --font-sans: 'Inter', 'Segoe UI', system-ui, sans-serif;
+  --font-heading: var(--font-sans);
+
+  /* The six product tokens shadcn has no semantic slot for. Everything else reaches the
+     palette through the shadcn names below, so a component can keep using bg-card. */
+  --color-sunken: var(--sunken);
+  --color-sel-row: var(--sel-row);
+  --color-chip: var(--chip);
+  --color-text-2: var(--text-2);
+  --color-ok: var(--ok);
+  --color-warn: var(--warn);
+
+  --color-line: var(--line);
+  --color-input-line: var(--input-line);
+
+  --radius-chip: 999px;
+  --radius-card: 16px;
+  --radius-sheet: 16px;
+  --spacing-safe-b: env(safe-area-inset-bottom);
+
+  /* shadcn/ui semantics, mapped onto the palette. */
+  --color-sidebar-ring: var(--sidebar-ring);
+  --color-sidebar-border: var(--sidebar-border);
+  --color-sidebar-accent-foreground: var(--sidebar-accent-foreground);
+  --color-sidebar-accent: var(--sidebar-accent);
+  --color-sidebar-primary-foreground: var(--sidebar-primary-foreground);
+  --color-sidebar-primary: var(--sidebar-primary);
+  --color-sidebar-foreground: var(--sidebar-foreground);
+  --color-sidebar: var(--sidebar);
+  --color-chart-5: var(--chart-5);
+  --color-chart-4: var(--chart-4);
+  --color-chart-3: var(--chart-3);
+  --color-chart-2: var(--chart-2);
+  --color-chart-1: var(--chart-1);
+  --color-ring: var(--ring);
+  --color-input: var(--input);
+  --color-border: var(--border);
+  --color-destructive: var(--destructive);
+  --color-accent-foreground: var(--accent-foreground);
+  --color-accent: var(--accent);
+  --color-muted-foreground: var(--muted-foreground);
+  --color-muted: var(--muted);
+  --color-secondary-foreground: var(--secondary-foreground);
+  --color-secondary: var(--secondary);
+  --color-primary-foreground: var(--primary-foreground);
+  --color-primary: var(--primary);
+  --color-popover-foreground: var(--popover-foreground);
+  --color-popover: var(--popover);
+  --color-card-foreground: var(--card-foreground);
+  --color-card: var(--card);
+  --color-foreground: var(--foreground);
+  --color-background: var(--background);
+  --radius-sm: calc(var(--radius) * 0.6);
+  --radius-md: calc(var(--radius) * 0.8);
+  --radius-lg: var(--radius);
+  --radius-xl: calc(var(--radius) * 1.4);
+  --radius-2xl: calc(var(--radius) * 1.8);
+  --radius-3xl: calc(var(--radius) * 2.2);
+  --radius-4xl: calc(var(--radius) * 2.6);
+}
+
+:root {
+  /* Tailwind preflight reads this via var(); declaring it here (not in @theme inline,
+     which only inlines values) stops its default stack winning anywhere. */
+  --default-font-family: 'Inter', 'Segoe UI', system-ui, sans-serif;
+
+  /* The palette — light, "clean blue". Do not introduce colours outside this list.
+     The one permitted derivation is color-mix() against --card for ok/warn tints, because
+     the palette has --accent-soft but no soft ok or warn. */
+  --bg: #f5f8fc;
+  --sunken: #eef3f9;
+  --card-bg: #ffffff;
+  --sel-row: #eaf2ff;
+  --chip: #e6eef8;
+  --line: #d9e2ec;
+  --input-line: #c9d5e3;
+  --text: #0f2540;
+  --text-2: #2e4560;
+  --muted-fg: #5b6b80;
+  --accent-base: #1f6feb;
+  --on-accent: #ffffff;
+  --accent-soft: #e3edff;
+  --ok: #12805c;
+  --warn: #b4471f;
+
+  --scrim: rgb(15 37 64 / 0.48);
+
+  /* shadcn semantics onto the palette. Two mappings are worth knowing: shadcn's `primary`
+     is our accent (the one blue button per screen), and shadcn's `accent` is our
+     accent-soft (its hover/selected highlight), which is why they are not the same var. */
+  --background: var(--bg);
+  --foreground: var(--text);
+  --card: var(--card-bg);
+  --card-foreground: var(--text);
+  --popover: var(--card-bg);
+  --popover-foreground: var(--text);
+  --primary: var(--accent-base);
+  --primary-foreground: var(--on-accent);
+  --secondary: var(--chip);
+  --secondary-foreground: var(--text);
+  --muted: var(--chip);
+  --muted-foreground: var(--muted-fg);
+  --accent: var(--accent-soft);
+  --accent-foreground: var(--accent-base);
+  --destructive: var(--warn);
+  --border: var(--line);
+  --input: var(--input-line);
+  --ring: var(--accent-base);
+
+  /* Controls are 12px, cards 16px (--radius-card). */
+  --radius: 0.75rem;
+
+  --chart-1: var(--accent-base);
+  --chart-2: var(--ok);
+  --chart-3: var(--warn);
+  --chart-4: var(--text-2);
+  --chart-5: var(--muted-fg);
+  --sidebar: var(--card-bg);
+  --sidebar-foreground: var(--text);
+  --sidebar-primary: var(--accent-base);
+  --sidebar-primary-foreground: var(--on-accent);
+  --sidebar-accent: var(--accent-soft);
+  --sidebar-accent-foreground: var(--accent-base);
+  --sidebar-border: var(--line);
+  --sidebar-ring: var(--accent-base);
+}
+
+/* Dark, "grey". Only the palette is redeclared; every shadcn mapping above follows. */
+.dark {
+  --bg: #121212;
+  --sunken: #181818;
+  --card-bg: #1e1e1e;
+  --sel-row: #252a33;
+  --chip: #2c2c2c;
+  --line: #333333;
+  --input-line: #3d3d3d;
+  --text: #f2f2f2;
+  --text-2: #d0d0d0;
+  --muted-fg: #a3a3a3;
+  --accent-base: #5b9bff;
+  --on-accent: #0b1220;
+  --accent-soft: #1d2a40;
+  --ok: #4cc38a;
+  --warn: #f2a27e;
+
+  --scrim: rgb(0 0 0 / 0.62);
+}
+
+@layer base {
+  * {
+    @apply border-border outline-ring/50;
+  }
+  body {
+    @apply bg-background text-foreground;
+    font-size: 16px;
+    line-height: 1.5;
+  }
+  /* Every score, skill level, race and stepper value changes in place. Proportional digits
+     make the layout twitch on each tap, so the numeric classes are tabular by default. */
+  .tabular,
+  th,
+  td {
+    font-variant-numeric: tabular-nums;
+  }
+  button {
+    touch-action: manipulation;
+  }
+  /* One visible focus treatment everywhere, legible against card, chip and accent fills
+     alike. Keyboard only: :focus-visible, so a tap does not leave a ring behind. */
+  :focus-visible {
+    outline: 2px solid var(--accent-base);
+    outline-offset: 2px;
+  }
+  html {
+    @apply font-sans;
+  }
+}
+
+/* Sheet chrome. Overridden by data-slot so components/ui/drawer.tsx stays untouched and
+   regenerable by the shadcn CLI. */
+[data-slot='drawer-overlay'] {
+  background-color: var(--scrim);
+  backdrop-filter: none;
+}
+
+[data-slot='drawer-content'] {
+  border-top-left-radius: var(--radius-card);
+  border-top-right-radius: var(--radius-card);
+  background-color: var(--card-bg);
+}
