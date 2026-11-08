@@ -1,4 +1,4 @@
-# Plan: Bida League MVP
+# Plan: Billiard League MVP
 
 ## Goal
 Ship a mobile-first web app for an 8-ball pool league (APA-style) where a captain can run a
@@ -144,7 +144,7 @@ real spec and the Definition of Done can actually be walked.
 2. **The design artifact's screens cannot be read as text — resolved as far as it can be.**
    The URL in the prompt (`claude.ai/artifact/5DwuYu791b12YvW2cKyQ6p`) serves an empty
    artifact shell and matches no artifact in the owner's library, so it is dead; the prompt
-   now points at the real one, **"Bida League Scorekeeper — UI"** at
+   now points at the real one, **"Billiard League Scorekeeper — UI"** at
    `claude.ai/code/artifact/22335122-0a40-471b-bd57-3308c6cebe0d`. That artifact is
    reachable, but its artboards are not retrievable from a terminal: the page it publishes is
    only the design tool's runtime shell, its asset store holds 0 files, and its shared

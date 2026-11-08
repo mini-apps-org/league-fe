@@ -8,7 +8,7 @@ and `/privacy` outside the gate.
 `/login` looks like the product rather than a bare card, at both breakpoints, in both themes.
 
 ## Tasks
-- [x] **Mobile**: full-height centred column — an 88px app mark with "8", "Bida League" at the
+- [x] **Mobile**: full-height centred column — an 88px app mark with "8", "Billiard League" at the
       display size, a muted tagline; the Google button sitting near the bottom at 56px tall,
       radius 14, `card` background with an `inputLine` border; a 12px muted legal line beneath
       it linking to `/rules` and `/privacy`.
@@ -75,7 +75,7 @@ Measured, both themes: `foreground` 13.1 / 12.9, `muted-foreground` 4.62 / 5.71.
 - **The brand panel is desktop-only.** On a phone the headline and three points would push
   the Google button below the fold, and the button is the only thing anyone opened this
   screen to tap.
-- **The heading swaps by breakpoint** — "Bida League" with the app mark on mobile, "Sign in"
+- **The heading swaps by breakpoint** — "Billiard League" with the app mark on mobile, "Sign in"
   in the 400px card on desktop, where the brand panel already carries the identity.
 - **The legal sentence is one i18n key** with `<rules>` and `<privacy>` placeholders, through
   `<Trans>`, so a translator can reorder the links. Three concatenated fragments would freeze
@@ -83,7 +83,7 @@ Measured, both themes: `foreground` 13.1 / 12.9, `muted-foreground` 4.62 / 5.71.
 - **The pending state cannot block the click.** It is an `<a>`, the navigation is already
   leaving, and `preventDefault` would break sign-in entirely. The spinner exists only so a
   second tap does not look unresponsive.
-- `app.name` changed from "League" to "Bida League", which also renames the header.
+- `app.name` changed from "League" to "Billiard League", which also renames the header.
 
 ### Verify — passing
 - `pnpm typecheck`, `pnpm lint --max-warnings=0`, 42 tests, `pnpm build`.

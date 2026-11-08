@@ -66,7 +66,7 @@ of fixing that.
 
 ## Design reference
 
-The artboards are in **"Bida League Scorekeeper — UI"**,
+The artboards are in **"Billiard League Scorekeeper — UI"**,
 `claude.ai/code/artifact/22335122-0a40-471b-bd57-3308c6cebe0d` — the sign-in artboards,
 mobile and desktop, dark and light. The link in the original prompt
 (`claude.ai/artifact/5DwuYu791b12YvW2cKyQ6p`) is dead and matches no artifact.

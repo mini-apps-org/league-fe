@@ -1,4 +1,4 @@
-# UI Spec — Bida League MVP
+# UI Spec — Billiard League MVP
 
 ## What this is, and how much to trust it
 
