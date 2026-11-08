@@ -3,7 +3,7 @@
 export const CSRF_HEADER = 'X-CSRF-Token';
 
 // Production adds the __Host- prefix. Prefixed first, so a plain name cannot shadow it.
-const CSRF_COOKIE_NAMES = ['__Host-csrf', 'csrf'];
+const CSRF_COOKIE_NAMES = ['__Secure-csrf', 'csrf'];
 
 export function readCSRFToken(): string | null {
   const jar = document.cookie.split('; ');
