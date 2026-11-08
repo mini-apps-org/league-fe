@@ -2,7 +2,7 @@
 paths:
   - '**/*.tsx'
   - 'src/hooks/**'
-  - 'src/store/**'
+  - 'src/queries/**'
 ---
 
 # React 19 Rules
@@ -35,10 +35,9 @@ Effects only synchronise with something outside React: listeners, timers, the DO
 ## State
 
 - Server state stays in TanStack Query. Do not copy query data into `useState`.
-- Local UI edits on top of server data are an override: `override ?? data.is_saved`.
-- Select atomically from Zustand. A component that needs only an action selects only the action,
-  so it does not re-render when the query changes.
-- All result views read one `SearchQuery`. No second copy.
+- Local UI edits on top of server data are an override: `override ?? data.someField`.
+- Query keys and fetchers live in `src/queries/*` as `queryOptions` factories. Hooks and
+  `invalidateQueries` reuse the factory's `queryKey`; never retype a key array.
 
 ## Memoisation
 
@@ -52,6 +51,7 @@ dependency or a callback ref.
 - `[lint]` Never define a component inside a component: it remounts on every render.
 - Hooks hold logic, components render, pure helpers live outside React. Hooks never return JSX.
 - One exported component per file, except small private helpers.
+- `[lint]` Named exports only. No `export default` in `src/`.
 - Use real `<button>`, `<a>`, `<input>` and `<label>`. Icon-only buttons need `aria-label`.
 - `[lint]` No `dangerouslySetInnerHTML`.
 - `[lint]` No hard-coded JSX text: every string goes through i18n.

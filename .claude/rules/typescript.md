@@ -1,3 +1,8 @@
+---
+paths:
+  - '**/*.{ts,tsx}'
+---
+
 # TypeScript Coding Rules
 
 When writing, modifying, or refactoring TypeScript code, follow these rules strictly.
@@ -46,7 +51,7 @@ const names = users.map((user) => user.name);
 
 const activeUsers = users.filter((user) => user.isActive);
 
-const admin = users.find((user) => user.role === "admin");
+const admin = users.find((user) => user.role === 'admin');
 
 const hasMinor = users.some((user) => user.age < 18);
 
@@ -59,7 +64,7 @@ Use a block body when the callback grows beyond one simple expression:
 
 ```ts
 const labels = users.map((user) => {
-  const prefix = user.isActive ? "Active" : "Inactive";
+  const prefix = user.isActive ? 'Active' : 'Inactive';
 
   return `${prefix}: ${user.name}`;
 });
@@ -150,27 +155,6 @@ These rules apply to all TypeScript and TSX code, including:
 
 ## 6. Enforcement (ESLint)
 
-The rule is enforced with `no-restricted-syntax` in `eslint.config.mjs`:
-
-```js
-const ARRAY_METHODS =
-  "map|filter|find|findIndex|findLast|findLastIndex|some|every|flatMap|reduce|reduceRight|sort|toSorted";
-
-export default [
-  {
-    files: ["**/*.ts", "**/*.tsx"],
-    rules: {
-      "no-restricted-syntax": [
-        "error",
-        {
-          selector: `ArrowFunctionExpression[body.type!='BlockStatement']:not(CallExpression[callee.property.name=/^(${ARRAY_METHODS})$/] > ArrowFunctionExpression.arguments)`,
-          message:
-            "Use a block body with an explicit return. One-line arrow functions are allowed only as callbacks for array methods (map, filter, find, some, every, reduce, ...).",
-        },
-      ],
-    },
-  },
-];
-```
-
-Note: the linter allows any expression-bodied callback for these methods. Rule 2's "one line, no side effects" conditions are checked during code review.
+Enforced by the first `no-restricted-syntax` selector in `eslint.config.mjs`. The linter allows
+any expression-bodied callback for the listed array methods; Rule 2's "one line, no side effects"
+conditions are checked during code review.
