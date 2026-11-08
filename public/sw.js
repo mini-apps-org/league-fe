@@ -27,11 +27,13 @@ self.addEventListener('activate', (event) => {
       .keys()
       .then((keys) => {
         return Promise.all(
-          keys.filter((key) => {
-            return key !== CACHE;
-          }).map((key) => {
-            return caches.delete(key);
-          }),
+          keys
+            .filter((key) => {
+              return key !== CACHE;
+            })
+            .map((key) => {
+              return caches.delete(key);
+            }),
         );
       })
       .then(() => {

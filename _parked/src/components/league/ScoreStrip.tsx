@@ -1,6 +1,10 @@
 import type { TeamMatchDetail } from '@/types/league';
 
-export default function ScoreStrip({ detail }: { detail: TeamMatchDetail }) {
+interface ScoreStripProps {
+  detail: TeamMatchDetail;
+}
+
+export default function ScoreStrip({ detail }: ScoreStripProps) {
   return (
     <div className="flex items-center justify-between rounded-lg bg-sunken p-4">
       <div className="min-w-0 flex-1">

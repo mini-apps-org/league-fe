@@ -1,14 +1,14 @@
 import { useState } from 'react';
 import { useTranslation } from 'react-i18next';
 
-import GoogleMark from '@/components/auth/GoogleMark';
 import { AuthAPI } from '@/api/authAPI';
+import { GoogleMark } from '@/components/auth/GoogleMark';
 import { LoaderCircle } from '@/lib/icons';
 
 // An <a>, never a <button>: XHR cannot follow league-be's cross-origin 302 to Google, and
 // the user must see Google's origin in the address bar. The pending state is cosmetic — the
 // page is already leaving — so it must not preventDefault.
-export default function GoogleSignInButton() {
+export function GoogleSignInButton() {
   const { t } = useTranslation();
   const [isLeaving, setIsLeaving] = useState(false);
 

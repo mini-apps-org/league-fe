@@ -1,12 +1,12 @@
 import { useTranslation } from 'react-i18next';
-import { Navigate } from 'react-router-dom';
+import { Navigate } from 'react-router';
 
-import AppMark from '@/components/auth/AppMark';
-import GoogleSignInButton from '@/components/auth/GoogleSignInButton';
-import LegalLine from '@/components/auth/LegalLine';
-import { Check } from '@/lib/icons';
+import { AppMark } from '@/components/auth/AppMark';
+import { GoogleSignInButton } from '@/components/auth/GoogleSignInButton';
+import { LegalLine } from '@/components/auth/LegalLine';
 import { useLoginError } from '@/hooks/useLoginError';
 import { useMe } from '@/hooks/useMe';
+import { Check } from '@/lib/icons';
 
 const BRAND_POINTS = [
   'auth.brandPointPutUp',
@@ -14,7 +14,7 @@ const BRAND_POINTS = [
   'auth.brandPointSubmit',
 ] as const;
 
-export default function LoginPage() {
+export function LoginPage() {
   const { t } = useTranslation();
   const loginError = useLoginError();
   const me = useMe();

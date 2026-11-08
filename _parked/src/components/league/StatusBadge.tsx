@@ -11,7 +11,11 @@ const STATUS_CLASS: Record<TeamMatchStatus, string> = {
   submitted: 'bg-[color-mix(in_oklab,var(--ok)_12%,var(--card))] text-ok',
 };
 
-export default function StatusBadge({ status }: { status: TeamMatchStatus }) {
+interface StatusBadgeProps {
+  status: TeamMatchStatus;
+}
+
+export default function StatusBadge({ status }: StatusBadgeProps) {
   const { t } = useTranslation();
 
   return (

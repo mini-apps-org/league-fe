@@ -2,8 +2,8 @@ import type { ApiEnvelope } from '@/types/api';
 import type {
   AvailablePlayer,
   Division,
-  MemberPreview,
   IndividualMatch,
+  MemberPreview,
   Player,
   PutUpInput,
   ResultInput,
@@ -15,6 +15,7 @@ import type {
   TeamMatchSummary,
   TeamRef,
 } from '@/types/league';
+
 import { BaseAPI } from './baseAPI';
 import { ENDPOINTS } from './endpoints';
 

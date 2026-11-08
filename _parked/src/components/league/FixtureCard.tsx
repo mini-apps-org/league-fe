@@ -11,7 +11,11 @@ function hasScore(fixture: TeamMatchSummary): boolean {
   return fixture.status !== 'scheduled';
 }
 
-export default function FixtureCard({ fixture }: { fixture: TeamMatchSummary }) {
+interface FixtureCardProps {
+  fixture: TeamMatchSummary;
+}
+
+export default function FixtureCard({ fixture }: FixtureCardProps) {
   const { t } = useTranslation();
   const venueName = fixture.venue?.name ?? '';
   const when = formatFixtureDateTime(fixture.scheduledAt);

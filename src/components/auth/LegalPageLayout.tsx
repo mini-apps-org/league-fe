@@ -1,5 +1,5 @@
 import { useTranslation } from 'react-i18next';
-import { Link } from 'react-router-dom';
+import { Link } from 'react-router';
 
 import { Button } from '@/components/ui/button';
 import { ArrowLeft } from '@/lib/icons';
@@ -10,7 +10,7 @@ interface LegalPageLayoutProps {
 }
 
 // Outside the auth gate: both pages are linked from the signed-out login screen.
-export default function LegalPageLayout({ title, body }: LegalPageLayoutProps) {
+export function LegalPageLayout({ title, body }: LegalPageLayoutProps) {
   const { t } = useTranslation();
 
   return (

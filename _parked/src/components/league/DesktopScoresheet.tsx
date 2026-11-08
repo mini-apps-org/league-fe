@@ -28,10 +28,14 @@ function PlayerCell({ name, skillLevel }: PlayerCellProps) {
   );
 }
 
+interface DesktopScoresheetProps {
+  detail: TeamMatchDetail;
+}
+
 // The whole night as one table, per the design's desktop layout. Result *entry* stays the
 // dedicated screen at every width: the steppers are the same controls, and duplicating them
 // inline would mean two code paths for the one write that must not go wrong.
-export default function DesktopScoresheet({ detail }: { detail: TeamMatchDetail }) {
+export default function DesktopScoresheet({ detail }: DesktopScoresheetProps) {
   const { t } = useTranslation();
   const action = nextAction(detail);
   // Only put-up and result name a match; submit and done do not.

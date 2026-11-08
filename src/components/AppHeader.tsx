@@ -1,6 +1,7 @@
 import { useTranslation } from 'react-i18next';
-import { Link } from 'react-router-dom';
+import { Link } from 'react-router';
 
+import { ThemeToggle } from '@/components/ThemeToggle';
 import { Button } from '@/components/ui/button';
 import {
   DropdownMenu,
@@ -10,11 +11,10 @@ import {
   DropdownMenuSeparator,
   DropdownMenuTrigger,
 } from '@/components/ui/dropdown-menu';
-import ThemeToggle from '@/components/ThemeToggle';
-import UserAvatar from '@/components/UserAvatar';
+import { UserAvatar } from '@/components/UserAvatar';
 import { useLogout, useMe } from '@/hooks/useMe';
 
-export default function AppHeader() {
+export function AppHeader() {
   const { t } = useTranslation();
   const { data } = useMe();
   const { mutate: signOut, isPending } = useLogout();
@@ -22,10 +22,7 @@ export default function AppHeader() {
   const user = data?.user;
 
   return (
-    <header
-      className="sticky top-0 z-30 border-b bg-background/95 backdrop-blur supports-[backdrop-filter]:bg-background/80"
-      style={{ paddingTop: 'env(safe-area-inset-top)' }}
-    >
+    <header className="sticky top-0 z-30 border-b bg-background/95 pt-[env(safe-area-inset-top)] backdrop-blur supports-[backdrop-filter]:bg-background/80">
       <div className="mx-auto flex h-14 w-full max-w-3xl items-center justify-between gap-2 px-4 lg:max-w-6xl lg:px-6">
         <Link to="/" className="truncate text-base font-semibold tracking-tight">
           {t('app.name')}
