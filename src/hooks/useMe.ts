@@ -1,24 +1,15 @@
-import { useMutation, useQuery, useQueryClient } from '@tanstack/react-query';
 import type { UseMutationResult, UseQueryResult } from '@tanstack/react-query';
-import { useNavigate } from 'react-router-dom';
+import { useMutation, useQuery, useQueryClient } from '@tanstack/react-query';
+import { useNavigate } from 'react-router';
 
 import { AuthAPI } from '@/api/authAPI';
 import type { ApiRequestError } from '@/lib/errors';
 import { LOGIN_PATH } from '@/lib/navigate';
+import { authQueries } from '@/queries/auth';
 import type { MeResponse } from '@/types/auth';
 
-export const ME_QUERY_KEY = ['me'] as const;
-
-// The session check: `sid` is HttpOnly, so the SPA has to ask. retry:false because a 401
-// here is an answer, not a flake.
 export function useMe(): UseQueryResult<MeResponse> {
-  return useQuery<MeResponse>({
-    queryKey: ME_QUERY_KEY,
-    queryFn: () => {
-      return AuthAPI.fetchMe();
-    },
-    retry: false,
-  });
+  return useQuery(authQueries.me());
 }
 
 // ApiRequestError, not Error: the axios interceptor normalises every failure before this.

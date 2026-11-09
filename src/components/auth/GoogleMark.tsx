@@ -1,6 +1,10 @@
+interface GoogleMarkProps {
+  className?: string;
+}
+
 // Google's official "G", unmodified, as their branding terms require. These four brand
 // colours are the one exemption from the ui-spec.md palette: do not retokenise or redraw.
-export default function GoogleMark({ className }: { className?: string }) {
+export function GoogleMark({ className }: GoogleMarkProps) {
   return (
     <svg className={className} viewBox="0 0 48 48" aria-hidden focusable="false">
       <path

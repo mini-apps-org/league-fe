@@ -1,4 +1,4 @@
-import { useSearchParams } from 'react-router-dom';
+import { useSearchParams } from 'react-router';
 
 import { loginErrorMessage, parseLoginErrorReason } from '@/lib/errors';
 import type { LoginErrorReason } from '@/types/errors';

@@ -1,8 +1,10 @@
 node_modules
 dist
-*.js
-package-lock.json
+coverage
 pnpm-lock.yaml
-yarn.lock
 src/components/ui
 _parked
+plans
+CHANGELOG.md
+.vscode
+skills-lock.json

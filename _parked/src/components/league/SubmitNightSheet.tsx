@@ -15,10 +15,14 @@ import {
 } from '@/components/ui/drawer';
 import { useSubmitNight } from '@/hooks/useLeagueMutations';
 
+interface SubmitNightSheetProps {
+  teamMatchId: string;
+}
+
 // A sheet, not a dialog and never window.confirm: the project's shadcn rule makes every
 // confirmation a sheet. Submitting is a one-way door for a captain, which is why it confirms
 // at all — an admin can still correct afterwards.
-export default function SubmitNightSheet({ teamMatchId }: { teamMatchId: string }) {
+export default function SubmitNightSheet({ teamMatchId }: SubmitNightSheetProps) {
   const { t } = useTranslation();
   const [isOpen, setIsOpen] = useState(false);
   const submit = useSubmitNight(teamMatchId);

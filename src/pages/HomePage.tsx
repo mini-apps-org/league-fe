@@ -1,10 +1,11 @@
 import { useTranslation } from 'react-i18next';
-import UserAvatar from '@/components/UserAvatar';
+
 import { Card } from '@/components/ui/card';
 import { Skeleton } from '@/components/ui/skeleton';
+import { UserAvatar } from '@/components/UserAvatar';
 import { useMe } from '@/hooks/useMe';
 
-export default function HomePage() {
+export function HomePage() {
   const { t } = useTranslation();
   const { data, isPending } = useMe();
 

@@ -1,5 +1,6 @@
 import type { ApiEnvelope } from '@/types/api';
 import type { MeResponse } from '@/types/auth';
+
 import { BaseAPI } from './baseAPI';
 import { API_BASE, ENDPOINTS } from './endpoints';
 

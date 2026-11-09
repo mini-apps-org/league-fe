@@ -2,8 +2,8 @@
 
 Parked on 2026-11-07, to be restored once the login flow is complete and running stably.
 
-`league-fe` has **no commits**, so `git stash` is unavailable here — stashing requires a HEAD.
-These files were moved rather than stashed. Nothing was deleted.
+These files were moved rather than stashed, at a time when `league-fe` had no commits. They
+are now tracked in git like everything else. Nothing was deleted.
 
 They sit outside `src/`, which is why the app still builds: `tsconfig.json` compiles only
 `src`, and `eslint.config.mjs` scopes its rules to `src/**/*.{ts,tsx}`. So the parked code is
@@ -21,6 +21,19 @@ Then put the routes back in `src/router/index.tsx`: `/` → `SchedulePage`, `/ma
 `MatchPage`, `/matches/:id/put-up` → `PutUpPage`, `/matches/:id/result/:order` →
 `ResultPage`, and `/admin/players` → `PlayersPage` behind `RequireAdmin`. `HomePage` goes back
 to being unused at that point.
+
+### After restoring: apply the current conventions
+
+The parked code predates them, so lint fails until these are done:
+
+- [ ] `export default function X` → `export function X`, and update the imports to `{ X }`.
+- [ ] `from 'react-router-dom'` → `from 'react-router'`.
+- [ ] Move the query keys and fetchers out of `useLeague.ts` / `useLeagueMutations.ts` into
+      `src/queries/league.ts` as `queryOptions` factories; invalidate through their `queryKey`.
+- [ ] Add the routes inside the `errorElement` wrapper in `src/router/index.tsx`.
+- [ ] `pnpm lint:fix` (import order), then `pnpm lint && pnpm typecheck && pnpm test`.
+- [ ] Move `night.test.ts` / `rules.test.ts` in with their files; component tests go through
+      `renderWithProviders` and MSW (see `.claude/rules/testing.md`).
 
 The backend half is in `league-be`'s `stash@{0}` ("stash importatn"): `internal/league/`,
 migrations `00002_business_rules.sql` and `00003_member_link.sql`, the league routes, and the

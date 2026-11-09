@@ -25,6 +25,11 @@
     "title": "Không tìm thấy trang",
     "backHome": "Về trang chủ"
   },
+  "routeError": {
+    "title": "Đã xảy ra lỗi",
+    "body": "Trang gặp lỗi không mong muốn. Tải lại thường sẽ khắc phục được.",
+    "reload": "Tải lại"
+  },
   "apiError": {
     "40001": "Một số dữ liệu gửi lên không hợp lệ.",
     "40003": "Thành viên này chưa đóng phí cho bảng đấu.",

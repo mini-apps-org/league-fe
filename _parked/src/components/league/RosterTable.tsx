@@ -4,7 +4,11 @@ import SkillLevelSquare from '@/components/league/SkillLevelSquare';
 import { formatRecord } from '@/lib/format';
 import type { RosterPlayer } from '@/types/league';
 
-export default function RosterTable({ players }: { players: readonly RosterPlayer[] }) {
+interface RosterTableProps {
+  players: readonly RosterPlayer[];
+}
+
+export default function RosterTable({ players }: RosterTableProps) {
   const { t } = useTranslation();
 
   return (

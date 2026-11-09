@@ -26,17 +26,9 @@ self.addEventListener('activate', (event) => {
     caches
       .keys()
       .then((keys) => {
-        return Promise.all(
-          keys.filter((key) => {
-            return key !== CACHE;
-          }).map((key) => {
-            return caches.delete(key);
-          }),
-        );
+        return Promise.all(keys.filter((key) => key !== CACHE).map((key) => caches.delete(key)));
       })
-      .then(() => {
-        return self.clients.claim();
-      }),
+      .then(() => self.clients.claim()),
   );
 });
 

@@ -40,9 +40,13 @@ function matchFor(detail: TeamMatchDetail, order: number): IndividualMatch | und
   return detail.matches.find((candidate) => candidate.matchOrder === order);
 }
 
+interface NightScoresheetProps {
+  detail: TeamMatchDetail;
+}
+
 // The night as five rows. Doubles as the summary after match 5, which is why it renders
 // unplayed rows rather than only what exists.
-export default function NightScoresheet({ detail }: { detail: TeamMatchDetail }) {
+export default function NightScoresheet({ detail }: NightScoresheetProps) {
   const { t } = useTranslation();
 
   return (

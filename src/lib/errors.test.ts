@@ -1,6 +1,7 @@
 import { describe, expect, it } from 'vitest';
 
 import { ERROR_CODE, LOGIN_ERROR } from '@/types/errors';
+
 import { ApiRequestError, isApiError, parseLoginErrorReason, toApiError } from './errors';
 
 function axiosLike(status: number, body: unknown): unknown {

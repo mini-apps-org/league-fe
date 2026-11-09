@@ -25,6 +25,11 @@
     "title": "Page not found",
     "backHome": "Back to home"
   },
+  "routeError": {
+    "title": "Something went wrong",
+    "body": "The page hit an unexpected error. Reloading usually fixes it.",
+    "reload": "Reload"
+  },
   "apiError": {
     "40001": "Some of the submitted data is invalid.",
     "40003": "That member has not paid dues for this division yet.",

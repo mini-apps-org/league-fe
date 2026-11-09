@@ -1,9 +1,12 @@
+import { cn } from 'cn';
 import { useTranslation } from 'react-i18next';
 
-import { cn } from 'cn';
+interface AppMarkProps {
+  className?: string;
+}
 
 // The 8-ball. No image asset, so it scales and themes for free.
-export default function AppMark({ className }: { className?: string }) {
+export function AppMark({ className }: AppMarkProps) {
   const { t } = useTranslation();
 
   return (

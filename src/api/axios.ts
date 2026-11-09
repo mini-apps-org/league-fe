@@ -3,9 +3,10 @@ import axios, { type AxiosError, type AxiosInstance } from 'axios';
 import { CSRF_HEADER, needsCSRFToken, readCSRFToken } from '@/lib/csrf';
 import { toApiError } from '@/lib/errors';
 import { redirectToLogin } from '@/lib/navigate';
+
 import { API_BASE, ENDPOINTS } from './endpoints';
 
-const axiosInstance: AxiosInstance = axios.create({
+export const axiosInstance: AxiosInstance = axios.create({
   baseURL: API_BASE,
   timeout: 30000,
   headers: { 'Content-Type': 'application/json' },
@@ -37,5 +38,3 @@ axiosInstance.interceptors.response.use(undefined, (error: AxiosError) => {
 
   return Promise.reject(apiErr);
 });
-
-export default axiosInstance;

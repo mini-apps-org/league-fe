@@ -21,7 +21,11 @@ const LEVELS = Array.from({ length: SKILL_LEVEL_MAX - SKILL_LEVEL_MIN + 1 }, (_,
   return SKILL_LEVEL_MIN + index;
 });
 
-export default function SkillLevelPanel({ player }: { player: Player }) {
+interface SkillLevelPanelProps {
+  player: Player;
+}
+
+export default function SkillLevelPanel({ player }: SkillLevelPanelProps) {
   const { t } = useTranslation();
   const [chosenLevel, setChosenLevel] = useState<number | null>(null);
   const [reason, setReason] = useState('');

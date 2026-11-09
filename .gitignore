@@ -1,9 +1,8 @@
-/node_modules/*
+node_modules
 dist
-.env*
-.env.local
-tsconfig.tsbuildinfo
+coverage
+*.tsbuildinfo
 .DS_Store
 .vercel
-
-!env.example
+.env*
+!.env.example

@@ -1,7 +1,7 @@
+import { cn } from 'cn';
 import { useTranslation } from 'react-i18next';
 
-import SkillLevelSquare from '@/components/league/SkillLevelSquare';
-import { cn } from 'cn';
+import { SkillLevelSquare } from '@/components/league/SkillLevelSquare';
 import type { MemberPreview } from '@/types/league';
 
 function initialsOf(name: string): string {
@@ -14,8 +14,12 @@ function initialsOf(name: string): string {
     .join('');
 }
 
+interface MemberPreviewCardProps {
+  preview: MemberPreview;
+}
+
 // Shown before anything is written, so a mistyped digit cannot silently claim someone's record.
-export default function MemberPreviewCard({ preview }: { preview: MemberPreview }) {
+export function MemberPreviewCard({ preview }: MemberPreviewCardProps) {
   const { t } = useTranslation();
   const isTaken = preview.alreadyLinked && !preview.linkedToMe;
 

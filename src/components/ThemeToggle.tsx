@@ -1,5 +1,5 @@
-import { useTranslation } from 'react-i18next';
 import { useTheme } from 'next-themes';
+import { useTranslation } from 'react-i18next';
 
 import { Button } from '@/components/ui/button';
 import { Monitor, Moon, Sun } from '@/lib/icons';
@@ -20,7 +20,7 @@ function nextTheme(current: string | undefined): ThemeChoice {
   return ORDER[(index + 1) % ORDER.length] ?? 'system';
 }
 
-export default function ThemeToggle() {
+export function ThemeToggle() {
   const { t } = useTranslation();
   const { theme, setTheme } = useTheme();
 

@@ -1,17 +1,17 @@
 import { useEffect, useRef, useState } from 'react';
 import { useTranslation } from 'react-i18next';
-import { useNavigate } from 'react-router-dom';
+import { useNavigate } from 'react-router';
 
-import MemberPreviewCard from '@/components/auth/MemberPreviewCard';
+import { MemberPreviewCard } from '@/components/auth/MemberPreviewCard';
 import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
 import { Skeleton } from '@/components/ui/skeleton';
-import { useLinkMember, useMemberPreview } from '@/hooks/useMemberLink';
 import { useLogout, useMe } from '@/hooks/useMe';
+import { useLinkMember, useMemberPreview } from '@/hooks/useMemberLink';
 import { messageFor } from '@/lib/errors';
 import { isCompleteMemberId, MEMBER_ID_LENGTH, normalizeMemberId } from '@/lib/member-id';
 
-export default function OnboardingPage() {
+export function OnboardingPage() {
   const { t } = useTranslation();
   const navigate = useNavigate();
   const me = useMe();

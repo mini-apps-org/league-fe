@@ -1,11 +1,11 @@
-import { Navigate, Outlet, useLocation } from 'react-router-dom';
+import { Navigate, Outlet, useLocation } from 'react-router';
 
-import AppSkeleton from '@/components/AppSkeleton';
+import { AppSkeleton } from '@/components/AppSkeleton';
 import { useMe } from '@/hooks/useMe';
 import { LOGIN_PATH, ONBOARDING_PATH } from '@/lib/navigate';
 import { needsMemberLink } from '@/types/auth';
 
-export default function RequireAuth() {
+export function RequireAuth() {
   const location = useLocation();
 
   const me = useMe();
