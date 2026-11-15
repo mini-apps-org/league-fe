@@ -69,7 +69,7 @@ export function LoginPage() {
           {loginError !== null && (
             <p
               role="alert"
-              className="rounded-lg border border-warn bg-[color-mix(in_oklab,var(--warn)_12%,var(--card))] px-3 py-2 text-sm"
+              className="rounded-lg border border-warn bg-warn-soft px-3 py-2 text-sm"
             >
               {loginError.message}
             </p>

@@ -14,19 +14,23 @@
   --font-sans: 'Inter', 'Segoe UI', system-ui, sans-serif;
   --font-heading: var(--font-sans);
 
-  /* The six product tokens shadcn has no semantic slot for. Everything else reaches the
+  /* The product tokens shadcn has no semantic slot for. Everything else reaches the
      palette through the shadcn names below, so a component can keep using bg-card. */
   --color-sunken: var(--sunken);
   --color-sel-row: var(--sel-row);
   --color-chip: var(--chip);
   --color-text-2: var(--text-2);
   --color-ok: var(--ok);
+  --color-ok-soft: var(--ok-soft);
   --color-warn: var(--warn);
+  --color-warn-soft: var(--warn-soft);
+  --color-scrim: var(--scrim);
 
   --color-line: var(--line);
   --color-input-line: var(--input-line);
 
   --radius-chip: 999px;
+  --radius-tile: 8px;
   --radius-card: 16px;
   --radius-sheet: 16px;
   --spacing-safe-b: env(safe-area-inset-bottom);
@@ -77,26 +81,27 @@
      which only inlines values) stops its default stack winning anywhere. */
   --default-font-family: 'Inter', 'Segoe UI', system-ui, sans-serif;
 
-  /* The palette — light, "clean blue". Do not introduce colours outside this list.
-     The one permitted derivation is color-mix() against --card for ok/warn tints, because
-     the palette has --accent-soft but no soft ok or warn. */
-  --bg: #f5f8fc;
-  --sunken: #eef3f9;
+  /* The palette — light, "clean blue", from the MViP League UI design. Do not introduce
+     colours outside this list. */
+  --bg: #f6f8fc;
+  --sunken: #eff3f8;
   --card-bg: #ffffff;
-  --sel-row: #eaf2ff;
-  --chip: #e6eef8;
-  --line: #d9e2ec;
-  --input-line: #c9d5e3;
-  --text: #0f2540;
-  --text-2: #2e4560;
-  --muted-fg: #5b6b80;
-  --accent-base: #1f6feb;
+  --sel-row: #ebf2fe;
+  --chip: #e7eef7;
+  --line: #dce4ee;
+  --input-line: #c1cbda;
+  --text: #14243e;
+  --text-2: #2f3f57;
+  --muted-fg: #5e6b7e;
+  --accent-base: #386de3;
   --on-accent: #ffffff;
-  --accent-soft: #e3edff;
-  --ok: #12805c;
-  --warn: #b4471f;
+  --accent-soft: #e5edfd;
+  --ok: #3b7e5e;
+  --ok-soft: #e2eee9;
+  --warn: #a74e2c;
+  --warn-soft: #f4e8e3;
 
-  --scrim: rgb(15 37 64 / 0.48);
+  --scrim: rgb(20 36 62 / 0.45);
 
   /* shadcn semantics onto the palette. Two mappings are worth knowing: shadcn's `primary`
      is our accent (the one blue button per screen), and shadcn's `accent` is our
@@ -143,20 +148,22 @@
   --bg: #121212;
   --sunken: #181818;
   --card-bg: #1e1e1e;
-  --sel-row: #252a33;
+  --sel-row: #262a32;
   --chip: #2c2c2c;
   --line: #333333;
-  --input-line: #3d3d3d;
+  --input-line: #333333;
   --text: #f2f2f2;
-  --text-2: #d0d0d0;
+  --text-2: #f2f2f2;
   --muted-fg: #a3a3a3;
-  --accent-base: #5b9bff;
-  --on-accent: #0b1220;
-  --accent-soft: #1d2a40;
-  --ok: #4cc38a;
-  --warn: #f2a27e;
+  --accent-base: #6a99f8;
+  --on-accent: #0c121f;
+  --accent-soft: #202a3e;
+  --ok: #6ec08e;
+  --ok-soft: #263a2e;
+  --warn: #e6a684;
+  --warn-soft: #40332d;
 
-  --scrim: rgb(0 0 0 / 0.62);
+  --scrim: rgb(0 0 0 / 0.6);
 }
 
 @layer base {
@@ -187,17 +194,4 @@
   html {
     @apply font-sans;
   }
-}
-
-/* Sheet chrome. Overridden by data-slot so components/ui/drawer.tsx stays untouched and
-   regenerable by the shadcn CLI. */
-[data-slot='drawer-overlay'] {
-  background-color: var(--scrim);
-  backdrop-filter: none;
-}
-
-[data-slot='drawer-content'] {
-  border-top-left-radius: var(--radius-card);
-  border-top-right-radius: var(--radius-card);
-  background-color: var(--card-bg);
 }

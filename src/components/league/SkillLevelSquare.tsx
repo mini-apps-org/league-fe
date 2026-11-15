@@ -10,7 +10,7 @@ export function SkillLevelSquare({ skillLevel, className }: SkillLevelSquareProp
   return (
     <span
       className={cn(
-        'tabular inline-flex size-7 shrink-0 items-center justify-center rounded-lg bg-chip font-medium',
+        'tabular inline-flex size-7 shrink-0 items-center justify-center rounded-tile bg-chip text-sm font-medium',
         className,
       )}
     >
