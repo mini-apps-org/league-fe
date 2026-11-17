@@ -26,7 +26,7 @@ to being unused at that point.
 
 The parked code predates them, so lint fails until these are done:
 
-- [ ] `export default function X` → `export function X`, and update the imports to `{ X }`.
+- [ ] `export default function X` → `export const X = () => { ... }`, and update the imports to `{ X }`.
 - [ ] `from 'react-router-dom'` → `from 'react-router'`.
 - [ ] Move the query keys and fetchers out of `useLeague.ts` / `useLeagueMutations.ts` into
       `src/queries/league.ts` as `queryOptions` factories; invalidate through their `queryKey`.

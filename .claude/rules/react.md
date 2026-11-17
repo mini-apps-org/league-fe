@@ -58,6 +58,15 @@ dependency or a callback ref.
 - `[lint]` Only hooks are named `use*`. A plain function named `useX` trips the rules of hooks.
 - `[lint]` Never define a component inside a component: it remounts on every render.
 - Hooks hold logic, components render, pure helpers live outside React. Hooks never return JSX.
+- Declare a component as an exported `const` arrow function with a block body and typed props.
+  Do not use `function` declarations or `React.FC`:
+
+  ```tsx
+  export const UserAvatar = ({ user, className }: UserAvatarProps) => {
+    return <Avatar className={className}>...</Avatar>;
+  };
+  ```
+
 - One exported component per file, except small private helpers.
 - `[lint]` Named exports only. No `export default` in `src/`.
 - Import React APIs by name: `import { useState } from 'react'`. Never `import React` or
