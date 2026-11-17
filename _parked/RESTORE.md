@@ -11,16 +11,22 @@ neither type-checked nor linted while it waits here.
 
 ## Restore
 
+`src/pages/` is now grouped by feature, and placeholder pages stand at each route. Copy the
+parked pages over those placeholders, not to the flat paths they were parked from:
+
 ```sh
 cd league-fe
+cp _parked/src/pages/SchedulePage.tsx src/pages/schedule/
+cp _parked/src/pages/{MatchPage,PutUpPage,ResultPage}.tsx src/pages/match/
+cp _parked/src/pages/admin/PlayersPage.tsx src/pages/admin/
+rm -r _parked/src/pages _parked/src/components/RequireAdmin.tsx
 cp -R _parked/src/. src/
 rm -rf _parked
 ```
 
-Then put the routes back in `src/router/index.tsx`: `/` → `SchedulePage`, `/matches/:id` →
-`MatchPage`, `/matches/:id/put-up` → `PutUpPage`, `/matches/:id/result/:order` →
-`ResultPage`, and `/admin/players` → `PlayersPage` behind `RequireAdmin`. `HomePage` goes back
-to being unused at that point.
+The routes already exist in `src/router/index.tsx`. `RequireAdmin` is replaced by
+`<RequireRole allowed={['SUPER_ADMIN']} />`, so it is not restored. Keep each route's
+`handle: titled(...)`, and render the page heading with `PageTitle`.
 
 ### After restoring: apply the current conventions
 
