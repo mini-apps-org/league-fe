@@ -1,3 +1,6 @@
+# 2026-11-17
+- feat(ui): implement the clean blue theme and component variants
+
 # 2026-11-08
 
 - feat(auth): read the CSRF token from `__Secure-csrf` instead of `__Host-csrf`
