@@ -140,7 +140,9 @@
     "confirmBody": "Scores are final for captains after submitting. An admin can still make corrections.",
     "submittedBy": "Submitted by {{name}}",
     "matchN": "Match {{n}}",
-    "notPlayed": "Not played"
+    "notPlayed": "Not played",
+    "bye": "Bye",
+    "raceLine": "Race {{homeRace}}–{{awayRace}} · {{homePoints}}–{{awayPoints}} pts"
   },
   "admin": {
     "playersTitle": "Players",
@@ -179,5 +181,59 @@
     "wrongAccount": "Not you? Sign out",
     "captain": "Captain",
     "noTeam": "No team yet"
+  },
+  "dev": {
+    "gallery": {
+      "title": "Components",
+      "subtitle": "Clean blue theme · Inter 400/500/600/700 · controls 12 px · cards and sheets 16 px · chips pill",
+      "skillLevel": "SL square · 28 px",
+      "statusBadge": "Status badge",
+      "reasonChip": "Reason chip",
+      "fixtureCard": "Fixture card and bye banner",
+      "rosterRow": "Roster row · default, unpaid, selected",
+      "scoresheetRow": "Scoresheet row · played, not played",
+      "stepper": "Numeric stepper · plus disabled at the race",
+      "buttons": "Buttons · one accent per screen",
+      "errorBanner": "Error banner with Retry, and toast",
+      "emptyState": "Empty state",
+      "skeleton": "Skeleton",
+      "drawer": "Bottom drawer · 400 px right rail on desktop",
+      "index": "Index",
+      "indexBody": "Every component in this app and the variant axes it supports. Names are the props you pass in code.",
+      "primitives": "Primitives",
+      "primitivesBody": "src/components/ui — shadcn components customised to the design.",
+      "league": "League components",
+      "leagueBody": "src/components/league — built on the primitives, as on the design's component sheet.",
+      "colComponent": "Component",
+      "colAxes": "Variants",
+      "colSource": "File",
+      "textSizes": "Text sizes",
+      "iconSizes": "Icon sizes",
+      "disabled": "Disabled",
+      "sample": {
+        "button": "Button",
+        "label": "Player name",
+        "placeholder": "Type here",
+        "notes": "Notes for the night",
+        "option": "Option {{n}}",
+        "tab": "Tab {{n}}",
+        "tabPanel": "Panel {{n}}",
+        "menuItem": "Edit player",
+        "menuDelete": "Remove player",
+        "menuCheckbox": "Show unpaid",
+        "menuLabel": "Sort by",
+        "menuRadioName": "Name",
+        "menuRadioLevel": "Skill level",
+        "cardTitle": "Card title",
+        "cardDescription": "Supporting text for the card.",
+        "cardBody": "Card content goes here.",
+        "alertBody": "Something needs your attention.",
+        "open": "Open {{what}}",
+        "bold": "Bold",
+        "italic": "Italic",
+        "underline": "Underline",
+        "toastMessage": "Moved to Rack Attack"
+      }
+    }
   }
 }

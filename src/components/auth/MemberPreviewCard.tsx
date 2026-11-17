@@ -32,9 +32,7 @@ export function MemberPreviewCard({ preview }: MemberPreviewCardProps) {
     <div
       className={cn(
         'flex items-center gap-3 rounded-card border p-4',
-        isTaken
-          ? 'border-warn bg-[color-mix(in_oklab,var(--warn)_12%,var(--card))]'
-          : 'border-line bg-card',
+        isTaken ? 'border-warn bg-warn-soft' : 'border-line bg-card',
       )}
     >
       <span

@@ -48,13 +48,12 @@ migrations `00002_business_rules.sql` and `00003_member_link.sql`, the league ro
 | `src/pages/PutUpPage.tsx` | league screen |
 | `src/pages/ResultPage.tsx` | league screen |
 | `src/pages/admin/PlayersPage.tsx` | league screen |
-| `src/components/league/*` (17 files) | league UI — **except `SkillLevelSquare.tsx`** |
+| `src/components/league/*` (12 files left) | league UI — the component-sheet pieces have been un-parked, see below |
 | `src/components/RequireAdmin.tsx` | admin route gate |
 | `src/hooks/useLeague.ts`, `useLeagueMutations.ts` | league data access |
 | `src/lib/rules.ts` + test | race chart and points mirror (26 tests) |
 | `src/lib/night.ts` + test | night state machine (7 tests) |
 | `src/lib/schemas.ts` | Zod for result entry and skill-level change |
-| `src/lib/format.ts` | only league screens used it |
 
 ## What stayed, and why
 
@@ -66,6 +65,14 @@ migrations `00002_business_rules.sql` and `00003_member_link.sql`, the league ro
 - `src/types/league.ts` — types only, no runtime, and `MemberPreview` lives here.
 - The league i18n keys in `en.json` / `vi.json` — unused for now, and deleting them would
   only have to be undone on restore.
+
+- `src/components/league/{StatusBadge,ErrorBanner,EmptyState,Stepper,FixtureCard}.tsx` and
+  `src/lib/format.ts` — un-parked on 2026-11-14 to implement the design's component sheet, with
+  named exports. Parked callers still use default imports; switch them to `{ X }` on restore.
+  `Stepper` now renders its own label, so drop any label the caller renders beside it.
+- New in `src/components/league/`: `ReasonChip`, `ByeBanner`, `RosterRow`, `ScoresheetRow`. On
+  restore, rebuild `RosterTable` on `RosterRow` and `NightScoresheet` on `ScoresheetRow`, and
+  render put-up block reasons with `ReasonChip`.
 
 ## Known gap while parked
 

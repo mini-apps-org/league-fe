@@ -140,7 +140,9 @@
     "confirmBody": "Sau khi chốt, đội trưởng không sửa được nữa. Quản trị viên vẫn có thể điều chỉnh.",
     "submittedBy": "Chốt bởi {{name}}",
     "matchN": "Trận {{n}}",
-    "notPlayed": "Chưa đấu"
+    "notPlayed": "Chưa đấu",
+    "bye": "Nghỉ",
+    "raceLine": "Chạm {{homeRace}}–{{awayRace}} · {{homePoints}}–{{awayPoints}} điểm"
   },
   "admin": {
     "playersTitle": "Người chơi",
@@ -179,5 +181,59 @@
     "wrongAccount": "Không phải bạn? Đăng xuất",
     "captain": "Đội trưởng",
     "noTeam": "Chưa có đội"
+  },
+  "dev": {
+    "gallery": {
+      "title": "Thành phần",
+      "subtitle": "Giao diện xanh dương · Inter 400/500/600/700 · nút 12 px · thẻ và bảng 16 px · chip bo tròn",
+      "skillLevel": "Ô SL · 28 px",
+      "statusBadge": "Nhãn trạng thái",
+      "reasonChip": "Chip lý do",
+      "fixtureCard": "Thẻ trận đấu và băng nghỉ",
+      "rosterRow": "Dòng đội hình · mặc định, chưa đóng phí, đang chọn",
+      "scoresheetRow": "Dòng bảng điểm · đã đấu, chưa đấu",
+      "stepper": "Bộ tăng giảm số · nút cộng tắt khi đạt mức chạm",
+      "buttons": "Nút · một nút nhấn mạnh mỗi màn hình",
+      "errorBanner": "Băng báo lỗi có Thử lại, và thông báo nhanh",
+      "emptyState": "Trạng thái trống",
+      "skeleton": "Khung chờ",
+      "drawer": "Ngăn kéo dưới · cột phải 400 px trên máy tính",
+      "index": "Mục lục",
+      "indexBody": "Mọi thành phần trong ứng dụng và các trục biến thể của nó. Tên là các prop dùng trong code.",
+      "primitives": "Thành phần gốc",
+      "primitivesBody": "src/components/ui — thành phần shadcn đã chỉnh theo thiết kế.",
+      "league": "Thành phần giải đấu",
+      "leagueBody": "src/components/league — dựng trên thành phần gốc, như bảng thành phần của thiết kế.",
+      "colComponent": "Thành phần",
+      "colAxes": "Biến thể",
+      "colSource": "Tệp",
+      "textSizes": "Cỡ có chữ",
+      "iconSizes": "Cỡ biểu tượng",
+      "disabled": "Vô hiệu",
+      "sample": {
+        "button": "Nút",
+        "label": "Tên người chơi",
+        "placeholder": "Nhập tại đây",
+        "notes": "Ghi chú cho buổi đấu",
+        "option": "Lựa chọn {{n}}",
+        "tab": "Thẻ {{n}}",
+        "tabPanel": "Nội dung {{n}}",
+        "menuItem": "Sửa người chơi",
+        "menuDelete": "Xoá người chơi",
+        "menuCheckbox": "Hiện người chưa đóng phí",
+        "menuLabel": "Sắp xếp theo",
+        "menuRadioName": "Tên",
+        "menuRadioLevel": "Trình độ",
+        "cardTitle": "Tiêu đề thẻ",
+        "cardDescription": "Nội dung phụ của thẻ.",
+        "cardBody": "Nội dung thẻ ở đây.",
+        "alertBody": "Có việc cần bạn chú ý.",
+        "open": "Mở {{what}}",
+        "bold": "Đậm",
+        "italic": "Nghiêng",
+        "underline": "Gạch chân",
+        "toastMessage": "Đã chuyển sang Rack Attack"
+      }
+    }
   }
 }

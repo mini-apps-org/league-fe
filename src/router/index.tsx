@@ -1,4 +1,4 @@
-import { createBrowserRouter } from 'react-router';
+import { createBrowserRouter, type RouteObject } from 'react-router';
 
 import { AppLayout } from '@/components/AppLayout';
 import { RequireAuth } from '@/components/RequireAuth';
@@ -9,6 +9,21 @@ import { OnboardingPage } from '@/pages/OnboardingPage';
 import { PrivacyPage } from '@/pages/PrivacyPage';
 import { RouteErrorPage } from '@/pages/RouteErrorPage';
 import { RulesPage } from '@/pages/RulesPage';
+
+// import.meta.env.DEV is a build-time constant, so the gallery chunk is dropped from
+// production builds rather than shipped behind a runtime check.
+const DEV_ROUTES: RouteObject[] = import.meta.env.DEV
+  ? [
+      {
+        path: '/dev/components',
+        lazy: async () => {
+          const { ComponentGalleryPage } = await import('@/pages/dev/ComponentGalleryPage');
+
+          return { Component: ComponentGalleryPage };
+        },
+      },
+    ]
+  : [];
 
 // Auth and login only. The league routes are parked in /_parked; see its RESTORE.md.
 export const router = createBrowserRouter([
@@ -49,6 +64,7 @@ export const router = createBrowserRouter([
           },
         ],
       },
+      ...DEV_ROUTES,
       {
         path: '*',
         element: <NotFoundPage />,
