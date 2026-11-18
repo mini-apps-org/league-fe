@@ -4,9 +4,9 @@ import { useNavigate } from 'react-router';
 
 import { AuthAPI } from '@/api/authAPI';
 import type { ApiRequestError } from '@/lib/errors';
-import { LOGIN_PATH } from '@/lib/navigate';
 import { authQueries } from '@/queries/auth';
 import type { MeResponse } from '@/types/auth';
+import { ROUTES } from '@/utils';
 
 export function useMe(): UseQueryResult<MeResponse> {
   return useQuery(authQueries.me());
@@ -25,7 +25,7 @@ export function useLogout(): UseMutationResult<void, ApiRequestError, void> {
     // show a signed-in header to a signed-out user.
     onSettled: () => {
       queryClient.clear();
-      void navigate(LOGIN_PATH, { replace: true });
+      void navigate(ROUTES.LOGIN, { replace: true });
     },
   });
 }

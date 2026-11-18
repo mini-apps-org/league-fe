@@ -19,11 +19,13 @@
     "brandPointPutUp": "Put up five players without breaking 23.",
     "brandPointResults": "Enter results and watch the score build.",
     "brandPointSubmit": "Submit the night when the last rack drops.",
-    "brandSeason": "Fall 2026 · 8-Ball Open"
+    "brandSeason": "Fall 2026 · 8-Ball Open",
+    "unauthorized": "You do not have permission to view this page."
   },
   "notFound": {
     "title": "Page not found",
-    "backHome": "Back to home"
+    "backHome": "Back to home",
+    "body": "That page does not exist, or you no longer have access to it."
   },
   "routeError": {
     "title": "Something went wrong",
@@ -54,16 +56,38 @@
     "login_failed": "Sign-in did not complete. Please try again.",
     "server_error": "Something went wrong on our side. Please try again."
   },
+  "nav": {
+    "schedule": "Schedule",
+    "standings": "Standings",
+    "profile": "Profile",
+    "players": "Players",
+    "seasons": "Seasons",
+    "teams": "Teams",
+    "divisions": "Divisions",
+    "fees": "Fees",
+    "audit": "Audit log",
+    "league": "League",
+    "adminConsole": "Admin console",
+    "label": "Main",
+    "openMenu": "Open menu",
+    "myProfile": "My profile"
+  },
   "common": {
     "back": "Back",
     "retry": "Retry",
     "loading": "Loading…",
     "cancel": "Cancel",
+    "comingSoon": "Coming soon.",
     "theme": {
       "toggle": "Change theme",
       "light": "Light",
       "dark": "Dark",
       "system": "System"
+    },
+    "language": {
+      "label": "Language",
+      "en": "English",
+      "vi": "Tiếng Việt"
     }
   },
   "matchStatus": {
@@ -85,6 +109,7 @@
     "noSessionBody": "An admin needs to create a season and a division first."
   },
   "roster": {
+    "title": "Roster",
     "home": "Home",
     "away": "Away",
     "player": "Player",
@@ -144,6 +169,27 @@
     "bye": "Bye",
     "raceLine": "Race {{homeRace}}–{{awayRace}} · {{homePoints}}–{{awayPoints}} pts"
   },
+  "standings": {
+    "title": "Standings"
+  },
+  "profile": {
+    "title": "Profile"
+  },
+  "teamSettings": {
+    "title": "Team Settings"
+  },
+  "memberSession": {
+    "title": "Session League"
+  },
+  "liveScoring": {
+    "title": "Live Scoring"
+  },
+  "verify": {
+    "title": "Verification"
+  },
+  "match": {
+    "title": "Match"
+  },
   "admin": {
     "playersTitle": "Players",
     "search": "Name or member ID",
@@ -162,7 +208,12 @@
     "history": "History",
     "historyEmpty": "No changes yet.",
     "changedBy": "by {{name}}",
-    "appliesNextMatch": "Applies from the next match. Played matches keep their snapshot."
+    "appliesNextMatch": "Applies from the next match. Played matches keep their snapshot.",
+    "seasonsTitle": "Seasons",
+    "teamsTitle": "Teams",
+    "divisionsTitle": "Divisions",
+    "feesTitle": "Fees",
+    "auditTitle": "Audit Log"
   },
   "rules": {
     "title": "League rules",

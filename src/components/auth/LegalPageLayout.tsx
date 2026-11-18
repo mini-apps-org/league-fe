@@ -3,6 +3,7 @@ import { Link } from 'react-router';
 
 import { Button } from '@/components/ui/button';
 import { ArrowLeft } from '@/lib/icons';
+import { ROUTES } from '@/utils';
 
 interface LegalPageLayoutProps {
   title: string;
@@ -16,7 +17,7 @@ export function LegalPageLayout({ title, body }: LegalPageLayoutProps) {
   return (
     <main className="mx-auto min-h-dvh w-full max-w-2xl space-y-4 p-6">
       <Button asChild variant="ghost" className="-ml-2 h-11 px-2">
-        <Link to="/login">
+        <Link to={ROUTES.LOGIN}>
           <ArrowLeft className="size-5" aria-hidden />
           {t('common.back')}
         </Link>

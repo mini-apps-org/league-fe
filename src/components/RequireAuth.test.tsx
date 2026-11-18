@@ -3,14 +3,21 @@ import { http } from 'msw';
 import { describe, expect, it } from 'vitest';
 
 import { ENDPOINTS } from '@/api/endpoints';
-import { apiError, apiUrl, envelope, UNLINKED_USER } from '@/test/handlers';
+import {
+  apiError,
+  apiUrl,
+  envelope,
+  PLAYER_PERMISSIONS,
+  PLAYER_ROLES,
+  UNLINKED_USER,
+} from '@/test/handlers';
 import { renderRoutes } from '@/test/render';
 import { server } from '@/test/server';
 import { ERROR_CODE } from '@/types/errors';
 
 import { RequireAuth } from './RequireAuth';
 
-function renderGate(route = '/') {
+const renderGate = (route = '/') => {
   return renderRoutes(
     [
       { path: '/login', element: <p>login screen</p> },
@@ -24,7 +31,7 @@ function renderGate(route = '/') {
     ],
     { route },
   );
-}
+};
 
 describe('RequireAuth', () => {
   it('renders the protected route for a signed-in, linked user', async () => {
@@ -49,7 +56,11 @@ describe('RequireAuth', () => {
   it('sends a user with no linked player to /onboarding', async () => {
     server.use(
       http.get(apiUrl(ENDPOINTS.ME), () => {
-        return envelope({ user: UNLINKED_USER });
+        return envelope({
+          user: UNLINKED_USER,
+          roles: PLAYER_ROLES,
+          permissions: PLAYER_PERMISSIONS,
+        });
       }),
     );
 
@@ -61,7 +72,11 @@ describe('RequireAuth', () => {
   it('lets an unlinked user stay on /onboarding instead of looping', async () => {
     server.use(
       http.get(apiUrl(ENDPOINTS.ME), () => {
-        return envelope({ user: UNLINKED_USER });
+        return envelope({
+          user: UNLINKED_USER,
+          roles: PLAYER_ROLES,
+          permissions: PLAYER_PERMISSIONS,
+        });
       }),
     );
 

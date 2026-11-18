@@ -3,7 +3,10 @@
 // Payload fields are camelCase; only the envelope's own fields are snake_case.
 
 // Uppercase to match league-be's UserRole constants, so no translation step is needed.
-export type Role = 'ADMIN' | 'CAPTAIN' | 'PLAYER';
+export type Role = 'SUPER_ADMIN' | 'CAPTAIN' | 'PLAYER';
+
+// String alias for now. Tighten to a literal union when openapi-typescript generates types.
+export type Permission = string;
 
 export type Side = 'home' | 'away';
 

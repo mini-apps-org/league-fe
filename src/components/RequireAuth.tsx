@@ -2,8 +2,8 @@ import { Navigate, Outlet, useLocation } from 'react-router';
 
 import { AppSkeleton } from '@/components/AppSkeleton';
 import { useMe } from '@/hooks/useMe';
-import { LOGIN_PATH, ONBOARDING_PATH } from '@/lib/navigate';
 import { needsMemberLink } from '@/types/auth';
+import { ROUTES } from '@/utils';
 
 export function RequireAuth() {
   const location = useLocation();
@@ -15,13 +15,13 @@ export function RequireAuth() {
   }
 
   if (me.isError) {
-    return <Navigate to={LOGIN_PATH} replace state={{ from: location.pathname }} />;
+    return <Navigate to={ROUTES.LOGIN} replace state={{ from: location.pathname }} />;
   }
 
   // Every write authorises through players.user_id, so an unlinked user would land in an app
   // where nothing works and nothing says why. Guarded here, where the /me response already is.
-  if (needsMemberLink(me.data?.user) && location.pathname !== ONBOARDING_PATH) {
-    return <Navigate to={ONBOARDING_PATH} replace state={{ from: location.pathname }} />;
+  if (needsMemberLink(me.data?.user) && location.pathname !== ROUTES.ONBOARDING) {
+    return <Navigate to={ROUTES.ONBOARDING} replace state={{ from: location.pathname }} />;
   }
 
   return <Outlet />;

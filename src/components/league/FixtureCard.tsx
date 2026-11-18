@@ -1,9 +1,10 @@
 import { useTranslation } from 'react-i18next';
-import { Link } from 'react-router';
+import { generatePath, Link } from 'react-router';
 
 import { StatusBadge } from '@/components/league/StatusBadge';
 import { formatFixtureDateTime } from '@/lib/format';
 import type { TeamMatchSummary, TeamRef } from '@/types/league';
+import { ROUTES } from '@/utils';
 
 // A result exists only once a match has been scored; before that the card shows no score
 // rather than 0-0, which would read as a played draw.
@@ -37,7 +38,7 @@ export function FixtureCard({ fixture }: FixtureCardProps) {
   return (
     // The whole card is the link, so the touch target is the card, not the team name.
     <Link
-      to={`/matches/${fixture.id}`}
+      to={generatePath(ROUTES.MATCH, { id: fixture.id })}
       className="flex min-h-22 flex-col gap-3 rounded-card border border-line bg-card p-4"
     >
       <div className="flex items-center justify-between gap-2">

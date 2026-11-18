@@ -7,6 +7,7 @@ import { LegalLine } from '@/components/auth/LegalLine';
 import { useLoginError } from '@/hooks/useLoginError';
 import { useMe } from '@/hooks/useMe';
 import { Check } from '@/lib/icons';
+import { ROUTES } from '@/utils';
 
 const BRAND_POINTS = [
   'auth.brandPointPutUp',
@@ -21,7 +22,7 @@ export function LoginPage() {
 
   // No skeleton while the check runs: signed-out is the common case here.
   if (me.isSuccess) {
-    return <Navigate to="/" replace />;
+    return <Navigate to={ROUTES.HOME} replace />;
   }
 
   return (
