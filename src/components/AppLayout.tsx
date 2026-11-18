@@ -1,14 +1,24 @@
 import { Outlet } from 'react-router';
 
-import { AppHeader } from './AppHeader';
+import { SidebarProvider } from '@/components/ui/sidebar';
+import { ROLE } from '@/utils';
 
-export function AppLayout() {
+import { AppHeader } from './AppHeader';
+import { AppSidebar } from './AppSidebar';
+import { RoleGate } from './RoleGate';
+
+export const AppLayout = () => {
   return (
-    <div className="min-h-dvh">
-      <AppHeader />
-      <main className="mx-auto w-full max-w-3xl px-4 pt-4 pb-[max(1rem,env(safe-area-inset-bottom))] lg:max-w-6xl lg:px-6">
-        <Outlet />
-      </main>
-    </div>
+    <SidebarProvider className="min-h-dvh bg-background">
+      <RoleGate allowed={[ROLE.SUPER_ADMIN]}>
+        <AppSidebar />
+      </RoleGate>
+      <div className="flex min-w-0 flex-1 flex-col">
+        <AppHeader />
+        <main className="mx-auto w-full max-w-240 min-w-0 px-4 pt-4 pb-[max(1.5rem,env(safe-area-inset-bottom))] lg:px-6 lg:pt-8 lg:pb-12">
+          <Outlet />
+        </main>
+      </div>
+    </SidebarProvider>
   );
-}
+};

@@ -1,3 +1,14 @@
+import {
+  CalendarDays,
+  CalendarRange,
+  Layers,
+  type LucideIcon,
+  ScrollText,
+  Shield,
+  Trophy,
+  Users,
+  Wallet,
+} from '@/lib/icons';
 import type { Role } from '@/types/league';
 
 export const ROLE = {
@@ -30,3 +41,44 @@ export const ROUTES = {
   ADMIN_AUDIT: '/admin/audit',
   DEV_COMPONENTS: '/dev/components',
 } as const;
+
+export interface NavItem {
+  to: string;
+  labelKey:
+    | 'nav.schedule'
+    | 'nav.standings'
+    | 'nav.players'
+    | 'nav.seasons'
+    | 'nav.teams'
+    | 'nav.divisions'
+    | 'nav.fees'
+    | 'nav.audit';
+  icon: LucideIcon;
+  end?: boolean;
+}
+
+export interface NavSection {
+  labelKey: 'nav.league' | 'nav.adminConsole';
+  items: NavItem[];
+}
+
+export const NAV_SECTIONS: NavSection[] = [
+  {
+    labelKey: 'nav.league',
+    items: [
+      { to: ROUTES.HOME, labelKey: 'nav.schedule', icon: CalendarDays, end: true },
+      { to: ROUTES.STANDINGS, labelKey: 'nav.standings', icon: Trophy },
+    ],
+  },
+  {
+    labelKey: 'nav.adminConsole',
+    items: [
+      { to: ROUTES.ADMIN_PLAYERS, labelKey: 'nav.players', icon: Users },
+      { to: ROUTES.ADMIN_SEASONS, labelKey: 'nav.seasons', icon: CalendarRange },
+      { to: ROUTES.ADMIN_TEAMS, labelKey: 'nav.teams', icon: Shield },
+      { to: ROUTES.ADMIN_DIVISIONS, labelKey: 'nav.divisions', icon: Layers },
+      { to: ROUTES.ADMIN_FEES, labelKey: 'nav.fees', icon: Wallet },
+      { to: ROUTES.ADMIN_AUDIT, labelKey: 'nav.audit', icon: ScrollText },
+    ],
+  },
+];
