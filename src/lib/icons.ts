@@ -1,23 +1,32 @@
 // One place to swap icon libraries. The shadcn primitives in components/ui are generated and
 // import lucide directly, so they are deliberately not routed through here.
+export type { LucideIcon } from 'lucide-react';
 export {
   ArrowLeft,
   ArrowRightLeft,
   Bold,
+  CalendarDays,
   CalendarOff,
+  CalendarRange,
   Check,
   Clock,
   Italic,
+  Layers,
   LoaderCircle,
+  Menu,
   Minus,
   Monitor,
   Moon,
   Plus,
+  ScrollText,
   Search,
+  Shield,
   Sun,
   TriangleAlert,
+  Trophy,
   Underline,
   UserPlus,
   Users,
+  Wallet,
   X,
 } from 'lucide-react';

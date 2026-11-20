@@ -6,6 +6,33 @@ import { afterAll, afterEach, beforeAll } from 'vitest';
 
 import { server } from './server';
 
+// jsdom has no matchMedia; shadcn's useIsMobile calls it when SidebarProvider mounts.
+Object.defineProperty(window, 'matchMedia', {
+  writable: true,
+  value: (query: string): MediaQueryList => {
+    return {
+      matches: false,
+      media: query,
+      onchange: null,
+      addEventListener: () => {
+        return undefined;
+      },
+      removeEventListener: () => {
+        return undefined;
+      },
+      addListener: () => {
+        return undefined;
+      },
+      removeListener: () => {
+        return undefined;
+      },
+      dispatchEvent: () => {
+        return false;
+      },
+    };
+  },
+});
+
 beforeAll(() => {
   server.listen({ onUnhandledFrame: 'error' });
 });

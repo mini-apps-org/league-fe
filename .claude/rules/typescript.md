@@ -141,7 +141,39 @@ Avoid:
 return users.find((item) => item.id === userId) ?? null;
 ```
 
-## 5. Apply the rules consistently
+## 5. Declare functions as `const` arrow functions
+
+Every named function is a `const` bound to an arrow function: helpers, hooks, components, and
+event handlers. Do not use `function` declarations or `function` expressions.
+
+Prefer:
+
+```ts
+export const getInitials = (name: string): string => {
+  return name.slice(0, 1).toUpperCase();
+};
+
+export const useRole = (): Role | undefined => {
+  const { data } = useMe();
+
+  return data?.role;
+};
+```
+
+Avoid:
+
+```ts
+export function getInitials(name: string): string {
+  return name.slice(0, 1).toUpperCase();
+}
+```
+
+- `const` is not hoisted. Declare a module-level helper above the code that calls it.
+- A generic arrow in a `.tsx` file needs a trailing comma so it does not parse as JSX:
+  `const pick = <T,>(items: T[]) => { ... }`.
+- Function overloads are the only exception: they need `function` declarations.
+
+## 6. Apply the rules consistently
 
 These rules apply to all TypeScript and TSX code, including:
 
@@ -153,8 +185,8 @@ These rules apply to all TypeScript and TSX code, including:
 - Event handlers
 - Utility functions
 
-## 6. Enforcement (ESLint)
+## 7. Enforcement (ESLint)
 
-Enforced by the first `no-restricted-syntax` selector in `eslint.config.mjs`. The linter allows
-any expression-bodied callback for the listed array methods; Rule 2's "one line, no side effects"
-conditions are checked during code review.
+Rules 1–3 are enforced by the first `no-restricted-syntax` selector in `eslint.config.mjs`. The
+linter allows any expression-bodied callback for the listed array methods; Rule 2's "one line, no
+side effects" conditions are checked during code review. Rule 5 is checked during code review.

@@ -1,8 +1,7 @@
-export const LOGIN_PATH = '/login';
-export const ONBOARDING_PATH = '/onboarding';
+import { ROUTES } from '@/utils';
 
-export function redirectToLogin(): void {
-  if (window.location.pathname !== LOGIN_PATH) {
-    window.location.assign(LOGIN_PATH);
+export const redirectToLogin = (): void => {
+  if (window.location.pathname !== ROUTES.LOGIN) {
+    window.location.assign(ROUTES.LOGIN);
   }
-}
+};

@@ -19,11 +19,13 @@
     "brandPointPutUp": "Ra năm người mà không vượt mức 23.",
     "brandPointResults": "Nhập kết quả và theo dõi tỉ số tăng dần.",
     "brandPointSubmit": "Chốt buổi đấu khi ván cuối kết thúc.",
-    "brandSeason": "Fall 2026 · 8-Ball Open"
+    "brandSeason": "Fall 2026 · 8-Ball Open",
+    "unauthorized": "Bạn không có quyền xem trang này."
   },
   "notFound": {
     "title": "Không tìm thấy trang",
-    "backHome": "Về trang chủ"
+    "backHome": "Về trang chủ",
+    "body": "Trang này không tồn tại, hoặc bạn không còn quyền truy cập."
   },
   "routeError": {
     "title": "Đã xảy ra lỗi",
@@ -54,16 +56,38 @@
     "login_failed": "Đăng nhập không thành công. Vui lòng thử lại.",
     "server_error": "Đã xảy ra lỗi phía chúng tôi. Vui lòng thử lại."
   },
+  "nav": {
+    "schedule": "Lịch đấu",
+    "standings": "Bảng xếp hạng",
+    "profile": "Hồ sơ",
+    "players": "Người chơi",
+    "seasons": "Mùa giải",
+    "teams": "Các đội",
+    "divisions": "Hạng đấu",
+    "fees": "Phí",
+    "audit": "Nhật ký",
+    "league": "Giải đấu",
+    "adminConsole": "Bảng quản trị",
+    "label": "Chính",
+    "openMenu": "Mở menu",
+    "myProfile": "Hồ sơ của tôi"
+  },
   "common": {
     "back": "Quay lại",
     "retry": "Thử lại",
     "loading": "Đang tải…",
     "cancel": "Huỷ",
+    "comingSoon": "Sắp ra mắt.",
     "theme": {
       "toggle": "Đổi giao diện",
       "light": "Sáng",
       "dark": "Tối",
       "system": "Theo hệ thống"
+    },
+    "language": {
+      "label": "Ngôn ngữ",
+      "en": "English",
+      "vi": "Tiếng Việt"
     }
   },
   "matchStatus": {
@@ -85,6 +109,7 @@
     "noSessionBody": "Quản trị viên cần tạo mùa giải và bảng đấu trước."
   },
   "roster": {
+    "title": "Đội hình",
     "home": "Chủ nhà",
     "away": "Khách",
     "player": "Người chơi",
@@ -144,6 +169,27 @@
     "bye": "Nghỉ",
     "raceLine": "Chạm {{homeRace}}–{{awayRace}} · {{homePoints}}–{{awayPoints}} điểm"
   },
+  "standings": {
+    "title": "Bảng xếp hạng"
+  },
+  "profile": {
+    "title": "Hồ sơ"
+  },
+  "teamSettings": {
+    "title": "Cài đặt đội"
+  },
+  "memberSession": {
+    "title": "Giải đấu phiên"
+  },
+  "liveScoring": {
+    "title": "Chấm điểm trực tiếp"
+  },
+  "verify": {
+    "title": "Xác minh"
+  },
+  "match": {
+    "title": "Trận đấu"
+  },
   "admin": {
     "playersTitle": "Người chơi",
     "search": "Tên hoặc mã thành viên",
@@ -162,7 +208,12 @@
     "history": "Lịch sử",
     "historyEmpty": "Chưa có thay đổi.",
     "changedBy": "bởi {{name}}",
-    "appliesNextMatch": "Áp dụng từ trận kế tiếp. Các trận đã đấu giữ nguyên trình độ lúc đó."
+    "appliesNextMatch": "Áp dụng từ trận kế tiếp. Các trận đã đấu giữ nguyên trình độ lúc đó.",
+    "seasonsTitle": "Mùa giải",
+    "teamsTitle": "Các đội",
+    "divisionsTitle": "Hạng đấu",
+    "feesTitle": "Phí",
+    "auditTitle": "Nhật ký"
   },
   "rules": {
     "title": "Luật giải",

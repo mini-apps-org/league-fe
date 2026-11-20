@@ -1,15 +1,15 @@
-import { roleOf } from '@/types/auth';
+import { rolesOf } from '@/types/auth';
 import type { Role } from '@/types/league';
+import { ROLE } from '@/utils';
 
 import { useMe } from './useMe';
 
-// Role rides along on the /me payload, so this needs no request of its own.
-export function useRole(): Role {
+export const useRoles = (): Role[] => {
   const { data } = useMe();
 
-  return roleOf(data?.user);
-}
+  return rolesOf(data);
+};
 
-export function useIsAdmin(): boolean {
-  return useRole() === 'ADMIN';
-}
+export const useIsSuperAdmin = (): boolean => {
+  return useRoles().includes(ROLE.SUPER_ADMIN);
+};

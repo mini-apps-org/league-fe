@@ -2,20 +2,37 @@ import { createBrowserRouter, type RouteObject } from 'react-router';
 
 import { AppLayout } from '@/components/AppLayout';
 import { RequireAuth } from '@/components/RequireAuth';
+import { RequireRole } from '@/components/RequireRole';
+import type { RouteHandle } from '@/hooks/usePageTitle';
+import { AdminTeamsPage } from '@/pages/admin/AdminTeamsPage';
+import { AuditPage } from '@/pages/admin/AuditPage';
+import { DivisionsPage } from '@/pages/admin/DivisionsPage';
+import { FeesPage } from '@/pages/admin/FeesPage';
+import { PlayersPage } from '@/pages/admin/PlayersPage';
+import { SeasonsPage } from '@/pages/admin/SeasonsPage';
 import { LoginPage } from '@/pages/auth/LoginPage';
-import { HomePage } from '@/pages/HomePage';
-import { NotFoundPage } from '@/pages/NotFoundPage';
-import { OnboardingPage } from '@/pages/OnboardingPage';
-import { PrivacyPage } from '@/pages/PrivacyPage';
-import { RouteErrorPage } from '@/pages/RouteErrorPage';
-import { RulesPage } from '@/pages/RulesPage';
+import { OnboardingPage } from '@/pages/auth/OnboardingPage';
+import { NotFoundPage } from '@/pages/errors/NotFoundPage';
+import { RouteErrorPage } from '@/pages/errors/RouteErrorPage';
+import { PrivacyPage } from '@/pages/legal/PrivacyPage';
+import { RulesPage } from '@/pages/legal/RulesPage';
+import { LiveScoringPage } from '@/pages/match/LiveScoringPage';
+import { MatchPage } from '@/pages/match/MatchPage';
+import { PutUpPage } from '@/pages/match/PutUpPage';
+import { ResultPage } from '@/pages/match/ResultPage';
+import { VerifyPage } from '@/pages/match/VerifyPage';
+import { ProfilePage } from '@/pages/profile/ProfilePage';
+import { SchedulePage } from '@/pages/schedule/SchedulePage';
+import { StandingsPage } from '@/pages/standings/StandingsPage';
+import { MemberSessionPage } from '@/pages/team/MemberSessionPage';
+import { RosterPage } from '@/pages/team/RosterPage';
+import { TeamSettingsPage } from '@/pages/team/TeamSettingsPage';
+import { ROLE, ROUTES } from '@/utils';
 
-// import.meta.env.DEV is a build-time constant, so the gallery chunk is dropped from
-// production builds rather than shipped behind a runtime check.
 const DEV_ROUTES: RouteObject[] = import.meta.env.DEV
   ? [
       {
-        path: '/dev/components',
+        path: ROUTES.DEV_COMPONENTS,
         lazy: async () => {
           const { ComponentGalleryPage } = await import('@/pages/dev/ComponentGalleryPage');
 
@@ -25,23 +42,24 @@ const DEV_ROUTES: RouteObject[] = import.meta.env.DEV
     ]
   : [];
 
-// Auth and login only. The league routes are parked in /_parked; see its RESTORE.md.
+const titled = (titleKey: RouteHandle['titleKey']): RouteHandle => {
+  return { titleKey };
+};
+
 export const router = createBrowserRouter([
   {
     errorElement: <RouteErrorPage />,
     children: [
-      // Gating this would loop: RequireAuth redirects here.
       {
-        path: '/login',
+        path: ROUTES.LOGIN,
         element: <LoginPage />,
       },
-      // Linked from the signed-out login screen, so they cannot sit behind the gate.
       {
-        path: '/rules',
+        path: ROUTES.RULES,
         element: <RulesPage />,
       },
       {
-        path: '/privacy',
+        path: ROUTES.PRIVACY,
         element: <PrivacyPage />,
       },
       {
@@ -50,16 +68,107 @@ export const router = createBrowserRouter([
           {
             element: <AppLayout />,
             children: [
-              // Where a completed sign-in arrives, so the stored `next` is consumed here.
               {
-                path: '/',
-                element: <HomePage />,
+                path: ROUTES.HOME,
+                element: <SchedulePage />,
+                handle: titled('schedule.title'),
+              },
+              {
+                path: ROUTES.MATCH,
+                element: <MatchPage />,
+                handle: titled('match.title'),
+              },
+              {
+                path: ROUTES.STANDINGS,
+                element: <StandingsPage />,
+                handle: titled('standings.title'),
+              },
+              {
+                path: ROUTES.PROFILE,
+                element: <ProfilePage />,
+                handle: titled('profile.title'),
+              },
+
+              {
+                element: <RequireRole allowed={[ROLE.SUPER_ADMIN, ROLE.CAPTAIN]} />,
+                children: [
+                  {
+                    path: ROUTES.MATCH_PUT_UP,
+                    element: <PutUpPage />,
+                    handle: titled('match.title'),
+                  },
+                  {
+                    path: ROUTES.MATCH_RESULT,
+                    element: <ResultPage />,
+                    handle: titled('match.title'),
+                  },
+                  {
+                    path: ROUTES.TEAM_ROSTER,
+                    element: <RosterPage />,
+                    handle: titled('roster.title'),
+                  },
+                  {
+                    path: ROUTES.TEAM_SETTINGS,
+                    element: <TeamSettingsPage />,
+                    handle: titled('teamSettings.title'),
+                  },
+                  {
+                    path: ROUTES.TEAM_MEMBER_SESSION,
+                    element: <MemberSessionPage />,
+                    handle: titled('memberSession.title'),
+                  },
+                  {
+                    path: ROUTES.MATCH_LIVE,
+                    element: <LiveScoringPage />,
+                    handle: titled('liveScoring.title'),
+                  },
+                  {
+                    path: ROUTES.MATCH_VERIFY,
+                    element: <VerifyPage />,
+                    handle: titled('verify.title'),
+                  },
+                ],
+              },
+
+              {
+                element: <RequireRole allowed={[ROLE.SUPER_ADMIN]} />,
+                children: [
+                  {
+                    path: ROUTES.ADMIN_PLAYERS,
+                    element: <PlayersPage />,
+                    handle: titled('admin.playersTitle'),
+                  },
+                  {
+                    path: ROUTES.ADMIN_SEASONS,
+                    element: <SeasonsPage />,
+                    handle: titled('admin.seasonsTitle'),
+                  },
+                  {
+                    path: ROUTES.ADMIN_TEAMS,
+                    element: <AdminTeamsPage />,
+                    handle: titled('admin.teamsTitle'),
+                  },
+                  {
+                    path: ROUTES.ADMIN_DIVISIONS,
+                    element: <DivisionsPage />,
+                    handle: titled('admin.divisionsTitle'),
+                  },
+                  {
+                    path: ROUTES.ADMIN_FEES,
+                    element: <FeesPage />,
+                    handle: titled('admin.feesTitle'),
+                  },
+                  {
+                    path: ROUTES.ADMIN_AUDIT,
+                    element: <AuditPage />,
+                    handle: titled('admin.auditTitle'),
+                  },
+                ],
               },
             ],
           },
-          // No AppLayout: the header's nav would offer links the gate bounces the user back from.
           {
-            path: '/onboarding',
+            path: ROUTES.ONBOARDING,
             element: <OnboardingPage />,
           },
         ],

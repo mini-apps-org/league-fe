@@ -3,6 +3,7 @@ import { useTranslation } from 'react-i18next';
 import { useNavigate } from 'react-router';
 
 import { MemberPreviewCard } from '@/components/auth/MemberPreviewCard';
+import { PageTitle } from '@/components/PageTitle';
 import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
 import { Skeleton } from '@/components/ui/skeleton';
@@ -10,15 +11,15 @@ import { useLogout, useMe } from '@/hooks/useMe';
 import { useLinkMember, useMemberPreview } from '@/hooks/useMemberLink';
 import { messageFor } from '@/lib/errors';
 import { isCompleteMemberId, MEMBER_ID_LENGTH, normalizeMemberId } from '@/lib/member-id';
+import { ROUTES } from '@/utils';
 
-export function OnboardingPage() {
+export const OnboardingPage = () => {
   const { t } = useTranslation();
   const navigate = useNavigate();
   const me = useMe();
   const { mutate: signOut, isPending: isSigningOut } = useLogout();
 
   const [memberId, setMemberId] = useState('');
-  // Fires on blur or once the id looks complete; per-keystroke would request half-typed ids.
   const [lookupId, setLookupId] = useState('');
 
   const preview = useMemberPreview(lookupId);
@@ -42,7 +43,7 @@ export function OnboardingPage() {
   return (
     <main className="mx-auto flex min-h-dvh w-full max-w-md flex-col gap-6 p-6">
       <header className="space-y-1">
-        <h1 className="text-xl font-semibold">{t('link.title')}</h1>
+        <PageTitle>{t('link.title')}</PageTitle>
         <p className="text-sm text-muted-foreground">
           {t('link.signedInAs', { email: me.data?.user.email ?? '' })}
         </p>
@@ -108,7 +109,7 @@ export function OnboardingPage() {
 
             linkMember.mutate(lookupId, {
               onSuccess: () => {
-                void navigate('/', { replace: true });
+                void navigate(ROUTES.HOME, { replace: true });
               },
             });
           }}
@@ -130,4 +131,4 @@ export function OnboardingPage() {
       </div>
     </main>
   );
-}
+};
