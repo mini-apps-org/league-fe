@@ -30,7 +30,7 @@ export function ButtonGallery() {
             </span>
           ))}
           <span className="flex flex-col items-start gap-1">
-            <Button variant={variant} size="touch" disabled>
+            <Button variant={variant} size="lg" disabled>
               {label}
             </Button>
             <code className="font-mono text-[11px] text-muted-foreground">{'disabled'}</code>

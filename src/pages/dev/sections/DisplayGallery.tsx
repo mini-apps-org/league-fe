@@ -25,7 +25,7 @@ import { GallerySection } from '../GallerySection';
 import {
   ALERT_VARIANTS,
   AVATAR_SIZES,
-  BADGE_TONES,
+  BADGE_VARIANTS,
   CARD_SIZES,
   PRIMITIVES,
 } from '../galleryVariants';
@@ -40,10 +40,10 @@ export function DisplayGallery() {
   return (
     <>
       <GallerySection entry={PRIMITIVES.badge}>
-        {BADGE_TONES.map((tone) => (
-          <VariantRow key={tone} name={`tone="${tone}"`}>
-            <Badge tone={tone}>{t('matchStatus.scheduled')}</Badge>
-            <Badge tone={tone}>{t('putUp.reason.would_break_23')}</Badge>
+        {BADGE_VARIANTS.map((variant) => (
+          <VariantRow key={variant} name={`variant="${variant}"`}>
+            <Badge variant={variant}>{t('matchStatus.scheduled')}</Badge>
+            <Badge variant={variant}>{t('putUp.reason.would_break_23')}</Badge>
           </VariantRow>
         ))}
       </GallerySection>
@@ -63,9 +63,7 @@ export function DisplayGallery() {
               <TriangleAlert aria-hidden />
               <AlertDescription>{t('dev.gallery.sample.alertBody')}</AlertDescription>
               <AlertAction>
-                <Button variant="outline" className="h-11 px-4 font-semibold">
-                  {t('common.retry')}
-                </Button>
+                <Button variant="outline">{t('common.retry')}</Button>
               </AlertAction>
             </Alert>
           </VariantRow>

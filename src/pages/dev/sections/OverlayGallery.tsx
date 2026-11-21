@@ -75,7 +75,7 @@ function DrawerSample({ direction }: DrawerSampleProps) {
   return (
     <Drawer direction={direction}>
       <DrawerTrigger asChild>
-        <Button variant="outline" size="touch">
+        <Button variant="outline" size="lg">
           {t('dev.gallery.sample.open', { what: direction })}
         </Button>
       </DrawerTrigger>
@@ -86,11 +86,11 @@ function DrawerSample({ direction }: DrawerSampleProps) {
         </DrawerHeader>
         <DrawerFooter className="grid grid-cols-2 gap-3 pb-[max(1rem,env(safe-area-inset-bottom))]">
           <DrawerClose asChild>
-            <Button variant="outline" size="touch">
+            <Button variant="outline" size="lg">
               {t('common.cancel')}
             </Button>
           </DrawerClose>
-          <Button size="touch">{t('night.submit')}</Button>
+          <Button size="lg">{t('night.submit')}</Button>
         </DrawerFooter>
       </DrawerContent>
     </Drawer>
@@ -105,7 +105,7 @@ function DropdownSample() {
   return (
     <DropdownMenu>
       <DropdownMenuTrigger asChild>
-        <Button variant="outline" size="touch">
+        <Button variant="outline" size="lg">
           {t('dev.gallery.sample.open', { what: 'menu' })}
         </Button>
       </DropdownMenuTrigger>
@@ -150,7 +150,7 @@ export function OverlayGallery() {
         <VariantRow name="open">
           <Dialog>
             <DialogTrigger asChild>
-              <Button variant="outline" size="touch">
+              <Button variant="outline" size="lg">
                 {t('dev.gallery.sample.open', { what: 'dialog' })}
               </Button>
             </DialogTrigger>
@@ -181,7 +181,7 @@ export function OverlayGallery() {
             <Button
               key={kind}
               variant="outline"
-              size="touch"
+              size="lg"
               onClick={() => {
                 TOAST_BY_KIND[kind](t('dev.gallery.sample.toastMessage'));
               }}

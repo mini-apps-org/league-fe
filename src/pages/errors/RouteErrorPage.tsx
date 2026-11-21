@@ -16,7 +16,7 @@ export const RouteErrorPage = () => {
         title={t('notFound.title')}
         body={t('notFound.body')}
         action={
-          <Button asChild className="h-14 px-8 text-base">
+          <Button asChild size="lg">
             <Link to={ROUTES.HOME}>{t('notFound.backHome')}</Link>
           </Button>
         }

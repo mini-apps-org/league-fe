@@ -37,7 +37,7 @@ export function Stepper({ label, value, max, onChange }: StepperProps) {
 
       <Button
         variant="outline"
-        size="icon-touch"
+        size="icon-lg"
         aria-label={t('result.decrease', { field: label })}
         disabled={value <= MIN}
         onClick={() => {
@@ -67,7 +67,7 @@ export function Stepper({ label, value, max, onChange }: StepperProps) {
 
       <Button
         variant="outline"
-        size="icon-touch"
+        size="icon-lg"
         aria-label={t('result.increase', { field: label })}
         disabled={value >= ceiling}
         onClick={() => {

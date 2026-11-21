@@ -2,20 +2,30 @@
 @import 'tw-animate-css';
 @import 'shadcn/tailwind.css';
 
-/* Inter is the only family, per the design system. Static weights, so one import each. */
-@import '@fontsource/inter/400.css';
-@import '@fontsource/inter/500.css';
-@import '@fontsource/inter/600.css';
-@import '@fontsource/inter/700.css';
+/* Be Vietnam Pro, per the Sessions Redesign: full Vietnamese diacritics. Static weights,
+   so one import each. */
+@import '@fontsource/be-vietnam-pro/400.css';
+@import '@fontsource/be-vietnam-pro/500.css';
+@import '@fontsource/be-vietnam-pro/600.css';
+@import '@fontsource/be-vietnam-pro/700.css';
 
 @custom-variant dark (&:is(.dark *));
 
 @theme inline {
-  --font-sans: 'Inter', 'Segoe UI', system-ui, sans-serif;
+  --font-sans: 'Be Vietnam Pro', system-ui, sans-serif;
   --font-heading: var(--font-sans);
 
-  /* The product tokens shadcn has no semantic slot for. Everything else reaches the
-     palette through the shadcn names below, so a component can keep using bg-card. */
+  /* Brand tokens shadcn has no slot for. The yellow is not shadcn's `accent`: stock
+     primitives use bg-accent for menu and select hover, which must stay neutral. */
+  --color-primary-soft: var(--primary-soft);
+  --color-highlight: var(--highlight);
+  --color-highlight-soft: var(--highlight-soft);
+  --color-highlight-foreground: var(--highlight-foreground);
+  --color-destructive-soft: var(--destructive-soft);
+  --color-scrim: var(--scrim);
+
+  /* Legacy names from the "Clean blue theme", still used by the league components. They
+     alias the new palette below; drop each as its last caller is rebuilt. */
   --color-sunken: var(--sunken);
   --color-sel-row: var(--sel-row);
   --color-chip: var(--chip);
@@ -24,14 +34,12 @@
   --color-ok-soft: var(--ok-soft);
   --color-warn: var(--warn);
   --color-warn-soft: var(--warn-soft);
-  --color-scrim: var(--scrim);
-
   --color-line: var(--line);
   --color-input-line: var(--input-line);
 
   --radius-chip: 999px;
   --radius-tile: 8px;
-  --radius-card: 16px;
+  --radius-card: 12px;
   --radius-sheet: 16px;
   --spacing-safe-b: env(safe-area-inset-bottom);
 
@@ -77,91 +85,91 @@
 }
 
 :root {
+  /* Native controls (date picker, scrollbars) follow the theme; without it the date input's
+     calendar icon and popup stay light in dark mode. */
+  color-scheme: light;
+
   /* Tailwind preflight reads this via var(); declaring it here (not in @theme inline,
      which only inlines values) stops its default stack winning anywhere. */
-  --default-font-family: 'Inter', 'Segoe UI', system-ui, sans-serif;
+  --default-font-family: 'Be Vietnam Pro', system-ui, sans-serif;
 
-  /* The palette — light, "clean blue", from the MViP League UI design. Do not introduce
-     colours outside this list. */
-  --bg: #f6f8fc;
-  --sunken: #eff3f8;
-  --card-bg: #ffffff;
-  --sel-row: #ebf2fe;
-  --chip: #e7eef7;
-  --line: #dce4ee;
-  --input-line: #c1cbda;
-  --text: #14243e;
-  --text-2: #2f3f57;
-  --muted-fg: #5e6b7e;
-  --accent-base: #386de3;
-  --on-accent: #ffffff;
-  --accent-soft: #e5edfd;
-  --ok: #3b7e5e;
-  --ok-soft: #e2eee9;
-  --warn: #a74e2c;
-  --warn-soft: #f4e8e3;
+  /* The palette, light, from the Sessions Redesign
+     (https://claude.ai/artifact/H5CEqSxUJhtAB8d9Q3Msio). No colours outside this list. */
+  --background: #ffffff;
+  --foreground: #1a1c21;
+  --card: #ffffff;
+  --muted: #f5f7fa;
+  --muted-foreground: #5a6272;
+  --border: #e3e8f2;
+  --input: #cbd3e1;
+  --primary: #017d73;
+  --primary-foreground: #ffffff;
+  --primary-soft: #e6f4f2;
+  --highlight: #fec514;
+  --highlight-soft: #fff6d6;
+  --highlight-foreground: #5c4500;
+  --destructive: #bd271e;
+  --destructive-soft: #fbedec;
+  --sidebar: #fafbfd;
 
-  --scrim: rgb(20 36 62 / 0.45);
+  --scrim: rgb(16 19 24 / 0.45);
 
-  /* shadcn semantics onto the palette. Two mappings are worth knowing: shadcn's `primary`
-     is our accent (the one blue button per screen), and shadcn's `accent` is our
-     accent-soft (its hover/selected highlight), which is why they are not the same var. */
-  --background: var(--bg);
-  --foreground: var(--text);
-  --card: var(--card-bg);
-  --card-foreground: var(--text);
-  --popover: var(--card-bg);
-  --popover-foreground: var(--text);
-  --primary: var(--accent-base);
-  --primary-foreground: var(--on-accent);
-  --secondary: var(--chip);
-  --secondary-foreground: var(--text);
-  --muted: var(--chip);
-  --muted-foreground: var(--muted-fg);
-  --accent: var(--accent-soft);
-  --accent-foreground: var(--accent-base);
-  --destructive: var(--warn);
-  --border: var(--line);
-  --input: var(--input-line);
-  --ring: var(--accent-base);
+  --card-foreground: var(--foreground);
+  --popover: var(--card);
+  --popover-foreground: var(--foreground);
+  --secondary: var(--muted);
+  --secondary-foreground: var(--foreground);
+  --accent: var(--muted);
+  --accent-foreground: var(--foreground);
+  --ring: var(--primary);
 
-  /* Controls are 12px, cards 16px (--radius-card). */
-  --radius: 0.75rem;
+  --radius: 0.5rem;
 
-  --chart-1: var(--accent-base);
-  --chart-2: var(--ok);
-  --chart-3: var(--warn);
-  --chart-4: var(--text-2);
-  --chart-5: var(--muted-fg);
-  --sidebar: var(--card-bg);
-  --sidebar-foreground: var(--text);
-  --sidebar-primary: var(--accent-base);
-  --sidebar-primary-foreground: var(--on-accent);
-  --sidebar-accent: var(--accent-soft);
-  --sidebar-accent-foreground: var(--accent-base);
-  --sidebar-border: var(--line);
-  --sidebar-ring: var(--accent-base);
+  --chart-1: var(--primary);
+  --chart-2: var(--highlight);
+  --chart-3: var(--destructive);
+  --chart-4: var(--foreground);
+  --chart-5: var(--muted-foreground);
+  --sidebar-foreground: var(--foreground);
+  --sidebar-primary: var(--primary);
+  --sidebar-primary-foreground: var(--primary-foreground);
+  --sidebar-accent: var(--primary-soft);
+  --sidebar-accent-foreground: var(--primary);
+  --sidebar-border: var(--border);
+  --sidebar-ring: var(--primary);
+
+  --sunken: var(--muted);
+  --sel-row: var(--primary-soft);
+  --chip: var(--muted);
+  --text-2: var(--foreground);
+  --ok: var(--primary);
+  --ok-soft: var(--primary-soft);
+  --warn: var(--highlight-foreground);
+  --warn-soft: var(--highlight-soft);
+  --line: var(--border);
+  --input-line: var(--input);
 }
 
-/* Dark, "grey". Only the palette is redeclared; every shadcn mapping above follows. */
+/* Dark. Only the palette is redeclared; every mapping above follows. */
 .dark {
-  --bg: #121212;
-  --sunken: #181818;
-  --card-bg: #1e1e1e;
-  --sel-row: #262a32;
-  --chip: #2c2c2c;
-  --line: #333333;
-  --input-line: #333333;
-  --text: #f2f2f2;
-  --text-2: #f2f2f2;
-  --muted-fg: #a3a3a3;
-  --accent-base: #6a99f8;
-  --on-accent: #0c121f;
-  --accent-soft: #202a3e;
-  --ok: #6ec08e;
-  --ok-soft: #263a2e;
-  --warn: #e6a684;
-  --warn-soft: #40332d;
+  color-scheme: dark;
+
+  --background: #101318;
+  --foreground: #e8ebf0;
+  --card: #171b22;
+  --muted: #1f242d;
+  --muted-foreground: #9aa3b2;
+  --border: #2a303b;
+  --input: #39404d;
+  --primary: #3fbfae;
+  --primary-foreground: #04201d;
+  --primary-soft: #0f2e2b;
+  --highlight: #fec514;
+  --highlight-soft: #3a3010;
+  --highlight-foreground: #fedf7a;
+  --destructive: #f2796f;
+  --destructive-soft: #3a1c1a;
+  --sidebar: #13171d;
 
   --scrim: rgb(0 0 0 / 0.6);
 }
@@ -172,7 +180,7 @@
   }
   body {
     @apply bg-background text-foreground;
-    font-size: 16px;
+    font-size: 14px;
     line-height: 1.5;
   }
   /* Every score, skill level, race and stepper value changes in place. Proportional digits
@@ -184,12 +192,6 @@
   }
   button {
     touch-action: manipulation;
-  }
-  /* One visible focus treatment everywhere, legible against card, chip and accent fills
-     alike. Keyboard only: :focus-visible, so a tap does not leave a ring behind. */
-  :focus-visible {
-    outline: 2px solid var(--accent-base);
-    outline-offset: 2px;
   }
   html {
     @apply font-sans;

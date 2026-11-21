@@ -15,7 +15,7 @@ type Values<T> = Exclude<T, null | undefined>;
 
 export type ButtonVariant = Values<VariantProps<typeof buttonVariants>['variant']>;
 export type ButtonSize = Values<VariantProps<typeof buttonVariants>['size']>;
-export type BadgeTone = Values<VariantProps<typeof badgeVariants>['tone']>;
+export type BadgeVariant = Values<VariantProps<typeof badgeVariants>['variant']>;
 export type AlertVariant = Values<ComponentProps<typeof Alert>['variant']>;
 export type ToggleVariant = Values<VariantProps<typeof toggleVariants>['variant']>;
 export type ToggleSize = Values<VariantProps<typeof toggleVariants>['size']>;
@@ -47,20 +47,24 @@ const ALL_BUTTON_SIZES = keysOf<ButtonSize>({
   sm: true,
   default: true,
   lg: true,
-  touch: true,
-  cta: true,
   'icon-xs': true,
   'icon-sm': true,
   icon: true,
   'icon-lg': true,
-  'icon-touch': true,
 });
 
 export const BUTTON_TEXT_SIZES = ALL_BUTTON_SIZES.filter((size) => !size.startsWith('icon'));
 export const BUTTON_ICON_SIZES = ALL_BUTTON_SIZES.filter((size) => size.startsWith('icon'));
 
-export const BADGE_TONES = keysOf<BadgeTone>({ neutral: true, info: true, ok: true, warn: true });
-export const ALERT_VARIANTS = keysOf<AlertVariant>({ default: true, warn: true });
+export const BADGE_VARIANTS = keysOf<BadgeVariant>({
+  default: true,
+  secondary: true,
+  destructive: true,
+  outline: true,
+  ghost: true,
+  link: true,
+});
+export const ALERT_VARIANTS = keysOf<AlertVariant>({ default: true, destructive: true });
 export const TOGGLE_VARIANTS = keysOf<ToggleVariant>({ default: true, outline: true });
 export const TOGGLE_SIZES = keysOf<ToggleSize>({ sm: true, default: true, lg: true });
 export const TABS_LIST_VARIANTS = keysOf<TabsListVariant>({ default: true, line: true });
@@ -115,7 +119,7 @@ export const PRIMITIVES = {
     id: 'badge',
     name: 'Badge',
     source: `${UI_DIR}/badge.tsx`,
-    axes: [{ axis: 'tone', values: BADGE_TONES }],
+    axes: [{ axis: 'variant', values: BADGE_VARIANTS }],
   },
   alert: {
     id: 'alert',

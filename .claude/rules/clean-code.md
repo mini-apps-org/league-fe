@@ -38,7 +38,7 @@ review.
   string-literal union (`'draft' | 'final'`) or a named field in an options object. Use `as const`
   objects or unions, not TS `enum`.
 - Business logic lives in pure functions in `src/lib/`: same input, same output, no I/O, no
-  mutation, no reading globals. Each gets a unit test beside it. Side effects stay at the edges:
+  mutation, no reading globals. Side effects stay at the edges:
   `src/api/`, hooks and event handlers.
 
 ## Simplicity
