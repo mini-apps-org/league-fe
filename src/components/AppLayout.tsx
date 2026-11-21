@@ -15,7 +15,7 @@ export const AppLayout = () => {
       </RoleGate>
       <div className="flex min-w-0 flex-1 flex-col">
         <AppHeader />
-        <main className="mx-auto w-full max-w-240 min-w-0 px-4 pt-4 pb-[max(1.5rem,env(safe-area-inset-bottom))] lg:px-6 lg:pt-8 lg:pb-12">
+        <main className="mx-auto w-full max-w-280 min-w-0 px-4 pt-5 pb-[max(3rem,env(safe-area-inset-bottom))] lg:px-6 lg:pt-8 lg:pb-16">
           <Outlet />
         </main>
       </div>

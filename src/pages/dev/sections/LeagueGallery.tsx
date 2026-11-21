@@ -153,7 +153,7 @@ export function LeagueGallery() {
               icon={UserPlus}
               title={t('roster.emptyTitle')}
               body={t('roster.emptyBody')}
-              action={<Button size="touch">{t('roster.addPaidMember')}</Button>}
+              action={<Button size="lg">{t('roster.addPaidMember')}</Button>}
             />
           </div>
         </VariantRow>

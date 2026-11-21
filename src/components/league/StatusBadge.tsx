@@ -1,15 +1,13 @@
-import type { VariantProps } from 'class-variance-authority';
 import { useTranslation } from 'react-i18next';
 
-import { Badge, type badgeVariants } from '@/components/ui/badge';
+import { StatusDotBadge } from '@/components/league/StatusDotBadge';
+import type { StatusTone } from '@/lib/status-colors';
 import type { TeamMatchStatus } from '@/types/league';
 
-type BadgeTone = NonNullable<VariantProps<typeof badgeVariants>['tone']>;
-
-const STATUS_TONE: Record<TeamMatchStatus, BadgeTone> = {
+const STATUS_TONE: Record<TeamMatchStatus, StatusTone> = {
   scheduled: 'neutral',
-  in_progress: 'info',
-  submitted: 'ok',
+  in_progress: 'progress',
+  submitted: 'done',
 };
 
 interface StatusBadgeProps {
@@ -19,5 +17,5 @@ interface StatusBadgeProps {
 export function StatusBadge({ status }: StatusBadgeProps) {
   const { t } = useTranslation();
 
-  return <Badge tone={STATUS_TONE[status]}>{t(`matchStatus.${status}`)}</Badge>;
+  return <StatusDotBadge tone={STATUS_TONE[status]}>{t(`matchStatus.${status}`)}</StatusDotBadge>;
 }

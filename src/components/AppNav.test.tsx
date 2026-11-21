@@ -27,7 +27,7 @@ describe('AppNav', () => {
     expect(players).toHaveAttribute('aria-current', 'page');
     expect(players).toHaveAttribute('data-active', 'true');
     expect(schedule).not.toHaveAttribute('aria-current');
-    expect(schedule).not.toHaveAttribute('data-active');
+    expect(schedule).toHaveAttribute('data-active', 'false');
   });
 
   it('keeps the schedule link active only on the home route', () => {
