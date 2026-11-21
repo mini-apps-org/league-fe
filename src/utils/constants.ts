@@ -2,6 +2,7 @@ import {
   CalendarDays,
   CalendarRange,
   Layers,
+  LayoutDashboard,
   type LucideIcon,
   ScrollText,
   Shield,
@@ -23,6 +24,7 @@ export const ROUTES = {
   ONBOARDING: '/onboarding',
   RULES: '/rules',
   PRIVACY: '/privacy',
+  DASHBOARD: '/dashboard',
   STANDINGS: '/standings',
   PROFILE: '/profile',
   MATCH: '/matches/:id',
@@ -34,7 +36,9 @@ export const ROUTES = {
   TEAM_SETTINGS: '/teams/:id/settings',
   TEAM_MEMBER_SESSION: '/teams/:id/members/:memberId/session',
   ADMIN_PLAYERS: '/admin/players',
-  ADMIN_SEASONS: '/admin/seasons',
+  ADMIN_SESSIONS: '/admin/sessions',
+  ADMIN_SESSION: '/admin/sessions/:sessionId',
+  ADMIN_SESSION_MATCH: '/admin/sessions/:sessionId/matches/:matchId',
   ADMIN_TEAMS: '/admin/teams',
   ADMIN_DIVISIONS: '/admin/divisions',
   ADMIN_FEES: '/admin/fees',
@@ -45,16 +49,19 @@ export const ROUTES = {
 export interface NavItem {
   to: string;
   labelKey:
+    | 'nav.dashboard'
     | 'nav.schedule'
     | 'nav.standings'
     | 'nav.players'
-    | 'nav.seasons'
+    | 'nav.sessions'
     | 'nav.teams'
     | 'nav.divisions'
     | 'nav.fees'
     | 'nav.audit';
   icon: LucideIcon;
   end?: boolean;
+  // Shows a count badge beside the item, read from the matching list query.
+  countKey?: 'sessions';
 }
 
 export interface NavSection {
@@ -66,6 +73,7 @@ export const NAV_SECTIONS: NavSection[] = [
   {
     labelKey: 'nav.league',
     items: [
+      { to: ROUTES.DASHBOARD, labelKey: 'nav.dashboard', icon: LayoutDashboard },
       { to: ROUTES.HOME, labelKey: 'nav.schedule', icon: CalendarDays, end: true },
       { to: ROUTES.STANDINGS, labelKey: 'nav.standings', icon: Trophy },
     ],
@@ -74,7 +82,12 @@ export const NAV_SECTIONS: NavSection[] = [
     labelKey: 'nav.adminConsole',
     items: [
       { to: ROUTES.ADMIN_PLAYERS, labelKey: 'nav.players', icon: Users },
-      { to: ROUTES.ADMIN_SEASONS, labelKey: 'nav.seasons', icon: CalendarRange },
+      {
+        to: ROUTES.ADMIN_SESSIONS,
+        labelKey: 'nav.sessions',
+        icon: CalendarRange,
+        countKey: 'sessions',
+      },
       { to: ROUTES.ADMIN_TEAMS, labelKey: 'nav.teams', icon: Shield },
       { to: ROUTES.ADMIN_DIVISIONS, labelKey: 'nav.divisions', icon: Layers },
       { to: ROUTES.ADMIN_FEES, labelKey: 'nav.fees', icon: Wallet },

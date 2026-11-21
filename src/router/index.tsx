@@ -9,9 +9,12 @@ import { AuditPage } from '@/pages/admin/AuditPage';
 import { DivisionsPage } from '@/pages/admin/DivisionsPage';
 import { FeesPage } from '@/pages/admin/FeesPage';
 import { PlayersPage } from '@/pages/admin/PlayersPage';
-import { SeasonsPage } from '@/pages/admin/SeasonsPage';
+import { SessionDetailPage } from '@/pages/admin/sessions/SessionDetailPage';
+import { SessionsPage } from '@/pages/admin/sessions/SessionsPage';
+import { TeamMatchDetailPage } from '@/pages/admin/sessions/TeamMatchDetailPage';
 import { LoginPage } from '@/pages/auth/LoginPage';
 import { OnboardingPage } from '@/pages/auth/OnboardingPage';
+import { DashboardPage } from '@/pages/dashboard/DashboardPage';
 import { NotFoundPage } from '@/pages/errors/NotFoundPage';
 import { RouteErrorPage } from '@/pages/errors/RouteErrorPage';
 import { PrivacyPage } from '@/pages/legal/PrivacyPage';
@@ -79,6 +82,11 @@ export const router = createBrowserRouter([
                 handle: titled('match.title'),
               },
               {
+                path: ROUTES.DASHBOARD,
+                element: <DashboardPage />,
+                handle: titled('dashboard.title'),
+              },
+              {
                 path: ROUTES.STANDINGS,
                 element: <StandingsPage />,
                 handle: titled('standings.title'),
@@ -139,9 +147,19 @@ export const router = createBrowserRouter([
                     handle: titled('admin.playersTitle'),
                   },
                   {
-                    path: ROUTES.ADMIN_SEASONS,
-                    element: <SeasonsPage />,
-                    handle: titled('admin.seasonsTitle'),
+                    path: ROUTES.ADMIN_SESSIONS,
+                    element: <SessionsPage />,
+                    handle: titled('admin.sessions.title'),
+                  },
+                  {
+                    path: ROUTES.ADMIN_SESSION,
+                    element: <SessionDetailPage />,
+                    handle: titled('admin.sessions.detailTitle'),
+                  },
+                  {
+                    path: ROUTES.ADMIN_SESSION_MATCH,
+                    element: <TeamMatchDetailPage />,
+                    handle: titled('admin.sessions.matchTitle'),
                   },
                   {
                     path: ROUTES.ADMIN_TEAMS,
