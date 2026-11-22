@@ -50,7 +50,7 @@ export default function ResultPage() {
 
   const homeRace = match?.homeRace ?? 0;
   const awayRace = match?.awayRace ?? 0;
-  const verdict = pointsFor(current.homeGames, current.awayGames, homeRace, awayRace);
+  const verdict = pointsFor({ homeGames: current.homeGames, awayGames: current.awayGames, homeRace, awayRace });
   const parsed = resultSchema.safeParse({ ...current, homeRace, awayRace });
   const error = teamMatch.error ?? saveResult.error;
 

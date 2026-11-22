@@ -60,7 +60,7 @@ export interface Race {
 
 // Returns null rather than throwing: both skill levels normally come from the server, where
 // a CHECK keeps them in 2..7, but a preview must never crash a render.
-export function raceFor(homeSkillLevel: number, awaySkillLevel: number): Race | null {
+export const raceFor = (homeSkillLevel: number, awaySkillLevel: number): Race | null => {
   const row = RACE_CHART[`${homeSkillLevel}-${awaySkillLevel}`];
 
   if (row === undefined) {
@@ -68,6 +68,13 @@ export function raceFor(homeSkillLevel: number, awaySkillLevel: number): Race | 
   }
 
   return { home: row[0], away: row[1] };
+};
+
+export interface GameScore {
+  homeGames: number;
+  awayGames: number;
+  homeRace: number;
+  awayRace: number;
 }
 
 export type MatchVerdict =
@@ -88,12 +95,9 @@ export type MatchVerdict =
 //
 // Consequence: a match totals 3, 3 or 2 points, NOT always 3. The plain-win branch totals 2.
 // Change this function and the SQL together.
-export function pointsFor(
-  homeGames: number,
-  awayGames: number,
-  homeRace: number,
-  awayRace: number,
-): MatchVerdict {
+export const pointsFor = (game: GameScore): MatchVerdict => {
+  const { homeGames, awayGames, homeRace, awayRace } = game;
+
   if (homeGames > homeRace || awayGames > awayRace) {
     return { status: 'invalid' };
   }
@@ -134,10 +138,10 @@ export function pointsFor(
     homePoints: homeWon ? winnerPoints : loserPoints,
     awayPoints: homeWon ? loserPoints : winnerPoints,
   };
-}
+};
 
 // The 23-Rule total a side has committed so far. Display only — the block decision belongs
 // to the server's can_put_up(), which also knows about rosters and duplicate put-ups.
-export function skillLevelUsed(skillLevels: readonly number[]): number {
+export const skillLevelUsed = (skillLevels: readonly number[]): number => {
   return skillLevels.reduce((sum, level) => sum + level, 0);
-}
+};
