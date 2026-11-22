@@ -1,12 +1,14 @@
 import { useTranslation } from 'react-i18next';
-import { Outlet } from 'react-router';
+import { Link, Outlet } from 'react-router';
 
-import { EmptyState } from '@/components/league/EmptyState';
+import { StateCard } from '@/components/StateCard';
+import { Button } from '@/components/ui/button';
 import { Skeleton } from '@/components/ui/skeleton';
 import { useHasRole } from '@/hooks/useHasRole';
 import { useMe } from '@/hooks/useMe';
-import { TriangleAlert } from '@/lib/icons';
+import { Lock } from '@/lib/icons';
 import type { Role } from '@/types/league';
+import { ROUTES } from '@/utils';
 
 interface RequireRoleProps {
   allowed: Role[];
@@ -22,7 +24,18 @@ export const RequireRole = ({ allowed }: RequireRoleProps) => {
   }
 
   if (!hasRole) {
-    return <EmptyState icon={TriangleAlert} title={t('auth.unauthorized')} />;
+    return (
+      <StateCard
+        icon={Lock}
+        title={t('auth.unauthorized')}
+        body={t('auth.unauthorizedBody')}
+        action={
+          <Button variant="outline" asChild>
+            <Link to={ROUTES.HOME}>{t('auth.backToSchedule')}</Link>
+          </Button>
+        }
+      />
+    );
   }
 
   return <Outlet />;

@@ -1,9 +1,15 @@
-import type { PropsWithChildren } from 'react';
+import type { ReactNode } from 'react';
 
-export const PageTitle = ({ children }: PropsWithChildren) => {
+interface PageTitleProps {
+  children: ReactNode;
+  description?: ReactNode;
+}
+
+export const PageTitle = ({ children, description }: PageTitleProps) => {
   return (
-    <h1 className="sr-only lg:not-sr-only lg:text-[28px] lg:leading-tight lg:font-bold">
-      {children}
-    </h1>
+    <div className="flex min-w-0 flex-col gap-1">
+      <h1 className="text-2xl font-semibold tracking-tight">{children}</h1>
+      {description !== undefined && <p className="text-muted-foreground">{description}</p>}
+    </div>
   );
 };
