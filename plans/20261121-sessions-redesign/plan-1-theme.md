@@ -72,7 +72,7 @@ shadcn primitive picks the new theme up unchanged.
 
 ## Verify
 
-- `/dev/components` renders every primitive in the new palette, in light and dark.
+- The app's screens render in the new palette, in light and dark.
 - Select, dropdown and menu hovers stay neutral, not yellow.
 - Vietnamese copy (switch the language to `vi`) renders in Be Vietnam Pro, with no fallback
   glyphs.
@@ -93,5 +93,5 @@ shadcn primitive picks the new theme up unchanged.
   and `SessionStatusBadge` use it, and `ReasonChip` takes the progress colours for "unpaid".
 - **`CLAUDE.md`:** the Palette section points at the redesign.
 - **Checks:** `pnpm lint`, `pnpm typecheck` and `pnpm test` pass (104 tests).
-- **Not verified:** I didn't look at it in a browser. Check `/dev/components` and
+- **Not verified:** I didn't look at it in a browser. Check
   `/admin/sessions` in light and dark, and that menu and select hovers stay neutral.

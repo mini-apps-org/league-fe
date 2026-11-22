@@ -58,5 +58,4 @@ Tokens live in `src/index.css` (`:root` and `.dark`), taken from the
 `highlight`, Be Vietnam Pro, 8px radius. No colours outside that list. shadcn's `accent` is the
 neutral hover surface, so brand yellow is `highlight`. The legacy names (`ok`, `warn`, `chip`,
 `sunken`, `line`) alias the new palette until their callers are rebuilt. Status badges take
-their colours from `src/lib/status-colors.ts`. `/dev/components` (dev builds only) renders every
-component variant.
+their colours from `src/lib/status-colors.ts`.
