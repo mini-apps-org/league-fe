@@ -20,7 +20,9 @@
     "brandPointResults": "Enter results and watch the score build.",
     "brandPointSubmit": "Submit the night when the last rack drops.",
     "brandSeason": "Fall 2026 · 8-Ball Open",
-    "unauthorized": "You do not have permission to view this page."
+    "unauthorized": "You don't have access to this page",
+    "unauthorizedBody": "Your account doesn't have the role this page needs. Ask your league admin if you need access.",
+    "backToSchedule": "Back to schedule"
   },
   "notFound": {
     "title": "Page not found",
@@ -58,11 +60,12 @@
     "server_error": "Something went wrong on our side. Please try again."
   },
   "nav": {
+    "dashboard": "Dashboard",
     "schedule": "Schedule",
     "standings": "Standings",
     "profile": "Profile",
     "players": "Players",
-    "seasons": "Seasons",
+    "sessions": "Sessions",
     "teams": "Teams",
     "divisions": "Divisions",
     "fees": "Fees",
@@ -210,11 +213,142 @@
     "historyEmpty": "No changes yet.",
     "changedBy": "by {{name}}",
     "appliesNextMatch": "Applies from the next match. Played matches keep their snapshot.",
-    "seasonsTitle": "Seasons",
     "teamsTitle": "Teams",
     "divisionsTitle": "Divisions",
     "feesTitle": "Fees",
-    "auditTitle": "Audit Log"
+    "auditTitle": "Audit Log",
+    "sessions": {
+      "title": "Sessions",
+      "detailTitle": "Session",
+      "matchTitle": "Match",
+      "description": "Seasons of league play. Open a session to manage its weeks and team matches.",
+      "new": "New session",
+      "searchPlaceholder": "Search sessions by name",
+      "clearFilters": "Clear filters",
+      "stats": {
+        "active": "Active session",
+        "noneActive": "None active",
+        "total": "Total sessions",
+        "inProgress": "In progress",
+        "drafts": "Drafts"
+      },
+      "filters": {
+        "type": "Type",
+        "year": "Year",
+        "status": "Status",
+        "sort": "Sort",
+        "allTypes": "All types",
+        "allYears": "All years",
+        "allStatuses": "All statuses"
+      },
+      "chips": {
+        "label": "Active filters",
+        "name": "Name: “{{q}}”",
+        "remove": "Remove filter {{label}}",
+        "clearAll": "Clear all"
+      },
+      "sort": {
+        "-starts_on": "Newest start",
+        "starts_on": "Oldest start",
+        "name": "Name A–Z",
+        "-name": "Name Z–A",
+        "-season_year": "Year, newest first",
+        "season_year": "Year, oldest first"
+      },
+      "columns": {
+        "name": "Name",
+        "type": "Type",
+        "year": "Year",
+        "dates": "Dates",
+        "status": "Status",
+        "active": "Active",
+        "actions": "Actions"
+      },
+      "type": {
+        "SPRING": "Spring",
+        "SUMMER": "Summer",
+        "FALL": "Fall"
+      },
+      "status": {
+        "DRAFT": "Draft",
+        "IN_PROGRESS": "In progress",
+        "COMPLETE": "Complete",
+        "CANCELLED": "Cancelled"
+      },
+      "active": "Active",
+      "inactive": "Not active",
+      "weeksScheduled_one": "{{count}} week scheduled",
+      "weeksScheduled_other": "{{count}} weeks scheduled",
+      "noWeeks": "No weeks scheduled",
+      "editSession": "Edit {{name}}",
+      "deleteSession": "Delete {{name}}",
+      "footer": {
+        "showing": "Showing {{shown}} of {{total}} sessions",
+        "rowHint": "Click a row to open its weeks"
+      },
+      "states": {
+        "errorTitle": "We couldn’t load sessions",
+        "retry": "Try again",
+        "emptyTitle": "No sessions yet",
+        "emptyBody": "Create your first session, such as Fall 2026, to start scheduling weeks and team matches.",
+        "filteredTitle": "No sessions match these filters",
+        "filteredBody": "Try a different name, or clear the filters to see all {{count}} sessions."
+      },
+      "form": {
+        "createTitle": "New session",
+        "editTitle": "Edit session",
+        "createDescription": "Create a session to start scheduling weeks.",
+        "editDescription": "Changes apply right away. Played matches keep their results.",
+        "close": "Close",
+        "name": "Name",
+        "namePlaceholder": "e.g. Fall 2026",
+        "nameHint": "Must be unique in this league.",
+        "type": "Type",
+        "year": "Season year",
+        "yearPlaceholder": "2027",
+        "startsOn": "Starts on",
+        "endsOn": "Ends on",
+        "status": "Status",
+        "isActive": "Active session",
+        "isActiveHelp": "Players see the active session first on the schedule.",
+        "replacesActive": "{{name}} will stop being active.",
+        "create": "Create session",
+        "save": "Save changes",
+        "saving": "Saving…",
+        "saveFailed": "Couldn’t save this session",
+        "errors": {
+          "nameRequired": "Enter a session name.",
+          "nameTooShort": "Name must be at least 3 characters.",
+          "nameTooLong": "Name must be 60 characters or fewer.",
+          "duplicateName": "A session with this name already exists.",
+          "type": "Choose a session type.",
+          "seasonYear": "Enter a 4-digit year between 2000 and 2100.",
+          "startsOn": "Pick a start date.",
+          "endsOn": "Pick an end date.",
+          "endsBeforeStart": "End date must be on or after the start date."
+        }
+      },
+      "deleteConfirm": {
+        "title": "Delete {{name}}?",
+        "subtitle": "This can’t be undone.",
+        "submittedTitle": "This session has submitted results",
+        "submittedBody": "Standings and player stats from {{name}} will be removed too.",
+        "cascadeTitle": "Deleting this session also deletes:",
+        "cascadeTeams": "its divisions and teams",
+        "cascadeWeeks_one": "{{count}} week of team matches",
+        "cascadeWeeks_other": "{{count}} weeks of team matches",
+        "cascadeResults": "every individual match result",
+        "confirmLabel": "Type “{{name}}” to confirm",
+        "confirm": "Delete session",
+        "deleting": "Deleting…",
+        "failed": "Couldn’t delete this session"
+      },
+      "toast": {
+        "created": "Created {{name}}",
+        "updated": "Saved {{name}}",
+        "deleted": "Deleted {{name}}"
+      }
+    }
   },
   "rules": {
     "title": "League rules",
@@ -287,5 +421,16 @@
         "toastMessage": "Moved to Rack Attack"
       }
     }
+  },
+  "shell": {
+    "breadcrumbs": "Breadcrumb",
+    "role": {
+      "SUPER_ADMIN": "Super admin",
+      "CAPTAIN": "Captain",
+      "PLAYER": "Player"
+    }
+  },
+  "dashboard": {
+    "title": "Dashboard"
   }
 }

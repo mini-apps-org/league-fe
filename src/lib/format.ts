@@ -37,6 +37,24 @@ export function formatDate(isoDateTime: string): string {
   }).format(parsed);
 }
 
+// "5 Feb – 9 Apr 2026" for a session. DATE columns carry no zone, so they are read and
+// formatted as UTC; local time would shift a date back a day west of Greenwich.
+export const formatDateRange = (startsOn: string, endsOn: string): string => {
+  const start = new Date(`${startsOn}T00:00:00Z`);
+  const end = new Date(`${endsOn}T00:00:00Z`);
+
+  if (Number.isNaN(start.getTime()) || Number.isNaN(end.getTime())) {
+    return '';
+  }
+
+  return new Intl.DateTimeFormat(activeLocale(), {
+    day: 'numeric',
+    month: 'short',
+    year: 'numeric',
+    timeZone: 'UTC',
+  }).formatRange(start, end);
+};
+
 // "3/5" — matches won over matches played.
 export function formatRecord(won: number, played: number): string {
   return `${won}/${played}`;
