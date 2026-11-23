@@ -16,12 +16,12 @@ export function ErrorBanner({ error, onRetry }: ErrorBannerProps) {
   const { t } = useTranslation();
 
   return (
-    <Alert variant="warn">
+    <Alert variant="destructive">
       <TriangleAlert aria-hidden />
       <AlertDescription>{messageFor(error)}</AlertDescription>
       {onRetry !== undefined && (
         <AlertAction>
-          <Button variant="outline" className="h-11 px-4 font-semibold" onClick={onRetry}>
+          <Button variant="outline" onClick={onRetry}>
             {t('common.retry')}
           </Button>
         </AlertAction>

@@ -6,6 +6,7 @@ paths:
 
 # Testing Rules
 
+- Write tests only when the user asks for them. Keep the existing suite passing.
 - Pure logic is tested beside its file: `src/lib/x.ts` → `src/lib/x.test.ts`.
 - Components and pages are tested through what the user sees: Testing Library queries by role,
   label or text, in that order of preference. No `data-testid` unless nothing else identifies it.

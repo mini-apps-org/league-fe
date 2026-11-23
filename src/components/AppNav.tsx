@@ -26,7 +26,7 @@ const AppNavLink = ({ item, onNavigate }: AppNavLinkProps) => {
 
   return (
     <SidebarMenuItem>
-      <SidebarMenuButton asChild size="touch" isActive={isActive}>
+      <SidebarMenuButton asChild isActive={isActive}>
         <NavLink to={item.to} end={item.end} onClick={onNavigate}>
           <Icon aria-hidden />
           <span>{t(item.labelKey)}</span>

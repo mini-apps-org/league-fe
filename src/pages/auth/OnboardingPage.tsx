@@ -61,7 +61,6 @@ export const OnboardingPage = () => {
           maxLength={MEMBER_ID_LENGTH}
           aria-describedby={errorMessage === null ? 'member-id-help' : 'member-id-error'}
           aria-invalid={errorMessage !== null}
-          className="h-11 text-lg"
           onChange={(event) => {
             const next = normalizeMemberId(event.target.value);
             setMemberId(next);
@@ -100,7 +99,7 @@ export const OnboardingPage = () => {
 
       <div className="mt-auto space-y-3">
         <Button
-          className="h-12 w-full"
+          className="w-full"
           disabled={!canConfirm}
           onClick={() => {
             if (preview.data === undefined) {
@@ -120,7 +119,7 @@ export const OnboardingPage = () => {
         {/* The way out of a wrong Google account. */}
         <Button
           variant="ghost"
-          className="h-11 w-full"
+          className="w-full"
           disabled={isSigningOut}
           onClick={() => {
             signOut();

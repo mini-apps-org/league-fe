@@ -39,7 +39,6 @@ export const ROUTES = {
   ADMIN_DIVISIONS: '/admin/divisions',
   ADMIN_FEES: '/admin/fees',
   ADMIN_AUDIT: '/admin/audit',
-  DEV_COMPONENTS: '/dev/components',
 } as const;
 
 export interface NavItem {
