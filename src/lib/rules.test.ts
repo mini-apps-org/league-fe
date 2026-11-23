@@ -1,6 +1,6 @@
 import { describe, expect, it } from 'vitest';
 
-import { pointsFor, raceFor, skillLevelUsed, SKILL_LEVEL_MAX, SKILL_LEVEL_MIN } from './rules';
+import { pointsFor, raceFor, SKILL_LEVEL_MAX, SKILL_LEVEL_MIN, skillLevelUsed } from './rules';
 
 const SKILL_LEVELS = [2, 3, 4, 5, 6, 7] as const;
 
@@ -46,7 +46,7 @@ describe('raceFor', () => {
 
 describe('pointsFor', () => {
   it('awards 3-0 for a shutout', () => {
-    expect(pointsFor(3, 0, 3, 4)).toEqual({
+    expect(pointsFor({ homeGames: 3, awayGames: 0, homeRace: 3, awayRace: 4 })).toEqual({
       status: 'complete',
       winner: 'home',
       homePoints: 3,
@@ -56,7 +56,7 @@ describe('pointsFor', () => {
 
   it('awards 2-1 when the loser reached the hill', () => {
     // Loser races to 4 and won 3 — one short, so on the hill.
-    expect(pointsFor(4, 3, 4, 4)).toEqual({
+    expect(pointsFor({ homeGames: 4, awayGames: 3, homeRace: 4, awayRace: 4 })).toEqual({
       status: 'complete',
       winner: 'home',
       homePoints: 2,
@@ -66,7 +66,7 @@ describe('pointsFor', () => {
 
   it('awards 2-0 for a win with the loser short of the hill', () => {
     // Loser races to 3 and won 1 — two short.
-    expect(pointsFor(4, 1, 4, 3)).toEqual({
+    expect(pointsFor({ homeGames: 4, awayGames: 1, homeRace: 4, awayRace: 3 })).toEqual({
       status: 'complete',
       winner: 'home',
       homePoints: 2,
@@ -76,7 +76,7 @@ describe('pointsFor', () => {
 
   it('awards 2-0 for 5-2 where the loser races to 5', () => {
     // The prompt's own worked example.
-    expect(pointsFor(5, 2, 5, 5)).toEqual({
+    expect(pointsFor({ homeGames: 5, awayGames: 2, homeRace: 5, awayRace: 5 })).toEqual({
       status: 'complete',
       winner: 'home',
       homePoints: 2,
@@ -85,7 +85,7 @@ describe('pointsFor', () => {
   });
 
   it('scores an away win the same way', () => {
-    expect(pointsFor(0, 4, 3, 4)).toEqual({
+    expect(pointsFor({ homeGames: 0, awayGames: 4, homeRace: 3, awayRace: 4 })).toEqual({
       status: 'complete',
       winner: 'away',
       homePoints: 0,
@@ -94,21 +94,29 @@ describe('pointsFor', () => {
   });
 
   it('is pending until someone reaches their race', () => {
-    expect(pointsFor(2, 2, 4, 4)).toEqual({ status: 'pending' });
-    expect(pointsFor(0, 0, 3, 3)).toEqual({ status: 'pending' });
+    expect(pointsFor({ homeGames: 2, awayGames: 2, homeRace: 4, awayRace: 4 })).toEqual({
+      status: 'pending',
+    });
+    expect(pointsFor({ homeGames: 0, awayGames: 0, homeRace: 3, awayRace: 3 })).toEqual({
+      status: 'pending',
+    });
   });
 
   it('is invalid when games exceed a race', () => {
-    expect(pointsFor(5, 0, 4, 4)).toEqual({ status: 'invalid' });
-    expect(pointsFor(0, 5, 4, 4)).toEqual({ status: 'invalid' });
+    expect(pointsFor({ homeGames: 5, awayGames: 0, homeRace: 4, awayRace: 4 })).toEqual({
+      status: 'invalid',
+    });
+    expect(pointsFor({ homeGames: 0, awayGames: 5, homeRace: 4, awayRace: 4 })).toEqual({
+      status: 'invalid',
+    });
   });
 
   // Documents the deviation from the original plan, which asserted a constant 3.
   it('totals 3, 3 or 2 points — not always 3', () => {
     const totals = [
-      pointsFor(3, 0, 3, 4), // shutout
-      pointsFor(4, 3, 4, 4), // hill
-      pointsFor(4, 1, 4, 3), // plain win
+      pointsFor({ homeGames: 3, awayGames: 0, homeRace: 3, awayRace: 4 }), // shutout
+      pointsFor({ homeGames: 4, awayGames: 3, homeRace: 4, awayRace: 4 }), // hill
+      pointsFor({ homeGames: 4, awayGames: 1, homeRace: 4, awayRace: 3 }), // plain win
     ].map((verdict) => {
       return verdict.status === 'complete' ? verdict.homePoints + verdict.awayPoints : null;
     });

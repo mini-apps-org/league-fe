@@ -38,7 +38,7 @@ The parked code predates them, so lint fails until these are done:
       `src/queries/league.ts` as `queryOptions` factories; invalidate through their `queryKey`.
 - [ ] Add the routes inside the `errorElement` wrapper in `src/router/index.tsx`.
 - [ ] `pnpm lint:fix` (import order), then `pnpm lint && pnpm typecheck && pnpm test`.
-- [ ] Move `night.test.ts` / `rules.test.ts` in with their files; component tests go through
+- [ ] Move `night.test.ts` in with its file; component tests go through
       `renderWithProviders` and MSW (see `.claude/rules/testing.md`).
 
 The backend half is in `league-be`'s `stash@{0}` ("stash importatn"): `internal/league/`,
@@ -57,7 +57,6 @@ migrations `00002_business_rules.sql` and `00003_member_link.sql`, the league ro
 | `src/components/league/*` (12 files left) | league UI — the component-sheet pieces have been un-parked, see below |
 | `src/components/RequireAdmin.tsx` | admin route gate |
 | `src/hooks/useLeague.ts`, `useLeagueMutations.ts` | league data access |
-| `src/lib/rules.ts` + test | race chart and points mirror (26 tests) |
 | `src/lib/night.ts` + test | night state machine (7 tests) |
 | `src/lib/schemas.ts` | Zod for result entry and skill-level change |
 
@@ -76,6 +75,8 @@ migrations `00002_business_rules.sql` and `00003_member_link.sql`, the league ro
   `src/lib/format.ts` — un-parked on 2026-11-14 to implement the design's component sheet, with
   named exports. Parked callers still use default imports; switch them to `{ X }` on restore.
   `Stepper` now renders its own label, so drop any label the caller renders beside it.
+- `src/lib/rules.ts` + test — un-parked on 2026-11-20 for the admin session mock and race
+  preview. Its functions are now `const` arrows, and `pointsFor` takes one `GameScore` object.
 - New in `src/components/league/`: `ReasonChip`, `ByeBanner`, `RosterRow`, `ScoresheetRow`. On
   restore, rebuild `RosterTable` on `RosterRow` and `NightScoresheet` on `ScoresheetRow`, and
   render put-up block reasons with `ReasonChip`.

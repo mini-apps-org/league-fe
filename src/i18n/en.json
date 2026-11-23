@@ -47,6 +47,7 @@
     "40302": "That request could not be completed. Reload the page and try again.",
     "40304": "That request could not be completed. Reload the page and try again.",
     "40401": "That item no longer exists.",
+    "40901": "That already exists. Use a different name and try again.",
     "42901": "Too many requests. Wait a minute and try again.",
     "50001": "Something went wrong. Please try again.",
     "50201": "Could not reach an upstream service. Please try again."
