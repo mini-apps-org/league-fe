@@ -19,14 +19,14 @@ export const isApiError = (err: unknown): err is ApiRequestError => {
 
 // An unmodelled code degrades to INTERNAL rather than rendering a missing i18n key, so
 // adding a code to league-be without copy here is silent. Add both together.
-const KNOWN_CODES: ReadonlySet<string> = new Set(Object.values(ERROR_CODE));
+const KNOWN_CODES: ReadonlySet<number> = new Set(Object.values(ERROR_CODE));
 
 function readErrorBody(body: unknown): { code: ErrorCode | null; message: string | null } {
   const { error } = (body ?? {}) as { error?: unknown };
   const { code, message } = (error ?? {}) as { code?: unknown; message?: unknown };
 
   return {
-    code: typeof code === 'string' && KNOWN_CODES.has(code) ? (code as ErrorCode) : null,
+    code: typeof code === 'number' && KNOWN_CODES.has(code) ? (code as ErrorCode) : null,
     message: typeof message === 'string' ? message : null,
   };
 }
