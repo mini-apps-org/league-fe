@@ -1,7 +1,7 @@
 import { HttpResponse } from 'msw';
 
 import { API_BASE } from '@/api/endpoints';
-import type { ErrorCode } from '@/types/errors';
+import { ERROR_CODE, type ErrorCode } from '@/types/errors';
 
 export interface EnvelopeInit {
   status?: number;
@@ -39,14 +39,14 @@ export const apiError = (
 };
 
 export const validationFailed = (): HttpResponse<Record<string, unknown>> => {
-  return apiError(400, '40001');
+  return apiError(400, ERROR_CODE.VALIDATION_FAILED);
 };
 
 export const notFound = (): HttpResponse<Record<string, unknown>> => {
-  return apiError(404, '40401');
+  return apiError(404, ERROR_CODE.NOT_FOUND);
 };
 
-// league-be's DecodeJSON answers a body that is not one JSON object with 40001, so the mock
+// league-be's DecodeJSON answers a body that is not one JSON object with 400001, so the mock
 // treats an unparsable body the same as an invalid one.
 export const readJsonBody = async (request: Request): Promise<unknown> => {
   try {

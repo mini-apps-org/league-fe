@@ -89,7 +89,7 @@ All of them are `const` arrows typed `UseMutationResult<T, ApiRequestError, V>`,
   - Reuse `_parked/src/lib/rules.ts` if it already has these.
 - [ ] `src/mocks/handlers/sessions.ts`, `lookups.ts`, `teamMatches.ts` and `individualMatches.ts`:
   - Handle filter and sort as in the contract.
-  - Validate and return `apiError(400, '40001')` or `apiError(409, '40901')`.
+  - Validate and return `apiError(400, '400001')` or `apiError(409, '409001')`.
   - Return 204 on delete, and cascade deletes.
 - [ ] `src/mocks/handlers/index.ts` exports `leagueHandlers`. `src/mocks/browser.ts` calls
       `setupWorker(...leagueHandlers, meHandler(SUPER_ADMIN…))`.
@@ -105,7 +105,7 @@ All of them are `const` arrows typed `UseMutationResult<T, ApiRequestError, V>`,
 ### Fixtures and errors
 
 - [ ] Add `session.create|read|update|delete` to `SUPER_ADMIN_PERMISSIONS` in `src/test/handlers.ts`.
-- [ ] Check that `ERROR_CODE.CONFLICT = '40901'` has en and vi copy under `apiError.40901`, and add it
+- [ ] Check that `ERROR_CODE.CONFLICT = '409001'` has en and vi copy under `apiError.409001`, and add it
       if it is missing.
 
 ## Implementation notes
@@ -137,7 +137,7 @@ All of them are `const` arrows typed `UseMutationResult<T, ApiRequestError, V>`,
 ### Files
 
 - Types: `src/types/league.ts` (session, week, admin team match, inputs and filters) and
-  `src/types/errors.ts` (`CONFLICT: '40901'`, with en and vi copy).
+  `src/types/errors.ts` (`CONFLICT: '409001'`, with en and vi copy).
 - API: `src/api/endpoints.ts` (`SESSIONS`, `VENUES`) and **`src/api/leagueAdminAPI.ts`**.
 - Queries and hooks: `src/queries/league.ts`, `src/hooks/useLeagueQueries.ts`,
   `src/hooks/useSessionMutations.ts` and `src/hooks/useMatchMutations.ts`.
@@ -166,7 +166,7 @@ All of them are `const` arrows typed `UseMutationResult<T, ApiRequestError, V>`,
 - **`registerSW` needed no change.** It already runs only in production, and the worker only in dev.
 - **The MSW 3 option is `onUnhandledFrame`.** `onUnhandledRequest` no longer exists.
 - **Mock-only rules, to confirm with league-be:**
-  - Changing a team on a night that already has put-ups is refused (40001).
+  - Changing a team on a night that already has put-ups is refused (400001).
   - An individual match's `status` is derived from the score, and a contradicting `status` is
     refused.
   - `GET /team-matches` needs `session_id` or `division_id`.

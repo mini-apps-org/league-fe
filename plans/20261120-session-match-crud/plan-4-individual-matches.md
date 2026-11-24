@@ -56,7 +56,7 @@ always come from the server.
 - [ ] Submit sends a PATCH with only the changed fields. On success, show a toast. The hook
       invalidates the team-match detail, so the updated points and team score show up, along with
       the lists and weeks.
-- [ ] Server 40001 errors (rule violations) show in an `Alert` through `messageFor`.
+- [ ] Server 400001 errors (rule violations) show in an `Alert` through `messageFor`.
 
 ### Reset drawer: `ResetIndividualMatchDrawer.tsx`
 

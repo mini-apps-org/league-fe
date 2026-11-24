@@ -87,7 +87,7 @@ export const getSessionFormValues = (
 };
 
 // Checked against the cached list before saving; league-be's UNIQUE (league_id, name) is the
-// real guard and answers 40901.
+// real guard and answers 409001.
 export const isDuplicateSessionName = (
   name: string,
   sessions: readonly Pick<LeagueSession, 'id' | 'name'>[],

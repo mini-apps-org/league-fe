@@ -22,7 +22,7 @@ import { ENDPOINTS } from './endpoints';
 
 // Super-admin management of sessions, team matches and individual matches. Bodies are spelled
 // out field by field so a form object with extra keys can't leak into a request: league-be
-// rejects unknown fields with 40001.
+// rejects unknown fields with 400001.
 class BaseLeagueAdminAPI extends BaseAPI {
   async fetchSessions(filters: SessionFilters): Promise<LeagueSession[]> {
     const { data } = await this.get<ApiEnvelope<LeagueSession[]>>(ENDPOINTS.SESSIONS, {

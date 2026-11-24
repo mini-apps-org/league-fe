@@ -97,12 +97,12 @@ This contract is the frontend's proposal; MSW implements it, and it is meant to 
 
 | Method & path | Body / params | Errors |
 |---|---|---|
-| `GET /sessions` | `q` (case-insensitive name contains), `session_type`, `season_year`, `status`, `sort` = `name` · `-name` · `starts_on` · `-starts_on` (default) · `season_year` · `-season_year` | 40001 bad param |
-| `GET /sessions/{id}` | | 40401 |
-| `POST /sessions` | `{name, sessionType, seasonYear, startsOn, endsOn, status?, isActive?}` | 40001, 40901 duplicate name |
-| `PATCH /sessions/{id}` | any subset of the create body | 40001, 40401, 40901 |
-| `DELETE /sessions/{id}` | cascades to divisions, teams and matches | 40401 |
-| `GET /sessions/{id}/weeks` | → `[{weekNo, matchCount, submittedCount, firstScheduledAt}]`, ordered by `weekNo` | 40401 |
+| `GET /sessions` | `q` (case-insensitive name contains), `session_type`, `season_year`, `status`, `sort` = `name` · `-name` · `starts_on` · `-starts_on` (default) · `season_year` · `-season_year` | 400001 bad param |
+| `GET /sessions/{id}` | | 404001 |
+| `POST /sessions` | `{name, sessionType, seasonYear, startsOn, endsOn, status?, isActive?}` | 400001, 409001 duplicate name |
+| `PATCH /sessions/{id}` | any subset of the create body | 400001, 404001, 409001 |
+| `DELETE /sessions/{id}` | cascades to divisions, teams and matches | 404001 |
+| `GET /sessions/{id}/weeks` | → `[{weekNo, matchCount, submittedCount, firstScheduledAt}]`, ordered by `weekNo` | 404001 |
 
 Each session in a response also carries two derived fields, added for the
 [Sessions Redesign](../20261121-sessions-redesign/plan.md):
@@ -134,18 +134,18 @@ Sample `LeagueSession`:
 
 | Method & path | Body / params | Errors |
 |---|---|---|
-| `GET /team-matches` | `session_id` (required for admin), `week_no`, `division_id`, `team_id` (home **or** away), `status`, `sort` = `week_no` (default; then `scheduled_at`) · `-week_no` · `scheduled_at` · `-scheduled_at` | 40001 |
-| `GET /team-matches/{id}` | → `AdminTeamMatch` plus `individualMatches: IndividualMatch[5]` | 40401 |
-| `POST /team-matches` | `{divisionId, weekNo, homeTeamId, awayTeamId, venueId?, scheduledAt}`; the server creates 5 pending individual matches with `firstPutUp` alternating, home on odd orders | 40001 (home = away, team outside the division, `weekNo < 1`) |
-| `PATCH /team-matches/{id}` | any subset of the create body, plus `status` | 40001, 40401 |
-| `DELETE /team-matches/{id}` | cascades to the individual matches | 40401 |
+| `GET /team-matches` | `session_id` (required for admin), `week_no`, `division_id`, `team_id` (home **or** away), `status`, `sort` = `week_no` (default; then `scheduled_at`) · `-week_no` · `scheduled_at` · `-scheduled_at` | 400001 |
+| `GET /team-matches/{id}` | → `AdminTeamMatch` plus `individualMatches: IndividualMatch[5]` | 404001 |
+| `POST /team-matches` | `{divisionId, weekNo, homeTeamId, awayTeamId, venueId?, scheduledAt}`; the server creates 5 pending individual matches with `firstPutUp` alternating, home on odd orders | 400001 (home = away, team outside the division, `weekNo < 1`) |
+| `PATCH /team-matches/{id}` | any subset of the create body, plus `status` | 400001, 404001 |
+| `DELETE /team-matches/{id}` | cascades to the individual matches | 404001 |
 
 ### Individual matches
 
 | Method & path | Body | Errors |
 |---|---|---|
-| `PATCH /individual-matches/{id}` | `{homePlayerId?, awayPlayerId?, homeGames?, awayGames?, innings?, homeDefShots?, awayDefShots?, status?}`. Once both players are set, the server snapshots SL and race. The server computes points and rolls them up to the team match. | 40001 (games over the race, both sides at race, player not on roster, player already used that night) |
-| `DELETE /individual-matches/{id}` | resets players, snapshots, scores and points; `status = pending` | 40401 |
+| `PATCH /individual-matches/{id}` | `{homePlayerId?, awayPlayerId?, homeGames?, awayGames?, innings?, homeDefShots?, awayDefShots?, status?}`. Once both players are set, the server snapshots SL and race. The server computes points and rolls them up to the team match. | 400001 (games over the race, both sides at race, player not on roster, player already used that night) |
+| `DELETE /individual-matches/{id}` | resets players, snapshots, scores and points; `status = pending` | 404001 |
 
 ## Phases
 

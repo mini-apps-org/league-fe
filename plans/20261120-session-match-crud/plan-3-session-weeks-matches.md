@@ -20,7 +20,7 @@ team matches.
   - name, type and year, the date range, a status badge, and an Active marker
   - Edit and Delete actions that reuse the Phase 2 drawers, gated by `session.update` and
     `session.delete`
-- [ ] A 404 (`40401`) renders `EmptyState` with "Session not found" and a link back.
+- [ ] A 404 (`404001`) renders `EmptyState` with "Session not found" and a link back.
 
 ### Weeks strip: `src/pages/admin/sessions/WeekStrip.tsx`
 
@@ -109,7 +109,7 @@ Check by hand with `pnpm dev`. First add the lookup and team-match handlers to `
       `team_id`.
 - [ ] Changing the division clears a team that isn't in that division.
 - [ ] Creating a match posts the right body. The week chip count goes up by one after invalidation.
-- [ ] Home = away blocks submit on the client. A forced server 40001 shows `messageFor` copy.
+- [ ] Home = away blocks submit on the client. A forced server 400001 shows `messageFor` copy.
 - [ ] Delete removes the row, and the week's count goes down.
 - [ ] An unknown `sessionId` shows "Session not found".
 - [ ] A captain sees `auth.unauthorized`.

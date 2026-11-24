@@ -1,4 +1,4 @@
-import { createBrowserRouter, type RouteObject } from 'react-router';
+import { createBrowserRouter } from 'react-router';
 
 import { AppLayout } from '@/components/AppLayout';
 import { RequireAuth } from '@/components/RequireAuth';
@@ -31,19 +31,6 @@ import { MemberSessionPage } from '@/pages/team/MemberSessionPage';
 import { RosterPage } from '@/pages/team/RosterPage';
 import { TeamSettingsPage } from '@/pages/team/TeamSettingsPage';
 import { ROLE, ROUTES } from '@/utils';
-
-const DEV_ROUTES: RouteObject[] = import.meta.env.DEV
-  ? [
-      {
-        path: ROUTES.DEV_COMPONENTS,
-        lazy: async () => {
-          const { ComponentGalleryPage } = await import('@/pages/dev/ComponentGalleryPage');
-
-          return { Component: ComponentGalleryPage };
-        },
-      },
-    ]
-  : [];
 
 const titled = (titleKey: RouteHandle['titleKey']): RouteHandle => {
   return { titleKey };
@@ -191,7 +178,6 @@ export const router = createBrowserRouter([
           },
         ],
       },
-      ...DEV_ROUTES,
       {
         path: '*',
         element: <NotFoundPage />,

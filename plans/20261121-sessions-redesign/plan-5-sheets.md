@@ -47,7 +47,7 @@ mobile. They carry the design's validation, errors and confirmation.
       stock `aria-invalid`. Focus moves to the first invalid field, through react-hook-form's
       default `shouldFocusError`.
 - [ ] Server errors:
-  - A 409 (`40901`) calls `form.setError('name', { message: 'duplicateName' })`.
+  - A 409 (`409001`) calls `form.setError('name', { message: 'duplicateName' })`.
   - Any server error shows a destructive `Alert` at the top: "Couldn't save this session",
     `messageFor(err)`, and a `font-mono` code chip.
 - [ ] Saving:

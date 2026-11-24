@@ -19,7 +19,7 @@ export default function RequireAdmin() {
   }
 
   if (!isAdmin) {
-    return <EmptyState icon={TriangleAlert} title={t('apiError.40304')} />;
+    return <EmptyState icon={TriangleAlert} title={t('apiError.403005')} />;
   }
 
   return <Outlet />;

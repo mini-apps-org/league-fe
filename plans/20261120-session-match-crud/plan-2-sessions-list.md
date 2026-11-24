@@ -67,7 +67,7 @@ delete one. Clicking a session opens its detail (Phase 3).
   - `endsOn >= startsOn`; on failure the error goes on `endsOn`.
 - [ ] Errors:
   - Field errors show under each field.
-  - A server 40001 or 40901 shows in an `Alert` at the top of the drawer, using `messageFor(err)`.
+  - A server 400001 or 409001 shows in an `Alert` at the top of the drawer, using `messageFor(err)`.
 - [ ] Submit is disabled while the mutation is pending. On success, close the drawer, show a
       `sonner` toast, and let the lists refresh through invalidation.
 - [ ] Edit sends only the changed fields in the PATCH.
@@ -108,7 +108,7 @@ Tests in `SessionsPage.test.tsx` and `SessionFormDrawer.test.tsx`, using MSW and
 - [ ] Create "Spring 2027" posts `{name, sessionType:'SPRING', seasonYear:2027, …}` (capture the
       body as in `OnboardingPage.test.tsx`), and the new row appears.
 - [ ] An `endsOn` before `startsOn` shows a field error, and no request is sent.
-- [ ] `server.use` returning 409 `40901` on POST shows `i18next.t('apiError.40901')`.
+- [ ] `server.use` returning 409 `409001` on POST shows `i18next.t('apiError.409001')`.
 - [ ] Edit sends a PATCH with only the changed fields. Delete sends DELETE, and the row disappears.
 - [ ] A captain who loads `/admin/sessions` sees `auth.unauthorized`.
 - [ ] Manual: check the layout at 375px and 1280px, in light and dark.

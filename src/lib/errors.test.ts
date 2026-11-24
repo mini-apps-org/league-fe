@@ -11,7 +11,7 @@ function axiosLike(status: number, body: unknown): unknown {
 describe('toApiError', () => {
   it('reads the code and message out of the error envelope', () => {
     const err = toApiError(
-      axiosLike(401, { error: { code: '40101', message: 'Your session has expired.' } }),
+      axiosLike(401, { error: { code: 401001, message: 'Your session has expired.' } }),
     );
 
     expect(err.status).toBe(401);
@@ -19,17 +19,17 @@ describe('toApiError', () => {
     expect(err.message).toBe('Your session has expired.');
   });
 
-  // Regression: codes are strings. A code sent as a JSON number is not the contract, so it
+  // Regression: codes are numbers. A code sent as a JSON string is not the contract, so it
   // must degrade rather than being coerced — otherwise a backend regression would pass
   // silently through to an i18n key lookup.
-  it('degrades a numeric code to INTERNAL', () => {
-    const err = toApiError(axiosLike(401, { error: { code: 40101, message: 'nope' } }));
+  it('degrades a string code to INTERNAL', () => {
+    const err = toApiError(axiosLike(401, { error: { code: '401001', message: 'nope' } }));
 
     expect(err.code).toBe(ERROR_CODE.INTERNAL);
   });
 
   it('degrades an unmodelled code to INTERNAL', () => {
-    const err = toApiError(axiosLike(403, { error: { code: '40399', message: 'nope' } }));
+    const err = toApiError(axiosLike(403, { error: { code: 403099, message: 'nope' } }));
 
     expect(err.code).toBe(ERROR_CODE.INTERNAL);
   });

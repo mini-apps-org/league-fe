@@ -2,6 +2,7 @@ import { http } from 'msw';
 import { z } from 'zod';
 
 import { ENDPOINTS } from '@/api/endpoints';
+import { ERROR_CODE } from '@/types/errors';
 import type { SessionFilters } from '@/types/league';
 
 import {
@@ -35,7 +36,7 @@ const SESSION_SORTS = [
   '-season_year',
 ] as const;
 
-// Strict, like league-be's DecodeJSON: an unknown field is a 40001, not silently dropped.
+// Strict, like league-be's DecodeJSON: an unknown field is a 400001, not silently dropped.
 const sessionInputSchema = z.strictObject({
   name: z.string().trim().min(1).max(80),
   sessionType: z.enum(SESSION_TYPES),
@@ -112,7 +113,7 @@ const findSessionProblem = (
 };
 
 const rejectProblem = (problem: 'invalid' | 'conflict'): ReturnType<typeof validationFailed> => {
-  return problem === 'conflict' ? apiError(409, '40901') : validationFailed();
+  return problem === 'conflict' ? apiError(409, ERROR_CODE.CONFLICT) : validationFailed();
 };
 
 const deleteSessionCascade = (store: LeagueStore, sessionId: string): LeagueStore => {

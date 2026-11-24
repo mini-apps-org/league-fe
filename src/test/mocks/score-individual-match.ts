@@ -5,7 +5,7 @@ import type { IndividualMatchRow, LeagueStore, TeamMatchRow } from './league-sto
 
 // Stands in for league-be's put-up and scoring triggers: snapshot skill levels and races when
 // a player is put up, then score the games. Returns null for anything the database would
-// reject, which the handler turns into a 40001.
+// reject, which the handler turns into a 400001.
 
 interface ScoreRequest {
   store: LeagueStore;
