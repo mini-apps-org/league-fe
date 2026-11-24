@@ -16,16 +16,19 @@ import type {
   TeamMatchPatch,
   VenueRef,
 } from '@/types/league';
+import type { LeagueSessionWeekWire, LeagueSessionWire } from '@/types/league-wire';
 
 import { BaseAPI } from './baseAPI';
 import { ENDPOINTS } from './endpoints';
+import { toLeagueSession, toLeagueSessionBody, toSessionWeek } from './league-session-mappers';
 
 // Super-admin management of sessions, team matches and individual matches. Bodies are spelled
 // out field by field so a form object with extra keys can't leak into a request: league-be
-// rejects unknown fields with 400001.
+// rejects unknown fields with 400001. Sessions are snake_case on the wire, so they go through
+// league-session-mappers.ts.
 class BaseLeagueAdminAPI extends BaseAPI {
   async fetchSessions(filters: SessionFilters): Promise<LeagueSession[]> {
-    const { data } = await this.get<ApiEnvelope<LeagueSession[]>>(ENDPOINTS.SESSIONS, {
+    const { data } = await this.get<ApiEnvelope<LeagueSessionWire[]>>(ENDPOINTS.SESSIONS, {
       q: filters.q,
       session_type: filters.sessionType,
       season_year: filters.seasonYear,
@@ -33,46 +36,33 @@ class BaseLeagueAdminAPI extends BaseAPI {
       sort: filters.sort,
     });
 
-    return data;
+    return data.map(toLeagueSession);
   }
 
   async fetchSession(sessionId: string): Promise<LeagueSession> {
-    const { data } = await this.get<ApiEnvelope<LeagueSession>>(
+    const { data } = await this.get<ApiEnvelope<LeagueSessionWire>>(
       `${ENDPOINTS.SESSIONS}/${sessionId}`,
     );
 
-    return data;
+    return toLeagueSession(data);
   }
 
   async createSession(input: SessionInput): Promise<LeagueSession> {
-    const { data } = await this.post<ApiEnvelope<LeagueSession>>(ENDPOINTS.SESSIONS, {
-      name: input.name,
-      sessionType: input.sessionType,
-      seasonYear: input.seasonYear,
-      startsOn: input.startsOn,
-      endsOn: input.endsOn,
-      status: input.status,
-      isActive: input.isActive,
-    });
+    const { data } = await this.post<ApiEnvelope<LeagueSessionWire>>(
+      ENDPOINTS.SESSIONS,
+      toLeagueSessionBody(input),
+    );
 
-    return data;
+    return toLeagueSession(data);
   }
 
   async updateSession(sessionId: string, patch: SessionPatch): Promise<LeagueSession> {
-    const { data } = await this.patch<ApiEnvelope<LeagueSession>>(
+    const { data } = await this.patch<ApiEnvelope<LeagueSessionWire>>(
       `${ENDPOINTS.SESSIONS}/${sessionId}`,
-      {
-        name: patch.name,
-        sessionType: patch.sessionType,
-        seasonYear: patch.seasonYear,
-        startsOn: patch.startsOn,
-        endsOn: patch.endsOn,
-        status: patch.status,
-        isActive: patch.isActive,
-      },
+      toLeagueSessionBody(patch),
     );
 
-    return data;
+    return toLeagueSession(data);
   }
 
   async deleteSession(sessionId: string): Promise<void> {
@@ -80,11 +70,11 @@ class BaseLeagueAdminAPI extends BaseAPI {
   }
 
   async fetchSessionWeeks(sessionId: string): Promise<SessionWeek[]> {
-    const { data } = await this.get<ApiEnvelope<SessionWeek[]>>(
+    const { data } = await this.get<ApiEnvelope<LeagueSessionWeekWire[]>>(
       `${ENDPOINTS.SESSIONS}/${sessionId}/weeks`,
     );
 
-    return data;
+    return data.map(toSessionWeek);
   }
 
   async fetchSessionDivisions(sessionId: string): Promise<Division[]> {

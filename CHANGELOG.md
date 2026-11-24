@@ -1,3 +1,9 @@
+# 2026-11-25
+
+- feat(sessions): `/admin/sessions` uses league-be's `/api/v1/sessions`. Sessions are snake_case on the wire, and `src/api/league-session-mappers.ts` converts them
+- chore(dev): remove the MSW dev worker, `public/mockServiceWorker.js` and `VITE_API_MOCKS`. `pnpm dev` always calls league-be. MSW stays for Vitest, and its session handlers now answer in league-be's shape
+- test(sessions): cover the session mappers and the request bodies and params the admin client sends
+
 # 2026-11-24
 
 - feat(sessions): add `/admin/sessions` for super admins: list sessions with stats, search, type/year/status filters, filter chips and sortable columns, all kept in the URL
