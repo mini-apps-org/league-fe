@@ -170,6 +170,28 @@ Phase 1 blocks the rest. Phases 2 → 3 → 4 each link into the next, but each 
 - `pnpm lint`, `pnpm typecheck` and `pnpm test` pass.
 - The en and vi files have the same shape.
 
+## As built: league-be sessions API (2026-11-25)
+
+league-be serves the session routes (`feat/league-sessions-api`), and the dev MSW worker is
+gone. The contract above changed in these places:
+
+- **Bodies and responses are snake_case** (`session_type`, `season_year`, `starts_on`,
+  `is_active`, `week_count`, `has_submitted_results`, …), as `league-be/internal/sessions/model_handlers.go`
+  defines them. `src/api/league-session-mappers.ts` converts them, and the screens keep the
+  camelCase types in `src/types/league.ts`. The wire types are in `src/types/league-wire.ts`.
+- **The envelope is `{data, metadata?}`**, where `metadata` = `{count, has_more, total?, next_cursor?}`
+  on lists only (`src/types/api.ts`). There is no `session_id` or top-level `count`.
+- **Name is 3–60 characters**, year 2000–2100, `ends_on >= starts_on`; the status defaults to `DRAFT`.
+- **Open questions 1–3 and 5:** the routes are `/sessions`; one league, resolved as the only
+  active league; one active session per league, enforced by a partial unique index, and
+  activating one deactivates the others; a delete with submitted results is allowed.
+- **409001 has three meanings:** a duplicate name, a race to activate two sessions at once, or a
+  delete of a session whose teams play in another session. The form marks the name field for
+  all three until league-be gives the last two their own codes.
+
+Team matches, divisions by session, venues, rosters and individual matches are not served yet.
+Only the placeholder detail pages call them.
+
 ## Open questions
 
 1. When league-be builds these routes, does it adopt this contract? Does it use `/sessions` (to

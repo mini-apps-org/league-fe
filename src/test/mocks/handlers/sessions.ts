@@ -4,6 +4,7 @@ import { z } from 'zod';
 import { ENDPOINTS } from '@/api/endpoints';
 import { ERROR_CODE } from '@/types/errors';
 import type { SessionFilters } from '@/types/league';
+import type { LeagueSessionWire } from '@/types/league-wire';
 
 import {
   apiError,
@@ -24,6 +25,7 @@ import {
   updateLeagueStore,
 } from '../league-store';
 import { getSessionDivisionIds, getSessionWeeks, toSessionView } from '../league-views';
+import { applyLeagueSessionBody, toLeagueSessionWire, toSessionWeekWire } from '../league-wire';
 
 const SESSION_TYPES = ['SPRING', 'SUMMER', 'FALL'] as const;
 const SESSION_STATUSES = ['DRAFT', 'IN_PROGRESS', 'COMPLETE', 'CANCELLED'] as const;
@@ -36,15 +38,16 @@ const SESSION_SORTS = [
   '-season_year',
 ] as const;
 
-// Strict, like league-be's DecodeJSON: an unknown field is a 400001, not silently dropped.
+// Strict and snake_case, like league-be's DecodeJSON: an unknown field, a camelCase one
+// included, is a 400001 rather than silently dropped. Limits match internal/sessions.
 const sessionInputSchema = z.strictObject({
-  name: z.string().trim().min(1).max(80),
-  sessionType: z.enum(SESSION_TYPES),
-  seasonYear: z.int().min(2000).max(2100),
-  startsOn: z.iso.date(),
-  endsOn: z.iso.date(),
+  name: z.string().trim().min(3).max(60),
+  session_type: z.enum(SESSION_TYPES),
+  season_year: z.int().min(2000).max(2100),
+  starts_on: z.iso.date(),
+  ends_on: z.iso.date(),
   status: z.enum(SESSION_STATUSES).optional(),
-  isActive: z.boolean().optional(),
+  is_active: z.boolean().optional(),
 });
 
 const sessionPatchSchema = sessionInputSchema.partial();
@@ -157,6 +160,10 @@ const findSession = (sessionId: string): SessionRow | undefined => {
   return getLeagueStore().sessions.find((session) => session.id === sessionId);
 };
 
+const toSessionWire = (store: LeagueStore, session: SessionRow): LeagueSessionWire => {
+  return toLeagueSessionWire(toSessionView(store, session));
+};
+
 const SESSION_PATH = `${ENDPOINTS.SESSIONS}/:sessionId`;
 
 export const sessionHandlers = [
@@ -169,14 +176,14 @@ export const sessionHandlers = [
     const store = getLeagueStore();
 
     return listEnvelope(
-      filterSessions(store.sessions, filters).map((session) => toSessionView(store, session)),
+      filterSessions(store.sessions, filters).map((session) => toSessionWire(store, session)),
     );
   }),
 
   http.get<{ sessionId: string }>(apiUrl(SESSION_PATH), ({ params }) => {
     const session = findSession(params.sessionId);
 
-    return session ? envelope(toSessionView(getLeagueStore(), session)) : notFound();
+    return session ? envelope(toSessionWire(getLeagueStore(), session)) : notFound();
   }),
 
   http.get<{ sessionId: string }>(apiUrl(`${SESSION_PATH}/weeks`), ({ params }) => {
@@ -184,7 +191,7 @@ export const sessionHandlers = [
       return notFound();
     }
 
-    return listEnvelope(getSessionWeeks(getLeagueStore(), params.sessionId));
+    return listEnvelope(getSessionWeeks(getLeagueStore(), params.sessionId).map(toSessionWeekWire));
   }),
 
   http.post(apiUrl(ENDPOINTS.SESSIONS), async ({ request }) => {
@@ -195,11 +202,15 @@ export const sessionHandlers = [
 
     const now = new Date().toISOString();
     const session: SessionRow = {
-      status: 'DRAFT',
-      isActive: false,
-      ...parsed.data,
       id: createMockId('session'),
       leagueId: MOCK_LEAGUE_ID,
+      name: parsed.data.name,
+      sessionType: parsed.data.session_type,
+      seasonYear: parsed.data.season_year,
+      startsOn: parsed.data.starts_on,
+      endsOn: parsed.data.ends_on,
+      status: parsed.data.status ?? 'DRAFT',
+      isActive: parsed.data.is_active ?? false,
       createdAt: now,
       updatedAt: now,
     };
@@ -212,7 +223,7 @@ export const sessionHandlers = [
       return saveSession(store, session);
     });
 
-    return envelope(toSessionView(getLeagueStore(), session), { status: 201 });
+    return envelope(toSessionWire(getLeagueStore(), session), { status: 201 });
   }),
 
   http.patch<{ sessionId: string }>(apiUrl(SESSION_PATH), async ({ params, request }) => {
@@ -227,8 +238,7 @@ export const sessionHandlers = [
     }
 
     const session: SessionRow = {
-      ...current,
-      ...parsed.data,
+      ...applyLeagueSessionBody(current, parsed.data),
       updatedAt: new Date().toISOString(),
     };
     const problem = findSessionProblem(getLeagueStore(), session);
@@ -240,7 +250,7 @@ export const sessionHandlers = [
       return saveSession(store, session);
     });
 
-    return envelope(toSessionView(getLeagueStore(), session));
+    return envelope(toSessionWire(getLeagueStore(), session));
   }),
 
   http.delete<{ sessionId: string }>(apiUrl(SESSION_PATH), ({ params }) => {

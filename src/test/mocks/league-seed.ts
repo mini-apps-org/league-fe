@@ -1,7 +1,8 @@
 import { omit } from 'lodash-es';
 import { z } from 'zod';
 
-import type { Division, VenueRef } from '@/types/league';
+import { toLeagueSession } from '@/api/league-session-mappers';
+import type { Division, LeagueSession, VenueRef } from '@/types/league';
 
 import sessionsResponse from './data/sessions.json';
 import { buildNight, MATCHES_PER_NIGHT } from './league-night';
@@ -20,34 +21,36 @@ const DAY_MS = 24 * 60 * 60 * 1000;
 // 19:00 in Ho Chi Minh City.
 const NIGHT_START_UTC = 'T12:00:00.000Z';
 
-// data/sessions.json is a GET /api/v1/sessions response, kept in the contract's shape so it
-// doubles as the sample for league-be. The store seeds its sessions from `data`, then
-// generates `weekCount` weeks of matches for each one.
+// data/sessions.json is a GET /api/v1/sessions response in league-be's snake_case shape, so it
+// doubles as a sample of the contract. The store seeds its sessions from `data`, through the
+// app's own mapper, then generates `weekCount` weeks of matches for each one.
 const sessionsResponseSchema = z.object({
   metadata: z.object({ count: z.int(), has_more: z.boolean() }),
   data: z.array(
     z.object({
       id: z.uuid(),
-      leagueId: z.uuid(),
+      league_id: z.uuid(),
       name: z.string().min(1),
-      sessionType: z.enum(['SPRING', 'SUMMER', 'FALL']),
-      seasonYear: z.int(),
-      startsOn: z.iso.date(),
-      endsOn: z.iso.date(),
+      session_type: z.enum(['SPRING', 'SUMMER', 'FALL']),
+      season_year: z.int(),
+      starts_on: z.iso.date(),
+      ends_on: z.iso.date(),
       status: z.enum(['DRAFT', 'IN_PROGRESS', 'COMPLETE', 'CANCELLED']),
-      isActive: z.boolean(),
-      weekCount: z.int().min(0),
-      hasSubmittedResults: z.boolean(),
-      createdAt: z.iso.datetime(),
-      updatedAt: z.iso.datetime(),
+      is_active: z.boolean(),
+      week_count: z.int().min(0),
+      has_submitted_results: z.boolean(),
+      created_at: z.iso.datetime(),
+      updated_at: z.iso.datetime(),
     }),
   ),
 });
 
-type SessionFixture = z.infer<typeof sessionsResponseSchema>['data'][number];
+type SessionFixture = LeagueSession;
 
 // Parsed, not cast: a typo in the JSON fails loudly at startup instead of rendering nonsense.
-const SESSION_FIXTURES: SessionFixture[] = sessionsResponseSchema.parse(sessionsResponse).data;
+const SESSION_FIXTURES: SessionFixture[] = sessionsResponseSchema
+  .parse(sessionsResponse)
+  .data.map(toLeagueSession);
 
 export const MOCK_LEAGUE_ID = SESSION_FIXTURES[0]?.leagueId ?? 'league-mock';
 
