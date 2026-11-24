@@ -75,7 +75,7 @@ export const meHandler = (
 };
 
 export const envelope = <T>(data: T): HttpResponse<Record<string, unknown>> => {
-  return HttpResponse.json({ session_id: 'test-session', count: null, data });
+  return HttpResponse.json({ data });
 };
 
 export const apiError = (
