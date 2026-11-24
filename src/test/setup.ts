@@ -2,8 +2,9 @@ import '@testing-library/jest-dom/vitest';
 import '@/i18n';
 
 import { cleanup } from '@testing-library/react';
-import { afterAll, afterEach, beforeAll } from 'vitest';
+import { afterAll, afterEach, beforeAll, beforeEach } from 'vitest';
 
+import { resetLeagueStore } from './mocks/league-store';
 import { server } from './server';
 
 // jsdom has no matchMedia; shadcn's useIsMobile calls it when SidebarProvider mounts.
@@ -35,6 +36,10 @@ Object.defineProperty(window, 'matchMedia', {
 
 beforeAll(() => {
   server.listen({ onUnhandledFrame: 'error' });
+});
+
+beforeEach(() => {
+  resetLeagueStore();
 });
 
 // Vitest globals are off, so Testing Library cannot register its own cleanup.
