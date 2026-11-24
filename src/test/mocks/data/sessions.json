@@ -1,6 +1,4 @@
 {
-  "session_id": "mock-session",
-  "count": 6,
   "data": [
     {
       "id": "0b9f3a52-6c1e-4d7a-9f3e-2a1c5d8e7f01",
@@ -92,5 +90,9 @@
       "createdAt": "2025-04-28T02:00:00.000Z",
       "updatedAt": "2025-06-17T10:00:00.000Z"
     }
-  ]
+  ],
+  "metadata": {
+    "count": 6,
+    "has_more": false
+  }
 }

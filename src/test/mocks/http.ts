@@ -1,11 +1,11 @@
 import { HttpResponse } from 'msw';
 
 import { API_BASE } from '@/api/endpoints';
+import type { ApiMetadata } from '@/types/api';
 import { ERROR_CODE, type ErrorCode } from '@/types/errors';
 
 export interface EnvelopeInit {
   status?: number;
-  count?: number;
 }
 
 export const apiUrl = (path: string): string => {
@@ -16,15 +16,14 @@ export const envelope = <T>(
   data: T,
   init: EnvelopeInit = {},
 ): HttpResponse<Record<string, unknown>> => {
-  return HttpResponse.json(
-    { session_id: 'test-session', count: init.count ?? null, data },
-    { status: init.status ?? 200 },
-  );
+  return HttpResponse.json({ data }, { status: init.status ?? 200 });
 };
 
-// league-be sets count to the total on lists.
+// A list returned whole: league-be sends only count, with has_more false.
 export const listEnvelope = <T>(items: T[]): HttpResponse<Record<string, unknown>> => {
-  return envelope(items, { count: items.length });
+  const metadata: ApiMetadata = { count: items.length, has_more: false };
+
+  return HttpResponse.json({ data: items, metadata });
 };
 
 export const noContent = (): HttpResponse<null> => {

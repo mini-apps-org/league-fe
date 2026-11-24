@@ -24,8 +24,7 @@ const NIGHT_START_UTC = 'T12:00:00.000Z';
 // doubles as the sample for league-be. The store seeds its sessions from `data`, then
 // generates `weekCount` weeks of matches for each one.
 const sessionsResponseSchema = z.object({
-  session_id: z.string(),
-  count: z.int(),
+  metadata: z.object({ count: z.int(), has_more: z.boolean() }),
   data: z.array(
     z.object({
       id: z.uuid(),
