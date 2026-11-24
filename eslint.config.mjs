@@ -45,7 +45,7 @@ const COPY_SELECTORS = [
 ];
 
 export default defineConfig([
-  globalIgnores(['dist/', 'node_modules/', 'src/components/ui/', 'public/mockServiceWorker.js']),
+  globalIgnores(['dist/', 'node_modules/', 'src/components/ui/']),
   {
     files: ['src/**/*.{ts,tsx}'],
     extends: [
