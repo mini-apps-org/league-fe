@@ -6,3 +6,5 @@ coverage
 .vercel
 .env*
 !.env.example
+
+MR_DESCRIPTIONS.md
