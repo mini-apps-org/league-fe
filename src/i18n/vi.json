@@ -20,7 +20,9 @@
     "brandPointResults": "Nhập kết quả và theo dõi tỉ số tăng dần.",
     "brandPointSubmit": "Chốt buổi đấu khi ván cuối kết thúc.",
     "brandSeason": "Fall 2026 · 8-Ball Open",
-    "unauthorized": "Bạn không có quyền xem trang này."
+    "unauthorized": "Bạn không có quyền truy cập trang này",
+    "unauthorizedBody": "Tài khoản của bạn không có vai trò mà trang này yêu cầu. Hãy liên hệ quản trị viên giải nếu cần quyền truy cập.",
+    "backToSchedule": "Quay lại lịch thi đấu"
   },
   "notFound": {
     "title": "Không tìm thấy trang",
@@ -55,11 +57,12 @@
     "server_error": "Đã xảy ra lỗi phía chúng tôi. Vui lòng thử lại."
   },
   "nav": {
+    "dashboard": "Tổng quan",
     "schedule": "Lịch đấu",
     "standings": "Bảng xếp hạng",
     "profile": "Hồ sơ",
     "players": "Người chơi",
-    "seasons": "Mùa giải",
+    "sessions": "Mùa giải",
     "teams": "Các đội",
     "divisions": "Hạng đấu",
     "fees": "Phí",
@@ -207,11 +210,142 @@
     "historyEmpty": "Chưa có thay đổi.",
     "changedBy": "bởi {{name}}",
     "appliesNextMatch": "Áp dụng từ trận kế tiếp. Các trận đã đấu giữ nguyên trình độ lúc đó.",
-    "seasonsTitle": "Mùa giải",
     "teamsTitle": "Các đội",
     "divisionsTitle": "Hạng đấu",
     "feesTitle": "Phí",
-    "auditTitle": "Nhật ký"
+    "auditTitle": "Nhật ký",
+    "sessions": {
+      "title": "Mùa giải",
+      "detailTitle": "Mùa giải",
+      "matchTitle": "Trận đấu",
+      "description": "Các mùa thi đấu của giải. Mở một mùa giải để quản lý các tuần và trận đấu đồng đội.",
+      "new": "Tạo mùa giải",
+      "searchPlaceholder": "Tìm mùa giải theo tên",
+      "clearFilters": "Xoá bộ lọc",
+      "stats": {
+        "active": "Mùa giải đang áp dụng",
+        "noneActive": "Chưa có",
+        "total": "Tổng số mùa giải",
+        "inProgress": "Đang diễn ra",
+        "drafts": "Bản nháp"
+      },
+      "filters": {
+        "type": "Loại",
+        "year": "Năm",
+        "status": "Trạng thái",
+        "sort": "Sắp xếp",
+        "allTypes": "Tất cả loại",
+        "allYears": "Tất cả các năm",
+        "allStatuses": "Tất cả trạng thái"
+      },
+      "chips": {
+        "label": "Bộ lọc đang dùng",
+        "name": "Tên: “{{q}}”",
+        "remove": "Bỏ bộ lọc {{label}}",
+        "clearAll": "Xoá tất cả"
+      },
+      "sort": {
+        "-starts_on": "Bắt đầu gần nhất",
+        "starts_on": "Bắt đầu sớm nhất",
+        "name": "Tên A–Z",
+        "-name": "Tên Z–A",
+        "-season_year": "Năm, mới nhất trước",
+        "season_year": "Năm, cũ nhất trước"
+      },
+      "columns": {
+        "name": "Tên",
+        "type": "Loại",
+        "year": "Năm",
+        "dates": "Thời gian",
+        "status": "Trạng thái",
+        "active": "Đang áp dụng",
+        "actions": "Thao tác"
+      },
+      "type": {
+        "SPRING": "Mùa xuân",
+        "SUMMER": "Mùa hè",
+        "FALL": "Mùa thu"
+      },
+      "status": {
+        "DRAFT": "Bản nháp",
+        "IN_PROGRESS": "Đang diễn ra",
+        "COMPLETE": "Đã kết thúc",
+        "CANCELLED": "Đã huỷ"
+      },
+      "active": "Đang áp dụng",
+      "inactive": "Không áp dụng",
+      "weeksScheduled_one": "Đã xếp {{count}} tuần",
+      "weeksScheduled_other": "Đã xếp {{count}} tuần",
+      "noWeeks": "Chưa xếp tuần nào",
+      "editSession": "Sửa {{name}}",
+      "deleteSession": "Xoá {{name}}",
+      "footer": {
+        "showing": "Hiển thị {{shown}} trên {{total}} mùa giải",
+        "rowHint": "Bấm vào một dòng để mở các tuần"
+      },
+      "states": {
+        "errorTitle": "Không tải được danh sách mùa giải",
+        "retry": "Thử lại",
+        "emptyTitle": "Chưa có mùa giải nào",
+        "emptyBody": "Tạo mùa giải đầu tiên, ví dụ Fall 2026, để bắt đầu xếp lịch các tuần và trận đấu đồng đội.",
+        "filteredTitle": "Không có mùa giải nào khớp bộ lọc",
+        "filteredBody": "Hãy thử tên khác, hoặc xoá bộ lọc để xem tất cả {{count}} mùa giải."
+      },
+      "form": {
+        "createTitle": "Tạo mùa giải",
+        "editTitle": "Sửa mùa giải",
+        "createDescription": "Tạo mùa giải để bắt đầu xếp lịch các tuần.",
+        "editDescription": "Thay đổi có hiệu lực ngay. Các trận đã đấu giữ nguyên kết quả.",
+        "close": "Đóng",
+        "name": "Tên",
+        "namePlaceholder": "ví dụ Fall 2026",
+        "nameHint": "Không được trùng với mùa giải khác trong giải.",
+        "type": "Loại",
+        "year": "Năm của mùa giải",
+        "yearPlaceholder": "2027",
+        "startsOn": "Ngày bắt đầu",
+        "endsOn": "Ngày kết thúc",
+        "status": "Trạng thái",
+        "isActive": "Mùa giải đang áp dụng",
+        "isActiveHelp": "Người chơi sẽ thấy mùa giải đang áp dụng đầu tiên trên lịch thi đấu.",
+        "replacesActive": "{{name}} sẽ không còn được áp dụng.",
+        "create": "Tạo mùa giải",
+        "save": "Lưu thay đổi",
+        "saving": "Đang lưu…",
+        "saveFailed": "Không lưu được mùa giải này",
+        "errors": {
+          "nameRequired": "Nhập tên mùa giải.",
+          "nameTooShort": "Tên phải có ít nhất 3 ký tự.",
+          "nameTooLong": "Tên dài tối đa 60 ký tự.",
+          "duplicateName": "Đã có mùa giải trùng tên này.",
+          "type": "Chọn loại mùa giải.",
+          "seasonYear": "Nhập năm gồm 4 chữ số, từ 2000 đến 2100.",
+          "startsOn": "Chọn ngày bắt đầu.",
+          "endsOn": "Chọn ngày kết thúc.",
+          "endsBeforeStart": "Ngày kết thúc phải bằng hoặc sau ngày bắt đầu."
+        }
+      },
+      "deleteConfirm": {
+        "title": "Xoá {{name}}?",
+        "subtitle": "Không thể hoàn tác thao tác này.",
+        "submittedTitle": "Mùa giải này đã có kết quả được gửi",
+        "submittedBody": "Bảng xếp hạng và thống kê người chơi của {{name}} cũng sẽ bị xoá.",
+        "cascadeTitle": "Xoá mùa giải này cũng sẽ xoá:",
+        "cascadeTeams": "các bảng đấu và đội",
+        "cascadeWeeks_one": "{{count}} tuần trận đấu đồng đội",
+        "cascadeWeeks_other": "{{count}} tuần trận đấu đồng đội",
+        "cascadeResults": "mọi kết quả trận đấu cá nhân",
+        "confirmLabel": "Nhập “{{name}}” để xác nhận",
+        "confirm": "Xoá mùa giải",
+        "deleting": "Đang xoá…",
+        "failed": "Không xoá được mùa giải này"
+      },
+      "toast": {
+        "created": "Đã tạo {{name}}",
+        "updated": "Đã lưu {{name}}",
+        "deleted": "Đã xoá {{name}}"
+      }
+    }
   },
   "rules": {
     "title": "Luật giải",
@@ -463,5 +597,16 @@
       "submit": "Rút khỏi bảng đấu",
       "success": "{{team}} đã rời bảng đấu."
     }
+  },
+  "shell": {
+    "breadcrumbs": "Đường dẫn",
+    "role": {
+      "SUPER_ADMIN": "Quản trị viên cấp cao",
+      "CAPTAIN": "Đội trưởng",
+      "PLAYER": "Người chơi"
+    }
+  },
+  "dashboard": {
+    "title": "Tổng quan"
   }
 }

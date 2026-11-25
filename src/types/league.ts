@@ -169,3 +169,115 @@ export interface SkillLevelInput {
   newSkillLevel: number;
   reason: string;
 }
+
+export type SessionType = 'SPRING' | 'SUMMER' | 'FALL';
+
+// Uppercase, unlike the match statuses: league-be's league_sessions CHECK uses these spellings.
+export type SessionStatus = 'DRAFT' | 'IN_PROGRESS' | 'COMPLETE' | 'CANCELLED';
+
+export type SessionSort =
+  'name' | '-name' | 'starts_on' | '-starts_on' | 'season_year' | '-season_year';
+
+export type TeamMatchSort = 'week_no' | '-week_no' | 'scheduled_at' | '-scheduled_at';
+
+export interface LeagueSession {
+  id: string;
+  leagueId: string;
+  name: string;
+  sessionType: SessionType;
+  seasonYear: number;
+  // ISO dates (YYYY-MM-DD): DATE columns, no time or zone.
+  startsOn: string;
+  endsOn: string;
+  status: SessionStatus;
+  isActive: boolean;
+  // Derived by the server: distinct week_no across the session's team matches.
+  weekCount: number;
+  hasSubmittedResults: boolean;
+  createdAt: string;
+  updatedAt: string;
+}
+
+export interface SessionInput {
+  name: string;
+  sessionType: SessionType;
+  seasonYear: number;
+  startsOn: string;
+  endsOn: string;
+  status?: SessionStatus;
+  isActive?: boolean;
+}
+
+export type SessionPatch = Partial<SessionInput>;
+
+export interface SessionFilters {
+  q?: string;
+  sessionType?: SessionType;
+  seasonYear?: number;
+  status?: SessionStatus;
+  sort?: SessionSort;
+}
+
+// A week is not a table: it is the distinct team_matches.week_no values across the session.
+export interface SessionWeek {
+  weekNo: number;
+  matchCount: number;
+  submittedCount: number;
+  firstScheduledAt: string;
+}
+
+export interface DivisionRef {
+  id: string;
+  name: string;
+}
+
+export interface AdminTeamMatch extends TeamMatchSummary {
+  sessionId: string;
+  division: DivisionRef;
+}
+
+// Always five rows, ordered by matchOrder: the server creates them with the team match.
+export interface AdminTeamMatchDetail extends AdminTeamMatch {
+  individualMatches: IndividualMatch[];
+}
+
+export interface TeamMatchInput {
+  divisionId: string;
+  weekNo: number;
+  homeTeamId: string;
+  awayTeamId: string;
+  venueId?: string | null;
+  scheduledAt: string;
+}
+
+export type TeamMatchPatch = Partial<Omit<TeamMatchInput, 'divisionId'>> & {
+  status?: TeamMatchStatus;
+};
+
+export interface TeamMatchFilters {
+  sessionId: string;
+  weekNo?: number;
+  divisionId?: string;
+  // Matches the team on either side, home or away.
+  teamId?: string;
+  status?: TeamMatchStatus;
+  sort?: TeamMatchSort;
+}
+
+// No points field: the server computes them, and the snapshots, from what is sent here.
+export interface IndividualMatchPatch {
+  homePlayerId?: string | null;
+  awayPlayerId?: string | null;
+  homeGames?: number;
+  awayGames?: number;
+  innings?: number | null;
+  homeDefShots?: number;
+  awayDefShots?: number;
+  status?: IndividualMatchStatus;
+}
+
+export interface RosterEntry {
+  playerId: string;
+  fullName: string;
+  skillLevel: number;
+}

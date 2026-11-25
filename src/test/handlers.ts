@@ -1,14 +1,13 @@
-import { http, HttpResponse } from 'msw';
+import { http } from 'msw';
 
-import { API_BASE, ENDPOINTS } from '@/api/endpoints';
+import { ENDPOINTS } from '@/api/endpoints';
 import type { User } from '@/types/auth';
-import type { ErrorCode } from '@/types/errors';
 import type { Permission, Role } from '@/types/league';
 import { ROLE } from '@/utils';
 
-export const apiUrl = (path: string): string => {
-  return new URL(path, API_BASE).toString();
-};
+import { apiUrl, envelope, noContent } from './mocks/http';
+
+export { apiError, apiUrl, envelope } from './mocks/http';
 
 export const LINKED_USER: User = {
   id: 'user-1',
@@ -58,6 +57,10 @@ export const SUPER_ADMIN_PERMISSIONS: Permission[] = [
   'roster.delete',
   'roster.read',
   'roster.update',
+  'session.create',
+  'session.delete',
+  'session.read',
+  'session.update',
   'team.create',
   'team.delete',
   'team.read',
@@ -74,22 +77,11 @@ export const meHandler = (
   });
 };
 
-export const envelope = <T>(data: T): HttpResponse<Record<string, unknown>> => {
-  return HttpResponse.json({ data });
-};
-
-export const apiError = (
-  status: number,
-  code: ErrorCode,
-): HttpResponse<Record<string, unknown>> => {
-  return HttpResponse.json({ error: { code, message: `test error ${code}` } }, { status });
-};
-
 export const handlers = [
   http.get(apiUrl(ENDPOINTS.ME), () => {
     return envelope({ user: LINKED_USER, roles: PLAYER_ROLES, permissions: PLAYER_PERMISSIONS });
   }),
   http.post(apiUrl(ENDPOINTS.AUTH_LOGOUT), () => {
-    return new HttpResponse(null, { status: 204 });
+    return noContent();
   }),
 ];
