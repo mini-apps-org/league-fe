@@ -67,6 +67,23 @@ dependency or a callback ref.
   };
   ```
 
+- Order props as values first, functions after: data, flags and `children` before callbacks
+  (`on*`) and render functions. Keep that order in the props interface, the destructuring and
+  every JSX call site, so a reader finds what a component shows before what it does:
+
+  ```tsx
+  interface TeamRowProps {
+    team: Team;
+    isSelected: boolean;
+    onToggle: (teamId: string) => void;
+    onDelete?: (team: Team) => void;
+  }
+
+  export const TeamRow = ({ team, isSelected, onToggle, onDelete }: TeamRowProps) => { ... };
+
+  <TeamRow team={team} isSelected={isSelected} onToggle={handleToggle} onDelete={handleDelete} />
+  ```
+
 - One exported component per file, except small private helpers.
 - `[lint]` Named exports only. No `export default` in `src/`.
 - Import React APIs by name: `import { useState } from 'react'`. Never `import React` or
