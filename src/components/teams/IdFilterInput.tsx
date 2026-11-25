@@ -2,7 +2,7 @@ import { useId, useState } from 'react';
 import { useTranslation } from 'react-i18next';
 
 import { Input } from '@/components/ui/input';
-import { isEmptyOrUuid } from '@/lib/uuid';
+import { isEmptyOrUUID } from '@/lib/uuid';
 
 interface IdFilterInputProps {
   label: string;
@@ -18,13 +18,13 @@ export const IdFilterInput = ({ label, initialValue, disabled, onApply }: IdFilt
   const hintId = useId();
   const [value, setValue] = useState(initialValue);
   const trimmed = value.trim();
-  const isInvalid = !isEmptyOrUuid(trimmed);
+  const isInvalid = !isEmptyOrUUID(trimmed);
 
   const handleChange = (next: string) => {
     setValue(next);
 
     const nextTrimmed = next.trim();
-    if (isEmptyOrUuid(nextTrimmed)) {
+    if (isEmptyOrUUID(nextTrimmed)) {
       onApply(nextTrimmed);
     }
   };

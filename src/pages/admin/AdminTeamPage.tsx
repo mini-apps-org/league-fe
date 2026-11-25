@@ -25,7 +25,7 @@ import { isNotFoundError, messageFor } from '@/lib/errors';
 import { ArrowLeft, Search } from '@/lib/icons';
 import { DEFAULT_PAGE_SIZE } from '@/lib/paging';
 import { TEAM_DIVISION_PARAM } from '@/lib/team-paths';
-import { isUuid } from '@/lib/uuid';
+import { isUUID } from '@/lib/uuid';
 import type { RosterPlayer } from '@/types/teams';
 import { ROUTES } from '@/utils';
 
@@ -44,7 +44,7 @@ export const AdminTeamPage = () => {
   const { id: teamId = '' } = useParams();
   const [searchParams, setSearchParams] = useSearchParams();
   const rawDivisionId = searchParams.get(TEAM_DIVISION_PARAM) ?? '';
-  const divisionId = isUuid(rawDivisionId) ? rawDivisionId : '';
+  const divisionId = isUUID(rawDivisionId) ? rawDivisionId : '';
   const [pageSize, setPageSize] = useState(DEFAULT_PAGE_SIZE);
   const [divisionInputKey, setDivisionInputKey] = useState(0);
   const [drawer, setDrawer] = useState<TeamDrawer | null>(null);

@@ -1,6 +1,6 @@
 import { z } from 'zod';
 
-import { isEmptyOrUuid, isUuid } from '@/lib/uuid';
+import { isEmptyOrUUID, isUUID } from '@/lib/uuid';
 
 // league-be's teamCodePattern (XXyyA), checked after upper-casing as the server does.
 const TEAM_CODE_PATTERN = /^[0-9A-Z]{5}$/;
@@ -37,10 +37,10 @@ const teamName = z
   .min(1, { error: 'nameRequired' })
   .max(MAX_TEAM_NAME_LENGTH, { error: 'nameTooLong' });
 
-const optionalId = z.string().trim().refine(isEmptyOrUuid, { error: 'id' });
+const optionalId = z.string().trim().refine(isEmptyOrUUID, { error: 'id' });
 
 export const createTeamSchema = z.object({
-  division_id: z.string().trim().refine(isUuid, { error: 'divisionId' }),
+  division_id: z.string().trim().refine(isUUID, { error: 'divisionId' }),
   venue_id: optionalId,
   team_code: teamCode,
   name: teamName,
@@ -59,20 +59,20 @@ export const editTeamSchema = z.object({
 export type EditTeamValues = z.infer<typeof editTeamSchema>;
 
 export const playerIdSchema = z.object({
-  player_id: z.string().trim().refine(isUuid, { error: 'id' }),
+  player_id: z.string().trim().refine(isUUID, { error: 'id' }),
 });
 
 export type PlayerIdValues = z.infer<typeof playerIdSchema>;
 
 export const divisionIdSchema = z.object({
-  division_id: z.string().trim().refine(isUuid, { error: 'divisionId' }),
+  division_id: z.string().trim().refine(isUUID, { error: 'divisionId' }),
 });
 
 export type DivisionIdValues = z.infer<typeof divisionIdSchema>;
 
 // division_id empty keeps the player in their current division.
 export const transferSchema = z.object({
-  team_id: z.string().refine(isUuid, { error: 'targetTeam' }),
+  team_id: z.string().refine(isUUID, { error: 'targetTeam' }),
   division_id: optionalId,
 });
 
