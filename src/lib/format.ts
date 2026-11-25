@@ -1,4 +1,15 @@
+import { head, isEmpty, last, toUpper, words } from 'lodash-es';
+
 import { i18next } from '@/i18n';
+
+// "MT" for Minh Tran: first and last word, so a middle name never crowds the avatar.
+export const getInitials = (name: string | undefined): string => {
+  const nameParts = words(name, /\S+/g);
+  const initialParts = nameParts.length > 1 ? [head(nameParts), last(nameParts)] : nameParts;
+  const initials = toUpper(initialParts.map((part) => part?.charAt(0)).join(''));
+
+  return isEmpty(initials) ? '?' : initials;
+};
 
 // Intl needs a BCP 47 tag; i18next carries 'en' | 'vi', which are already valid.
 function activeLocale(): string {
