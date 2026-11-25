@@ -1,3 +1,4 @@
+import type { QueryKey } from '@tanstack/react-query';
 import { QueryClient } from '@tanstack/react-query';
 
 import { isApiError } from './errors';
@@ -17,3 +18,8 @@ export const queryClient = new QueryClient({
     mutations: { retry: false },
   },
 });
+
+// Awaited, so the lists are fresh before the caller's onSuccess closes a sheet over them.
+export const invalidateKeys = async (client: QueryClient, keys: QueryKey[]): Promise<void> => {
+  await Promise.all(keys.map((queryKey) => client.invalidateQueries({ queryKey })));
+};

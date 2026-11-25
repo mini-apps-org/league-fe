@@ -36,6 +36,7 @@ export const ROUTES = {
   ADMIN_PLAYERS: '/admin/players',
   ADMIN_SEASONS: '/admin/seasons',
   ADMIN_TEAMS: '/admin/teams',
+  ADMIN_TEAM: '/admin/teams/:id',
   ADMIN_DIVISIONS: '/admin/divisions',
   ADMIN_FEES: '/admin/fees',
   ADMIN_AUDIT: '/admin/audit',

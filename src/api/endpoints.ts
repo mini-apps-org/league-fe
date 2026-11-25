@@ -11,6 +11,8 @@ export const ENDPOINTS = {
   INDIVIDUAL_MATCHES: `${BASE_ENDPOINT_PREFIX_V1}/individual-matches`,
   PLAYERS: `${BASE_ENDPOINT_PREFIX_V1}/players`,
   TEAMS: `${BASE_ENDPOINT_PREFIX_V1}/teams`,
+  TEAMS_PERMANENT: `${BASE_ENDPOINT_PREFIX_V1}/teams/permanent`,
+  TEAMS_ROSTER: `${BASE_ENDPOINT_PREFIX_V1}/teams-roster`,
   MEMBERS_PREVIEW: `${BASE_ENDPOINT_PREFIX_V1}/members/preview`,
   ME_LINK: `${BASE_ENDPOINT_PREFIX_V1}/me/link`,
 } as const;

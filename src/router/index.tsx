@@ -4,6 +4,7 @@ import { AppLayout } from '@/components/AppLayout';
 import { RequireAuth } from '@/components/RequireAuth';
 import { RequireRole } from '@/components/RequireRole';
 import type { RouteHandle } from '@/hooks/usePageTitle';
+import { AdminTeamPage } from '@/pages/admin/AdminTeamPage';
 import { AdminTeamsPage } from '@/pages/admin/AdminTeamsPage';
 import { AuditPage } from '@/pages/admin/AuditPage';
 import { DivisionsPage } from '@/pages/admin/DivisionsPage';
@@ -134,6 +135,11 @@ export const router = createBrowserRouter([
                     path: ROUTES.ADMIN_TEAMS,
                     element: <AdminTeamsPage />,
                     handle: titled('admin.teamsTitle'),
+                  },
+                  {
+                    path: ROUTES.ADMIN_TEAM,
+                    element: <AdminTeamPage />,
+                    handle: titled('teams.detail.title'),
                   },
                   {
                     path: ROUTES.ADMIN_DIVISIONS,

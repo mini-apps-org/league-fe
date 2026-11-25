@@ -48,6 +48,15 @@ export function formatDate(isoDateTime: string): string {
   }).format(parsed);
 }
 
+// "71%", or an em dash before the first match rather than a misleading 0%.
+export const formatWinRate = (won: number, played: number): string => {
+  if (played === 0) {
+    return '—';
+  }
+
+  return new Intl.NumberFormat(activeLocale(), { style: 'percent' }).format(won / played);
+};
+
 // "3/5" — matches won over matches played.
 export function formatRecord(won: number, played: number): string {
   return `${won}/${played}`;

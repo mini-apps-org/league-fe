@@ -230,5 +230,240 @@
     "wrongAccount": "Not you? Sign out",
     "captain": "Captain",
     "noTeam": "No team yet"
+  },
+  "teams": {
+    "list": {
+      "subtitle": "Every team in the league. Open a team to manage its divisions, roster and captain.",
+      "columns": {
+        "team": "Team",
+        "captain": "Captain",
+        "created": "Created",
+        "actions": "Actions"
+      },
+      "selectAll": "Select all teams on this page",
+      "select": "Select {{name}}",
+      "actions": "Actions for {{name}}",
+      "open": "Open team",
+      "showing": "Showing {{shown}} of {{total}} teams",
+      "loadMore": "Load {{size}} more",
+      "allLoaded_one": "All {{count}} team loaded",
+      "allLoaded_other": "All {{count}} teams loaded",
+      "emptyTitle": "No teams yet",
+      "emptyBody": "Create a team in its home division to start building rosters and fixtures.",
+      "noMatchesTitle": "No teams match",
+      "noMatchesBody": "Try another search, or clear the filters.",
+      "errorTitle": "We couldn't load teams",
+      "errorBody": "The server didn't respond. Check your connection, then try again."
+    },
+    "filters": {
+      "search": "Search teams by name or code",
+      "divisionId": "Division ID",
+      "venueId": "Venue ID",
+      "invalidId": "Paste the full ID. It looks like 7b1f0a52-2c6e-4d0a-9a3e-1f0c2b9d4e11.",
+      "sort": "Sort teams",
+      "clear": "Clear filters"
+    },
+    "sort": {
+      "team_code": "Code, A to Z",
+      "-team_code": "Code, Z to A",
+      "name": "Name, A to Z",
+      "-name": "Name, Z to A",
+      "-created_at": "Newest first",
+      "created_at": "Oldest first"
+    },
+    "paging": {
+      "perPage": "Per page"
+    },
+    "captain": {
+      "set": "Has a captain",
+      "needed": "Needs a captain"
+    },
+    "bulk": {
+      "region": "Selected teams",
+      "selected_one": "{{count}} team selected",
+      "selected_other": "{{count}} teams selected",
+      "clear": "Clear selection",
+      "delete_one": "Delete {{count}} team",
+      "delete_other": "Delete {{count}} teams",
+      "confirmTitle_one": "Delete {{count}} team?",
+      "confirmTitle_other": "Delete {{count}} teams?",
+      "confirmBody": "They disappear from the league and their players become free to join another team. Fixtures and results stay.",
+      "resultDeleted_one": "{{count}} team deleted.",
+      "resultDeleted_other": "{{count}} teams deleted.",
+      "resultFailed_one": "{{count}} couldn't be deleted.",
+      "resultFailed_other": "{{count}} couldn't be deleted.",
+      "resultPlayersFreed": "Their players are free to join another team.",
+      "dismiss": "Dismiss"
+    },
+    "create": {
+      "open": "New team",
+      "title": "New team",
+      "description": "The team is entered into its home division. You can add more divisions later.",
+      "submit": "Create team",
+      "success": "{{name}} created.",
+      "failed": "Couldn't create this team",
+      "captainLater": "You'll pick a captain after you add players. The captain must be on the team's active roster."
+    },
+    "edit": {
+      "open": "Edit team",
+      "title": "Edit team",
+      "description": "Changes apply right away.",
+      "submit": "Save changes",
+      "success": "{{name}} saved."
+    },
+    "delete": {
+      "action": "Delete {{name}}",
+      "title": "Delete {{name}}?",
+      "description": "Team {{code}}",
+      "impactTitle": "Deleting this team:",
+      "impactHidden": "hides it everywhere in the league",
+      "impactPlayers": "frees its players so they can join another team",
+      "impactFixtures": "keeps its fixtures and their results",
+      "permanent": "Also delete permanently",
+      "permanentHint": "Only possible for a team with no fixtures. This can't be undone.",
+      "submit": "Delete team",
+      "success": "{{name}} deleted.",
+      "permanentFailed": "{{name}} was deleted, but couldn't be deleted permanently: {{reason}}"
+    },
+    "form": {
+      "divisionId": "Home division ID",
+      "divisionIdHint": "Rosters and fixtures belong to the team's entry in this division.",
+      "venueId": "Venue ID (optional)",
+      "venueIdHint": "The venue's identifier is the middle of the team code.",
+      "venueIdEditHint": "Paste another venue's ID to move the team. A venue can't be removed here.",
+      "teamCode": "Team code",
+      "teamCodeHint": "Region, venue, team number (XXyyA). Unique within the division.",
+      "teamCodePlaceholder": "41504",
+      "name": "Team name",
+      "namePlaceholder": "e.g. Corner Pocket Crew",
+      "captain": "Captain",
+      "captainPlaceholder": "Choose a captain",
+      "captainHint": "Only players on the active roster shown below can be captain.",
+      "captainNoRoster": "Choose a division with players below to pick a captain.",
+      "errors": {
+        "teamCode": "Use 5 characters in the format XXyyA, for example 41504.",
+        "duplicateCode": "This code is already used in this division.",
+        "nameRequired": "Enter a team name.",
+        "nameTooLong": "Use 100 characters or fewer.",
+        "divisionId": "Paste the division's full ID.",
+        "id": "Paste the full ID, or leave it empty.",
+        "targetTeam": "Choose the team to move to."
+      }
+    },
+    "codeRules": {
+      "open": "How team codes work",
+      "title": "How team codes work",
+      "region": "XX · Region",
+      "venue": "yy · Venue",
+      "team": "A · Team",
+      "regionBody": "Region (XX). 2-digit postcode of the venue's district. Saigon uses 41 or 50–59.",
+      "venueBody": "Venue (yy). 2-digit identifier of the host venue.",
+      "teamBody": "Team (A). The team's number at that venue, 0 to 9.",
+      "capacityBody": "A venue identifier holds at most 10 teams. When it's full, the venue gets an extra identifier for new teams. The code must be unique in its division."
+    },
+    "conflict": {
+      "create": "A team with this code already exists in this division.",
+      "update": "Another team in this division already uses this code.",
+      "deletePermanently": "The team has scheduled or played matches, so it can't be deleted permanently.",
+      "addDivision": "The team has already entered this division.",
+      "removeDivision": "The team has matches in this division, so it can't leave it.",
+      "addPlayer": "This player is already on a team in this division.",
+      "transfer": "This player can't be moved: they are the captain, or already on a team in that division.",
+      "removePlayer": "This player is the captain. Pick a new captain first."
+    },
+    "detail": {
+      "title": "Team details",
+      "updated": "Updated {{date}}.",
+      "captain": "Captain",
+      "captainDetail": "Must be on the active roster",
+      "captainMissing": "Pick one from the roster",
+      "activePlayers": "Active players",
+      "activePlayersDetail": "In the division below",
+      "created": "Created",
+      "createdDetail": "A team keeps one code for life",
+      "notFoundTitle": "Team not found",
+      "notFoundBody": "This team was deleted, or the link is wrong. Deleted teams don't appear anywhere in the league.",
+      "backToTeams": "Back to teams"
+    },
+    "roster": {
+      "title": "Roster by division",
+      "chooseDivisionTitle": "Choose a division",
+      "chooseDivisionBody": "Each division has its own roster. Paste a division ID above to see it.",
+      "notEnteredTitle": "The team isn't in this division",
+      "notEnteredBody": "Add the team to the division to build its roster there.",
+      "emptyTitle": "No players in this division yet",
+      "emptyBody": "Each division has its own roster. Add players here, then choose a captain from them.",
+      "columns": {
+        "player": "Player",
+        "skill": "Skill",
+        "fees": "Fees",
+        "played": "Played",
+        "won": "Won",
+        "winRate": "Win %",
+        "points": "Points",
+        "joined": "Joined",
+        "actions": "Actions"
+      },
+      "captain": "Captain",
+      "paid": "Paid",
+      "unpaid": "Unpaid",
+      "cardStats": "{{record}} won · {{winRate}} · {{points}} pts",
+      "actions": "Actions for {{name}}",
+      "makeCaptain": "Make captain",
+      "isCaptain": "Already captain",
+      "transfer": "Transfer",
+      "captainNoTransfer": "Captain can't be transferred",
+      "remove": "Remove from roster",
+      "captainNoRemove": "Captain can't be removed",
+      "captainChanged": "{{name}} is now captain.",
+      "showing": "Showing {{shown}} of {{total}} players · Sorted by join date",
+      "loadMore": "Load more players",
+      "allLoaded_one": "All {{count}} player loaded",
+      "allLoaded_other": "All {{count}} players loaded",
+      "captainNote": "The captain can't be removed or transferred. Pick a new captain first."
+    },
+    "addPlayer": {
+      "title": "Add player",
+      "description": "To {{team}} in this division.",
+      "playerId": "Player ID",
+      "playerIdHint": "A player can be on only one team per division.",
+      "submit": "Add to roster",
+      "success": "{{name}} added to {{team}}."
+    },
+    "transfer": {
+      "title": "Transfer player",
+      "description": "Move {{name}} to another team.",
+      "playerSummary": "{{name}} · SL{{skill}} · {{played}} played · on {{team}}",
+      "targetTeam": "Move to team",
+      "targetTeamPlaceholder": "Choose a team in this division",
+      "division": "Division ID (optional)",
+      "divisionHint": "Leave empty to keep the player's current division.",
+      "impactTitle": "What happens",
+      "impactLeaves": "{{name}} leaves {{team}} today",
+      "impactStats": "their matches and points stay with {{team}}",
+      "impactFresh": "they start fresh on the new team",
+      "submit": "Transfer player",
+      "success": "{{name}} transferred."
+    },
+    "removePlayer": {
+      "title": "Remove {{name}}?",
+      "description": "They leave {{team}}'s roster in this division. Their matches stay in the history.",
+      "submit": "Remove player",
+      "success": "{{name}} removed."
+    },
+    "addDivision": {
+      "title": "Add to a division",
+      "description": "Enter {{team}} in another division or session.",
+      "note": "The new entry starts with an empty roster and no fixtures. A player can be on only one active team per division.",
+      "submit": "Add division",
+      "success": "{{team}} added to the division."
+    },
+    "removeDivision": {
+      "open": "Remove team from this division",
+      "title": "Remove {{team}} from this division?",
+      "description": "Its roster in this division closes. Only possible while the team has no matches there.",
+      "submit": "Remove from division",
+      "success": "{{team}} left the division."
+    }
   }
 }
