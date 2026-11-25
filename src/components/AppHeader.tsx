@@ -1,3 +1,4 @@
+import { cn } from 'cn';
 import { Fragment } from 'react';
 import { useTranslation } from 'react-i18next';
 import { Link } from 'react-router';
@@ -14,9 +15,17 @@ import {
   BreadcrumbPage,
   BreadcrumbSeparator,
 } from '@/components/ui/breadcrumb';
-import { useBreadcrumbs } from '@/hooks/useBreadcrumbs';
+import { type Breadcrumb as Crumb, useBreadcrumbs } from '@/hooks/useBreadcrumbs';
 import { useHasRole } from '@/hooks/useHasRole';
 import { ROLE, ROUTES } from '@/utils';
+
+// A section label such as "Admin console" names no page, so phones drop it (and the separator
+// after it) to leave room for the crumbs that do: "Teams / Riverside Breakers".
+const PHONE_HIDDEN = 'hidden sm:inline-flex';
+
+const isContextOnly = (crumb: Crumb | undefined): boolean => {
+  return crumb !== undefined && crumb.to === undefined && crumb.pageName === undefined;
+};
 
 const HeaderBreadcrumbs = () => {
   const { t } = useTranslation();
@@ -27,10 +36,29 @@ const HeaderBreadcrumbs = () => {
       <BreadcrumbList className="flex-nowrap">
         {crumbs.map((crumb, index) => (
           <Fragment key={crumb.label}>
-            {index > 0 && <BreadcrumbSeparator>/</BreadcrumbSeparator>}
-            <BreadcrumbItem className="min-w-0">
+            {index > 0 && (
+              <BreadcrumbSeparator className={cn(isContextOnly(crumbs[index - 1]) && PHONE_HIDDEN)}>
+                /
+              </BreadcrumbSeparator>
+            )}
+            <BreadcrumbItem
+              className={cn(
+                'min-w-0',
+                isContextOnly(crumb) && PHONE_HIDDEN,
+                crumb.to !== undefined && 'shrink-0',
+              )}
+            >
               {index === crumbs.length - 1 && (
-                <BreadcrumbPage className="truncate">{crumb.label}</BreadcrumbPage>
+                <BreadcrumbPage className="truncate">
+                  {crumb.pageName === undefined ? (
+                    crumb.label
+                  ) : (
+                    <crumb.pageName.PageName
+                      params={crumb.pageName.params}
+                      fallback={crumb.label}
+                    />
+                  )}
+                </BreadcrumbPage>
               )}
               {index < crumbs.length - 1 && crumb.to !== undefined && (
                 <BreadcrumbLink asChild>
