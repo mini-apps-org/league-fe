@@ -38,7 +38,7 @@ export const TeamCodeRules = ({ teamCode }: TeamCodeRulesProps) => {
               key={part.label}
               className="flex flex-col items-center gap-1 rounded-tile bg-sunken p-2"
             >
-              <span className="font-mono text-base font-semibold">{part.value}</span>
+              <span className="text-base font-semibold">{part.value}</span>
               <span className="text-xs text-muted-foreground">{part.label}</span>
             </div>
           ))}

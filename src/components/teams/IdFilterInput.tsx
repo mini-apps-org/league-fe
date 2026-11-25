@@ -32,7 +32,6 @@ export const IdFilterInput = ({ label, initialValue, disabled, onApply }: IdFilt
   return (
     <div className="flex flex-col gap-1">
       <Input
-        className="font-mono"
         value={value}
         disabled={disabled}
         placeholder={label}

@@ -82,7 +82,6 @@ export const AddPlayerDrawer = ({ team, divisionId, onClose }: AddPlayerDrawerPr
           label={t('teams.addPlayer.playerId')}
           description={t('teams.addPlayer.playerIdHint')}
           isRequired
-          isMono
         />
       </form>
     </ResponsiveDrawer>

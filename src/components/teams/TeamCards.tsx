@@ -46,9 +46,7 @@ export const TeamCards = ({
               />
             )}
             <div className="flex min-w-0 flex-1 flex-col gap-1.5">
-              <span className="tabular font-mono text-xs text-muted-foreground">
-                {team.team_code}
-              </span>
+              <span className="tabular text-xs text-muted-foreground">{team.team_code}</span>
               <Link to={teamPath} className="truncate font-medium text-foreground">
                 {team.name}
               </Link>

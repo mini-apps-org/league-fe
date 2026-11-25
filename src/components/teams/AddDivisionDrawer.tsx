@@ -80,7 +80,6 @@ export const AddDivisionDrawer = ({ team, onClose, onAdded }: AddDivisionDrawerP
           name="division_id"
           label={t('teams.form.divisionId')}
           isRequired
-          isMono
         />
         <p className="text-sm text-muted-foreground">{t('teams.addDivision.note')}</p>
       </form>

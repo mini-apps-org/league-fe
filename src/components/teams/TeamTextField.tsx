@@ -1,4 +1,3 @@
-import { cn } from 'cn';
 import type { ReactNode } from 'react';
 import type { Control, FieldValues, Path } from 'react-hook-form';
 import { Controller } from 'react-hook-form';
@@ -14,8 +13,6 @@ interface TeamTextFieldProps<T extends FieldValues> {
   description?: string;
   placeholder?: string;
   isRequired?: boolean;
-  // Codes and ids read better monospaced.
-  isMono?: boolean;
   // Sits beside the label, such as the team code rules' ⓘ.
   labelAddon?: ReactNode;
 }
@@ -27,7 +24,6 @@ export const TeamTextField = <T extends FieldValues>({
   description,
   placeholder,
   isRequired = false,
-  isMono = false,
   labelAddon,
 }: TeamTextFieldProps<T>) => {
   return (
@@ -47,7 +43,6 @@ export const TeamTextField = <T extends FieldValues>({
             <Input
               {...field}
               id={name}
-              className={cn(isMono && 'font-mono')}
               placeholder={placeholder}
               aria-invalid={fieldState.invalid}
               aria-required={isRequired}

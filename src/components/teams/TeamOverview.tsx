@@ -58,7 +58,7 @@ export const TeamOverview = ({
         <div className="flex flex-col gap-1">
           <h2 className="flex flex-wrap items-center gap-3 text-2xl font-bold">
             {team.name}
-            <span className="tabular rounded-chip bg-sunken px-2 py-0.5 font-mono text-sm font-medium">
+            <span className="tabular rounded-chip bg-sunken px-2 py-0.5 text-sm font-medium">
               {team.team_code}
             </span>
           </h2>

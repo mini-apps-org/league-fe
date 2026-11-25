@@ -127,7 +127,6 @@ export const EditTeamDrawer = ({ team, captainCandidates, onClose }: EditTeamDra
             label={t('teams.form.teamCode')}
             description={t('teams.form.teamCodeHint')}
             isRequired
-            isMono
             labelAddon={<TeamCodeRules teamCode={teamCode} />}
           />
           <TeamTextField
@@ -173,7 +172,6 @@ export const EditTeamDrawer = ({ team, captainCandidates, onClose }: EditTeamDra
             name="venue_id"
             label={t('teams.form.venueId')}
             description={t('teams.form.venueIdEditHint')}
-            isMono
           />
         </FieldGroup>
       </form>

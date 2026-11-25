@@ -148,7 +148,6 @@ export const TransferPlayerDrawer = ({
             name="division_id"
             label={t('teams.transfer.division')}
             description={t('teams.transfer.divisionHint')}
-            isMono
           />
         </FieldGroup>
         <div className="flex flex-col gap-1 text-sm">

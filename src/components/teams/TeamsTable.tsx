@@ -87,7 +87,7 @@ export const TeamsTable = ({
                 )}
                 <TableCell>
                   <span className="flex items-center gap-3">
-                    <span className="tabular rounded-chip bg-sunken px-2 py-0.5 font-mono text-xs">
+                    <span className="tabular rounded-chip bg-sunken px-2 py-0.5 text-xs">
                       {team.team_code}
                     </span>
                     <Link

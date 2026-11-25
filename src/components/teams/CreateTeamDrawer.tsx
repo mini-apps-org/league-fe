@@ -89,14 +89,12 @@ export const CreateTeamDrawer = ({ defaultDivisionId, onClose }: CreateTeamDrawe
             label={t('teams.form.divisionId')}
             description={t('teams.form.divisionIdHint')}
             isRequired
-            isMono
           />
           <TeamTextField
             control={form.control}
             name="venue_id"
             label={t('teams.form.venueId')}
             description={t('teams.form.venueIdHint')}
-            isMono
           />
           <TeamTextField
             control={form.control}
@@ -105,7 +103,6 @@ export const CreateTeamDrawer = ({ defaultDivisionId, onClose }: CreateTeamDrawe
             description={t('teams.form.teamCodeHint')}
             placeholder={t('teams.form.teamCodePlaceholder')}
             isRequired
-            isMono
             labelAddon={<TeamCodeRules teamCode={teamCode} />}
           />
           <TeamTextField
