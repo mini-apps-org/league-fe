@@ -20,13 +20,30 @@ export const TeamCards = ({
   divisionId,
   selectedIds,
   onToggle,
+  onToggleAll,
   onDelete,
-}: Omit<TeamRowsProps, 'onToggleAll'>) => {
+}: TeamRowsProps) => {
   const { t } = useTranslation();
   const navigate = useNavigate();
+  const selectedOnPage = teams.filter((team) => selectedIds.has(team.id)).length;
+  const allChecked = selectedOnPage > 0 && selectedOnPage === teams.length;
+  const selectAllChecked = selectedOnPage > 0 && !allChecked ? 'indeterminate' : allChecked;
 
   return (
     <ul className="flex flex-col gap-2">
+      {onDelete !== undefined && (
+        <li>
+          <label className="flex items-center gap-3 px-3 py-1 text-sm text-muted-foreground">
+            <Checkbox
+              checked={selectAllChecked}
+              onCheckedChange={(checked) => {
+                onToggleAll(checked === true);
+              }}
+            />
+            {t('teams.list.selectAll')}
+          </label>
+        </li>
+      )}
       {teams.map((team) => {
         const teamPath = getTeamPath(team.id, divisionId);
 
