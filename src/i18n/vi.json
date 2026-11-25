@@ -245,7 +245,6 @@
       "actions": "Thao tác cho {{name}}",
       "open": "Mở đội",
       "showing": "Đang hiển thị {{shown}} / {{total}} đội",
-      "loadMore": "Tải thêm {{size}}",
       "allLoaded_one": "Đã tải hết {{count}} đội",
       "allLoaded_other": "Đã tải hết {{count}} đội",
       "emptyTitle": "Chưa có đội nào",
@@ -417,7 +416,6 @@
       "captainNoRemove": "Không thể xoá đội trưởng",
       "captainChanged": "{{name}} giờ là đội trưởng.",
       "showing": "Đang hiển thị {{shown}} / {{total}} cơ thủ · Theo ngày vào",
-      "loadMore": "Tải thêm cơ thủ",
       "allLoaded_one": "Đã tải hết {{count}} cơ thủ",
       "allLoaded_other": "Đã tải hết {{count}} cơ thủ",
       "captainNote": "Không thể xoá hoặc chuyển đội trưởng. Hãy chọn đội trưởng mới trước."

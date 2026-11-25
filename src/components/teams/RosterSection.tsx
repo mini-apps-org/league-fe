@@ -4,6 +4,7 @@ import { useTranslation } from 'react-i18next';
 import { EmptyState } from '@/components/league/EmptyState';
 import { ErrorBanner } from '@/components/league/ErrorBanner';
 import { LoadMoreFooter } from '@/components/league/LoadMoreFooter';
+import { ScrollableTable } from '@/components/league/ScrollableTable';
 import { IdFilterInput } from '@/components/teams/IdFilterInput';
 import type { PlayerActions } from '@/components/teams/PlayerActionsMenu';
 import { RosterCards } from '@/components/teams/RosterCards';
@@ -116,11 +117,19 @@ export const RosterSection = ({
 
     return (
       <>
-        {isMobile ? (
-          <RosterCards players={players} {...playerActions} />
-        ) : (
-          <RosterTable players={players} {...playerActions} />
-        )}
+        <ScrollableTable
+          hasMore={rosterQuery.hasNextPage && !rosterQuery.isFetchNextPageError}
+          isLoadingMore={rosterQuery.isFetchingNextPage}
+          onLoadMore={() => {
+            void rosterQuery.fetchNextPage();
+          }}
+        >
+          {isMobile ? (
+            <RosterCards players={players} {...playerActions} />
+          ) : (
+            <RosterTable players={players} {...playerActions} />
+          )}
+        </ScrollableTable>
         {rosterQuery.isFetchNextPageError && (
           <ErrorBanner
             error={rosterQuery.error}
@@ -133,13 +142,8 @@ export const RosterSection = ({
           summary={t('teams.roster.showing', { shown: players.length, total })}
           pageSize={pageSize}
           hasMore={rosterQuery.hasNextPage}
-          isLoadingMore={rosterQuery.isFetchingNextPage}
-          loadMoreLabel={t('teams.roster.loadMore')}
           endLabel={t('teams.roster.allLoaded', { count: total })}
           onPageSizeChange={onPageSizeChange}
-          onLoadMore={() => {
-            void rosterQuery.fetchNextPage();
-          }}
         />
         <p className="text-sm text-muted-foreground">{t('teams.roster.captainNote')}</p>
       </>

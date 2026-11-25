@@ -1,6 +1,5 @@
 import { useTranslation } from 'react-i18next';
 
-import { Button } from '@/components/ui/button';
 import {
   Select,
   SelectContent,
@@ -8,31 +7,24 @@ import {
   SelectTrigger,
   SelectValue,
 } from '@/components/ui/select';
-import { LoaderCircle } from '@/lib/icons';
 import { PAGE_SIZES } from '@/lib/paging';
 
 interface LoadMoreFooterProps {
   summary: string;
   pageSize: number;
   hasMore: boolean;
-  isLoadingMore: boolean;
-  loadMoreLabel: string;
   endLabel: string;
   onPageSizeChange: (pageSize: number) => void;
-  onLoadMore: () => void;
 }
 
-// The cursor-paged lists' footer: "Showing X of Y", a page size, then Load more until the
-// server sends no next_cursor.
+// The cursor-paged lists' footer: "Showing X of Y", a page size, and the end label once the
+// server sends no next_cursor. ScrollableTable loads the pages in between.
 export const LoadMoreFooter = ({
   summary,
   pageSize,
   hasMore,
-  isLoadingMore,
-  loadMoreLabel,
   endLabel,
   onPageSizeChange,
-  onLoadMore,
 }: LoadMoreFooterProps) => {
   const { t } = useTranslation();
 
@@ -62,14 +54,7 @@ export const LoadMoreFooter = ({
             </SelectContent>
           </Select>
         </span>
-        {hasMore ? (
-          <Button variant="outline" disabled={isLoadingMore} onClick={onLoadMore}>
-            {isLoadingMore && <LoaderCircle className="animate-spin" aria-hidden />}
-            {isLoadingMore ? t('common.loading') : loadMoreLabel}
-          </Button>
-        ) : (
-          <span className="text-sm font-medium text-muted-foreground">{endLabel}</span>
-        )}
+        {!hasMore && <span className="text-sm font-medium text-muted-foreground">{endLabel}</span>}
       </div>
     </div>
   );

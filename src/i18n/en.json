@@ -245,7 +245,6 @@
       "actions": "Actions for {{name}}",
       "open": "Open team",
       "showing": "Showing {{shown}} of {{total}} teams",
-      "loadMore": "Load {{size}} more",
       "allLoaded_one": "All {{count}} team loaded",
       "allLoaded_other": "All {{count}} teams loaded",
       "emptyTitle": "No teams yet",
@@ -417,7 +416,6 @@
       "captainNoRemove": "Captain can't be removed",
       "captainChanged": "{{name}} is now captain.",
       "showing": "Showing {{shown}} of {{total}} players · Sorted by join date",
-      "loadMore": "Load more players",
       "allLoaded_one": "All {{count}} player loaded",
       "allLoaded_other": "All {{count}} players loaded",
       "captainNote": "The captain can't be removed or transferred. Pick a new captain first."

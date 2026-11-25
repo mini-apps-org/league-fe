@@ -4,6 +4,7 @@ import { useTranslation } from 'react-i18next';
 import { EmptyState } from '@/components/league/EmptyState';
 import { ErrorBanner } from '@/components/league/ErrorBanner';
 import { LoadMoreFooter } from '@/components/league/LoadMoreFooter';
+import { ScrollableTable } from '@/components/league/ScrollableTable';
 import { PageTitle } from '@/components/PageTitle';
 import { BulkDeleteBar } from '@/components/teams/BulkDeleteBar';
 import { BulkDeleteDrawer } from '@/components/teams/BulkDeleteDrawer';
@@ -201,7 +202,15 @@ export const AdminTeamsPage = () => {
 
       {teams.length > 0 && (
         <>
-          {isMobile ? <TeamCards {...rowsProps} /> : <TeamsTable {...rowsProps} />}
+          <ScrollableTable
+            hasMore={teamsQuery.hasNextPage && !teamsQuery.isFetchNextPageError}
+            isLoadingMore={teamsQuery.isFetchingNextPage}
+            onLoadMore={() => {
+              void teamsQuery.fetchNextPage();
+            }}
+          >
+            {isMobile ? <TeamCards {...rowsProps} /> : <TeamsTable {...rowsProps} />}
+          </ScrollableTable>
           {teamsQuery.isFetchNextPageError && (
             <ErrorBanner
               error={teamsQuery.error}
@@ -214,14 +223,9 @@ export const AdminTeamsPage = () => {
             summary={t('teams.list.showing', { shown: teams.length, total })}
             pageSize={params.limit}
             hasMore={teamsQuery.hasNextPage}
-            isLoadingMore={teamsQuery.isFetchingNextPage}
-            loadMoreLabel={t('teams.list.loadMore', { size: params.limit })}
             endLabel={t('teams.list.allLoaded', { count: total })}
             onPageSizeChange={(pageSize) => {
               handleFilterChange('limit', String(pageSize));
-            }}
-            onLoadMore={() => {
-              void teamsQuery.fetchNextPage();
             }}
           />
         </>

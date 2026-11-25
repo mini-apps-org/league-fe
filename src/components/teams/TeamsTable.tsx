@@ -43,7 +43,7 @@ export const TeamsTable = ({
   const headerChecked = selectedOnPage > 0 && !allChecked ? 'indeterminate' : allChecked;
 
   return (
-    <div className="overflow-x-auto rounded-card border border-line bg-card">
+    <div className="rounded-card border border-line bg-card">
       <Table>
         <TableHeader>
           <TableRow>

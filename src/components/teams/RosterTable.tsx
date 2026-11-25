@@ -24,7 +24,7 @@ export const RosterTable = ({ players, ...actions }: RosterListProps) => {
   const { t } = useTranslation();
 
   return (
-    <div className="overflow-x-auto rounded-card border border-line bg-card">
+    <div className="rounded-card border border-line bg-card">
       <Table>
         <TableHeader>
           <TableRow>
