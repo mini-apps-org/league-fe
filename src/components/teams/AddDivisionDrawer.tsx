@@ -4,7 +4,7 @@ import { useTranslation } from 'react-i18next';
 import { toast } from 'sonner';
 
 import { ResponsiveDrawer } from '@/components/league/ResponsiveDrawer';
-import { TeamTextField } from '@/components/teams/TeamTextField';
+import { TeamLookupField } from '@/components/teams/TeamLookupField';
 import { Alert, AlertDescription } from '@/components/ui/alert';
 import { Button } from '@/components/ui/button';
 import { useAddTeamDivision } from '@/hooks/useTeamMutations';
@@ -75,10 +75,11 @@ export const AddDivisionDrawer = ({ team, onClose, onAdded }: AddDivisionDrawerP
             </AlertDescription>
           </Alert>
         )}
-        <TeamTextField
+        <TeamLookupField
           control={form.control}
           name="division_id"
-          label={t('teams.form.divisionId')}
+          lookup="division"
+          label={t('teams.lookup.division')}
           isRequired
         />
         <p className="text-sm text-muted-foreground">{t('teams.addDivision.note')}</p>

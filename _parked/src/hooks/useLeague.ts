@@ -11,7 +11,7 @@ import type {
   SkillLevelChange,
   TeamMatchDetail,
   TeamMatchSummary,
-  TeamRef,
+  TeamOption,
 } from '@/types/league';
 
 export const SEASONS_KEY = ['seasons'] as const;
@@ -103,7 +103,7 @@ export function useSkillLevelHistory(
   });
 }
 
-export function useTeams(divisionId: string | undefined): UseQueryResult<TeamRef[]> {
+export function useTeams(divisionId: string | undefined): UseQueryResult<TeamOption[]> {
   return useQuery({
     queryKey: ['teams', divisionId],
     queryFn: () => {

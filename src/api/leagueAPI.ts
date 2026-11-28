@@ -13,7 +13,7 @@ import type {
   SkillLevelInput,
   TeamMatchDetail,
   TeamMatchSummary,
-  TeamRef,
+  TeamOption,
 } from '@/types/league';
 
 import { BaseAPI } from './baseAPI';
@@ -101,8 +101,8 @@ class BaseLeagueAPI extends BaseAPI {
   }
 
   // For the admin transfer control; plan 3 specified no endpoint.
-  async fetchTeams(divisionId: string): Promise<TeamRef[]> {
-    const { data } = await this.get<ApiEnvelope<TeamRef[]>>(ENDPOINTS.TEAMS, {
+  async fetchTeams(divisionId: string): Promise<TeamOption[]> {
+    const { data } = await this.get<ApiEnvelope<TeamOption[]>>(ENDPOINTS.TEAMS, {
       division_id: divisionId,
     });
 

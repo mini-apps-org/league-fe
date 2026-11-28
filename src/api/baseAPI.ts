@@ -2,8 +2,6 @@ import type { AxiosRequestConfig } from 'axios';
 
 import { axiosInstance } from './axios';
 
-export { axiosInstance } from './axios';
-
 // Skips null/undefined/'' so an absent filter does not become the string "undefined", and
 // repeats the key for arrays rather than joining.
 export function serializeParams(params?: object): string {

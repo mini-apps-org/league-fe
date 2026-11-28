@@ -3,7 +3,7 @@ import { generatePath, Link } from 'react-router';
 
 import { StatusBadge } from '@/components/league/StatusBadge';
 import { formatFixtureDateTime } from '@/lib/format';
-import type { TeamMatchSummary, TeamRef } from '@/types/league';
+import type { TeamMatchSummary, TeamOption } from '@/types/league';
 import { ROUTES } from '@/utils';
 
 // A result exists only once a match has been scored; before that the card shows no score
@@ -13,7 +13,7 @@ function hasScore(fixture: TeamMatchSummary): boolean {
 }
 
 interface TeamLineProps {
-  team: TeamRef;
+  team: TeamOption;
   points: number | null;
 }
 

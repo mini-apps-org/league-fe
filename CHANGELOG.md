@@ -1,3 +1,21 @@
+## [TBD](https://github.com/mini-apps-org/league-fe/releases/tag/TBD) - 2026-11-28
+- [#PR13](https://github.com/mini-apps-org/league-fe/pull/13)
+  - feat(team): pick divisions and venues from a select instead of pasting their IDs
+  - feat(team): fall back to the ID input until league-be lists divisions and venues
+  - refactor: rename the `…Ref` types to `…Option`, `DivisionSummary` and `RosterEntryKey`
+  - test: cover `LookupSelect` and the division and venue grouping
+
+## [0.3.0](https://github.com/mini-apps-org/league-fe/releases/tag/0.3.0) - 2026-11-28
+
+- [#PR12](https://github.com/mini-apps-org/league-fe/pull/12)
+  - feat(team): add the Teams list at `/admin/teams` with search, filters and sort
+  - feat(team): add the team page at `/admin/teams/:id` for divisions, roster and captain
+  - feat(team): create, delete and bulk-delete teams
+  - feat(team): load more teams and players as you scroll, and select all on mobile
+  - fix(nav): show the breadcrumb trail on admin pages, with the team's name on team pages
+  - fix(api): match `ApiEnvelope` to league-be's response
+  - style(ui): show team codes and IDs in the app font
+
 # 2026-11-24
 
 - feat(sessions): add `/admin/sessions` for super admins: list sessions with stats, search, type/year/status filters, filter chips and sortable columns, all kept in the URL

@@ -5,6 +5,7 @@ import { toast } from 'sonner';
 
 import { ResponsiveDrawer } from '@/components/league/ResponsiveDrawer';
 import { TeamCodeRules } from '@/components/teams/TeamCodeRules';
+import { TeamLookupField } from '@/components/teams/TeamLookupField';
 import { TeamTextField } from '@/components/teams/TeamTextField';
 import { Alert, AlertDescription } from '@/components/ui/alert';
 import { Button } from '@/components/ui/button';
@@ -34,7 +35,8 @@ interface EditTeamDrawerProps {
 }
 
 // league-be's PATCH is partial and rejects an empty one, so only changed fields are sent. An
-// absent field means "unchanged", so a captain or venue can be replaced but not cleared.
+// absent field means "unchanged", so a captain can be replaced but not cleared. The venue is
+// shown but locked, so it is never sent.
 const getChangedFields = (team: Team, values: EditTeamValues): UpdateTeamInput => {
   const changes: UpdateTeamInput = {};
 
@@ -47,10 +49,6 @@ const getChangedFields = (team: Team, values: EditTeamValues): UpdateTeamInput =
   if (values.captain_player_id !== '' && values.captain_player_id !== team.captain_player_id) {
     changes.captain_player_id = values.captain_player_id;
   }
-  if (values.venue_id !== '' && values.venue_id !== team.venue_id) {
-    changes.venue_id = values.venue_id;
-  }
-
   return changes;
 };
 
@@ -167,11 +165,13 @@ export const EditTeamDrawer = ({ team, captainCandidates, onClose }: EditTeamDra
               );
             }}
           />
-          <TeamTextField
+          <TeamLookupField
             control={form.control}
             name="venue_id"
-            label={t('teams.form.venueId')}
-            description={t('teams.form.venueIdEditHint')}
+            lookup="venue"
+            label={t('teams.form.venue')}
+            description={t('teams.form.venueLocked')}
+            isDisabled
           />
         </FieldGroup>
       </form>

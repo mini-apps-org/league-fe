@@ -94,7 +94,7 @@ export interface UpdateTeamInput {
 }
 
 // One player's place on a team within a division: every /teams-roster write needs all three.
-export interface RosterEntryRef {
+export interface RosterEntryKey {
   teamId: string;
   divisionId: string;
   playerId: string;

@@ -1,7 +1,7 @@
 import { omit } from 'lodash-es';
 import { z } from 'zod';
 
-import type { Division, VenueRef } from '@/types/league';
+import type { Division, VenueOption } from '@/types/league';
 
 import sessionsResponse from './data/sessions.json';
 import { buildNight, MATCHES_PER_NIGHT } from './league-night';
@@ -64,7 +64,7 @@ const TEAM_NAMES = [
 ];
 const PLAYER_NAMES = ['Minh', 'Lan', 'Huy', 'Thao', 'Khoa', 'Vy', 'Duc', 'Ngoc', 'Tuan', 'Mai'];
 
-export const MOCK_VENUES: VenueRef[] = [
+export const MOCK_VENUES: VenueOption[] = [
   { id: 'venue-saigon', name: 'Saigon Billiards Club' },
   { id: 'venue-district-1', name: 'District 1 Cue Hall' },
 ];

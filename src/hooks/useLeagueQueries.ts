@@ -11,8 +11,8 @@ import type {
   SessionFilters,
   SessionWeek,
   TeamMatchFilters,
-  TeamRef,
-  VenueRef,
+  TeamOption,
+  VenueOption,
 } from '@/types/league';
 
 export const useSessions = (filters: SessionFilters): UseQueryResult<LeagueSession[]> => {
@@ -31,7 +31,7 @@ export const useSessionDivisions = (sessionId: string): UseQueryResult<Division[
   return useQuery(leagueQueries.divisions(sessionId));
 };
 
-export const useDivisionTeams = (divisionId: string | undefined): UseQueryResult<TeamRef[]> => {
+export const useDivisionTeams = (divisionId: string | undefined): UseQueryResult<TeamOption[]> => {
   return useQuery(leagueQueries.teams(divisionId));
 };
 
@@ -39,7 +39,7 @@ export const useTeamRoster = (teamId: string | undefined): UseQueryResult<Roster
   return useQuery(leagueQueries.roster(teamId));
 };
 
-export const useVenues = (): UseQueryResult<VenueRef[]> => {
+export const useVenues = (): UseQueryResult<VenueOption[]> => {
   return useQuery(leagueQueries.venues());
 };
 

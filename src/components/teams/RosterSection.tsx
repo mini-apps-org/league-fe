@@ -5,6 +5,7 @@ import { EmptyState } from '@/components/league/EmptyState';
 import { ErrorBanner } from '@/components/league/ErrorBanner';
 import { LoadMoreFooter } from '@/components/league/LoadMoreFooter';
 import { ScrollableTable } from '@/components/league/ScrollableTable';
+import { DivisionSelect } from '@/components/teams/DivisionSelect';
 import { IdFilterInput } from '@/components/teams/IdFilterInput';
 import type { PlayerActions } from '@/components/teams/PlayerActionsMenu';
 import { RosterCards } from '@/components/teams/RosterCards';
@@ -160,12 +161,19 @@ export const RosterSection = ({
       </div>
       <div className="flex flex-col gap-3 md:flex-row md:items-start">
         <div className="md:w-96">
-          <IdFilterInput
-            key={divisionInputKey}
-            label={t('teams.form.divisionId')}
-            initialValue={divisionId}
-            disabled={false}
-            onApply={onDivisionChange}
+          <DivisionSelect
+            value={divisionId}
+            ariaLabel={t('teams.lookup.division')}
+            fallback={
+              <IdFilterInput
+                key={divisionInputKey}
+                label={t('teams.form.divisionId')}
+                initialValue={divisionId}
+                disabled={false}
+                onApply={onDivisionChange}
+              />
+            }
+            onValueChange={onDivisionChange}
           />
         </div>
         {hasDivision && rosterQuery.isSuccess && onRemoveDivision !== undefined && (
