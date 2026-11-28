@@ -460,10 +460,10 @@
     },
     "form": {
       "divisionId": "ID bảng đấu gốc",
+      "division": "Bảng đấu gốc",
       "divisionIdHint": "Danh sách và lịch đấu thuộc về lượt tham gia của đội trong bảng đấu này.",
-      "venueId": "ID địa điểm (không bắt buộc)",
+      "venue": "Địa điểm (không bắt buộc)",
       "venueIdHint": "Mã địa điểm là phần giữa của mã đội.",
-      "venueIdEditHint": "Dán ID địa điểm khác để chuyển đội. Không thể bỏ địa điểm ở đây.",
       "teamCode": "Mã đội",
       "teamCodeHint": "Khu vực, địa điểm, số đội (XXyyA). Không trùng trong bảng đấu.",
       "teamCodePlaceholder": "41504",
@@ -481,7 +481,8 @@
         "divisionId": "Dán ID đầy đủ của bảng đấu.",
         "id": "Dán ID đầy đủ hoặc để trống.",
         "targetTeam": "Chọn đội muốn chuyển đến."
-      }
+      },
+      "venueLocked": "Không thể đổi địa điểm ở đây."
     },
     "codeRules": {
       "open": "Cách đặt mã đội",
@@ -521,7 +522,7 @@
     "roster": {
       "title": "Danh sách theo bảng đấu",
       "chooseDivisionTitle": "Chọn bảng đấu",
-      "chooseDivisionBody": "Mỗi bảng đấu có danh sách riêng. Dán ID bảng đấu ở trên để xem.",
+      "chooseDivisionBody": "Mỗi bảng đấu có danh sách riêng. Chọn bảng đấu ở trên để xem.",
       "notEnteredTitle": "Đội không tham gia bảng đấu này",
       "notEnteredBody": "Thêm đội vào bảng đấu để lập danh sách tại đó.",
       "emptyTitle": "Bảng đấu này chưa có cơ thủ",
@@ -596,6 +597,17 @@
       "description": "Danh sách của đội trong bảng đấu này sẽ đóng. Chỉ được khi đội chưa có trận nào ở đây.",
       "submit": "Rút khỏi bảng đấu",
       "success": "{{team}} đã rời bảng đấu."
+    },
+    "lookup": {
+      "division": "Bảng đấu",
+      "venue": "Địa điểm",
+      "divisionPlaceholder": "Chọn bảng đấu",
+      "venuePlaceholder": "Chọn địa điểm",
+      "noDivisions": "Chưa có bảng đấu",
+      "noVenues": "Chưa có địa điểm",
+      "noVenue": "Không có địa điểm",
+      "allDivisions": "Tất cả bảng đấu",
+      "allVenues": "Tất cả địa điểm"
     }
   },
   "shell": {

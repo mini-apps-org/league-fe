@@ -1,7 +1,9 @@
 import { useEffect, useRef, useState } from 'react';
 import { useTranslation } from 'react-i18next';
 
+import { DivisionSelect } from '@/components/teams/DivisionSelect';
 import { IdFilterInput } from '@/components/teams/IdFilterInput';
+import { VenueSelect } from '@/components/teams/VenueSelect';
 import { Input } from '@/components/ui/input';
 import {
   Select,
@@ -63,19 +65,41 @@ export const TeamsToolbar = ({ params, disabled, onFilterChange }: TeamsToolbarP
           }}
         />
       </div>
-      <IdFilterInput
-        label={t('teams.filters.divisionId')}
-        initialValue={params.division_id}
-        disabled={disabled}
-        onApply={(value) => {
+      <DivisionSelect
+        value={params.division_id}
+        noneLabel={t('teams.lookup.allDivisions')}
+        ariaLabel={t('teams.lookup.division')}
+        isDisabled={disabled}
+        fallback={
+          <IdFilterInput
+            label={t('teams.filters.divisionId')}
+            initialValue={params.division_id}
+            disabled={disabled}
+            onApply={(value) => {
+              onFilterChange('division_id', value);
+            }}
+          />
+        }
+        onValueChange={(value) => {
           onFilterChange('division_id', value);
         }}
       />
-      <IdFilterInput
-        label={t('teams.filters.venueId')}
-        initialValue={params.venue_id}
-        disabled={disabled}
-        onApply={(value) => {
+      <VenueSelect
+        value={params.venue_id}
+        noneLabel={t('teams.lookup.allVenues')}
+        ariaLabel={t('teams.lookup.venue')}
+        isDisabled={disabled}
+        fallback={
+          <IdFilterInput
+            label={t('teams.filters.venueId')}
+            initialValue={params.venue_id}
+            disabled={disabled}
+            onApply={(value) => {
+              onFilterChange('venue_id', value);
+            }}
+          />
+        }
+        onValueChange={(value) => {
           onFilterChange('venue_id', value);
         }}
       />

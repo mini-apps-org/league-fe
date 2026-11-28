@@ -460,10 +460,10 @@
     },
     "form": {
       "divisionId": "Home division ID",
+      "division": "Home division",
       "divisionIdHint": "Rosters and fixtures belong to the team's entry in this division.",
-      "venueId": "Venue ID (optional)",
+      "venue": "Venue (optional)",
       "venueIdHint": "The venue's identifier is the middle of the team code.",
-      "venueIdEditHint": "Paste another venue's ID to move the team. A venue can't be removed here.",
       "teamCode": "Team code",
       "teamCodeHint": "Region, venue, team number (XXyyA). Unique within the division.",
       "teamCodePlaceholder": "41504",
@@ -481,7 +481,8 @@
         "divisionId": "Paste the division's full ID.",
         "id": "Paste the full ID, or leave it empty.",
         "targetTeam": "Choose the team to move to."
-      }
+      },
+      "venueLocked": "The venue can't be changed here."
     },
     "codeRules": {
       "open": "How team codes work",
@@ -521,7 +522,7 @@
     "roster": {
       "title": "Roster by division",
       "chooseDivisionTitle": "Choose a division",
-      "chooseDivisionBody": "Each division has its own roster. Paste a division ID above to see it.",
+      "chooseDivisionBody": "Each division has its own roster. Choose a division above to see it.",
       "notEnteredTitle": "The team isn't in this division",
       "notEnteredBody": "Add the team to the division to build its roster there.",
       "emptyTitle": "No players in this division yet",
@@ -596,6 +597,17 @@
       "description": "Its roster in this division closes. Only possible while the team has no matches there.",
       "submit": "Remove from division",
       "success": "{{team}} left the division."
+    },
+    "lookup": {
+      "division": "Division",
+      "venue": "Venue",
+      "divisionPlaceholder": "Select a division",
+      "venuePlaceholder": "Select a venue",
+      "noDivisions": "No divisions yet",
+      "noVenues": "No venues yet",
+      "noVenue": "No venue",
+      "allDivisions": "All divisions",
+      "allVenues": "All venues"
     }
   },
   "shell": {

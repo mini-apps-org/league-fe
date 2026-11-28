@@ -1,8 +1,10 @@
 import type { InfiniteData, UseInfiniteQueryResult, UseQueryResult } from '@tanstack/react-query';
 import { useInfiniteQuery, useQuery } from '@tanstack/react-query';
 
+import { leagueQueries } from '@/queries/league';
 import { teamQueries } from '@/queries/teams';
 import type { ApiPage } from '@/types/api';
+import type { VenueOption } from '@/types/league';
 import type { RosterListParams, RosterPlayer, Team, TeamListParams } from '@/types/teams';
 
 export const useTeams = (
@@ -20,4 +22,8 @@ export const useRoster = (
   params: RosterListParams,
 ): UseInfiniteQueryResult<InfiniteData<ApiPage<RosterPlayer>>> => {
   return useInfiniteQuery(teamQueries.roster(teamId, params));
+};
+
+export const useVenueOptions = (): UseQueryResult<VenueOption[]> => {
+  return useQuery(leagueQueries.venues());
 };

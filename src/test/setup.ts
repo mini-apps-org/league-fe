@@ -34,6 +34,22 @@ Object.defineProperty(window, 'matchMedia', {
   },
 });
 
+// jsdom has no pointer capture or scrollIntoView. Radix Select calls them when it opens on a
+// pointer press, so without these a test can't open one:
+// https://github.com/testing-library/user-event/discussions/1087
+Element.prototype.hasPointerCapture = () => {
+  return false;
+};
+Element.prototype.setPointerCapture = () => {
+  return undefined;
+};
+Element.prototype.releasePointerCapture = () => {
+  return undefined;
+};
+Element.prototype.scrollIntoView = () => {
+  return undefined;
+};
+
 beforeAll(() => {
   server.listen({ onUnhandledFrame: 'error' });
 });

@@ -5,6 +5,7 @@ import { toast } from 'sonner';
 
 import { ResponsiveDrawer } from '@/components/league/ResponsiveDrawer';
 import { TeamCodeRules } from '@/components/teams/TeamCodeRules';
+import { TeamLookupField } from '@/components/teams/TeamLookupField';
 import { TeamTextField } from '@/components/teams/TeamTextField';
 import { Alert, AlertDescription, AlertTitle } from '@/components/ui/alert';
 import { Button } from '@/components/ui/button';
@@ -83,18 +84,21 @@ export const CreateTeamDrawer = ({ defaultDivisionId, onClose }: CreateTeamDrawe
           </Alert>
         )}
         <FieldGroup>
-          <TeamTextField
+          <TeamLookupField
             control={form.control}
             name="division_id"
-            label={t('teams.form.divisionId')}
+            lookup="division"
+            label={t('teams.form.division')}
             description={t('teams.form.divisionIdHint')}
             isRequired
           />
-          <TeamTextField
+          <TeamLookupField
             control={form.control}
             name="venue_id"
-            label={t('teams.form.venueId')}
+            lookup="venue"
+            label={t('teams.form.venue')}
             description={t('teams.form.venueIdHint')}
+            noneLabel={t('teams.lookup.noVenue')}
           />
           <TeamTextField
             control={form.control}
