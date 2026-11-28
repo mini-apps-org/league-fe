@@ -1,9 +1,9 @@
 import { useTranslation } from 'react-i18next';
 
-import type { TeamRef } from '@/types/league';
+import type { TeamOption } from '@/types/league';
 
 interface ByeBannerProps {
-  team: TeamRef;
+  team: TeamOption;
 }
 
 export function ByeBanner({ team }: ByeBannerProps) {

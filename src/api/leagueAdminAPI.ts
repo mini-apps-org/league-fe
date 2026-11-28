@@ -14,7 +14,7 @@ import type {
   TeamMatchFilters,
   TeamMatchInput,
   TeamMatchPatch,
-  VenueRef,
+  VenueOption,
 } from '@/types/league';
 
 import { BaseAPI } from './baseAPI';
@@ -103,8 +103,8 @@ class BaseLeagueAdminAPI extends BaseAPI {
     return data;
   }
 
-  async fetchVenues(): Promise<VenueRef[]> {
-    const { data } = await this.get<ApiEnvelope<VenueRef[]>>(ENDPOINTS.VENUES);
+  async fetchVenues(): Promise<VenueOption[]> {
+    const { data } = await this.get<ApiEnvelope<VenueOption[]>>(ENDPOINTS.VENUES);
 
     return data;
   }

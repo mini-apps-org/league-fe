@@ -1,7 +1,7 @@
 import { http } from 'msw';
 
 import { ENDPOINTS } from '@/api/endpoints';
-import type { RosterEntry, TeamRef } from '@/types/league';
+import type { RosterEntry, TeamOption } from '@/types/league';
 
 import { apiUrl, listEnvelope, notFound, validationFailed } from '../http';
 import { getLeagueStore } from '../league-store';
@@ -26,7 +26,7 @@ export const lookupHandlers = [
       return validationFailed();
     }
 
-    const teams: TeamRef[] = getLeagueStore()
+    const teams: TeamOption[] = getLeagueStore()
       .teams.filter((team) => team.divisionId === divisionId)
       .map((team) => ({ id: team.id, teamNumber: team.teamNumber, name: team.name }));
 

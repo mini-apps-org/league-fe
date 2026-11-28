@@ -31,13 +31,13 @@ export interface Division {
   skillLevelCap: number;
 }
 
-export interface TeamRef {
+export interface TeamOption {
   id: string;
   teamNumber: string;
   name: string;
 }
 
-export interface VenueRef {
+export interface VenueOption {
   id: string;
   name: string;
 }
@@ -47,9 +47,9 @@ export interface TeamMatchSummary {
   weekNo: number;
   scheduledAt: string;
   status: TeamMatchStatus;
-  homeTeam: TeamRef;
-  awayTeam: TeamRef;
-  venue: VenueRef | null;
+  homeTeam: TeamOption;
+  awayTeam: TeamOption;
+  venue: VenueOption | null;
   homePoints: number;
   awayPoints: number;
 }
@@ -226,14 +226,14 @@ export interface SessionWeek {
   firstScheduledAt: string;
 }
 
-export interface DivisionRef {
+export interface DivisionSummary {
   id: string;
   name: string;
 }
 
 export interface AdminTeamMatch extends TeamMatchSummary {
   sessionId: string;
-  division: DivisionRef;
+  division: DivisionSummary;
 }
 
 // Always five rows, ordered by matchOrder: the server creates them with the team match.

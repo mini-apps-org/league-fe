@@ -6,7 +6,7 @@ import type {
   IndividualMatch,
   LeagueSession,
   SessionWeek,
-  TeamRef,
+  TeamOption,
 } from '@/types/league';
 
 import type {
@@ -26,7 +26,7 @@ const requireRow = <T>(row: T | undefined, description: string): T => {
   return row;
 };
 
-const toTeamRef = (team: TeamRow): TeamRef => {
+const toTeamOption = (team: TeamRow): TeamOption => {
   return { id: team.id, teamNumber: team.teamNumber, name: team.name };
 };
 
@@ -67,8 +67,8 @@ export const toAdminTeamMatch = (store: LeagueStore, row: TeamMatchRow): AdminTe
     weekNo: row.weekNo,
     scheduledAt: row.scheduledAt,
     status: row.status,
-    homeTeam: toTeamRef(findTeam(store, row.homeTeamId)),
-    awayTeam: toTeamRef(findTeam(store, row.awayTeamId)),
+    homeTeam: toTeamOption(findTeam(store, row.homeTeamId)),
+    awayTeam: toTeamOption(findTeam(store, row.awayTeamId)),
     venue,
     homePoints: row.homePoints,
     awayPoints: row.awayPoints,

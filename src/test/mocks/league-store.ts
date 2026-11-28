@@ -4,8 +4,8 @@ import type {
   LeagueSession,
   RosterEntry,
   TeamMatchStatus,
-  TeamRef,
-  VenueRef,
+  TeamOption,
+  VenueOption,
 } from '@/types/league';
 
 import { createLeagueSeed } from './league-seed';
@@ -15,7 +15,7 @@ import { createLeagueSeed } from './league-seed';
 // hasSubmittedResults are derived per response, so the row leaves them out.
 export type SessionRow = Omit<LeagueSession, 'weekCount' | 'hasSubmittedResults'>;
 
-export interface TeamRow extends TeamRef {
+export interface TeamRow extends TeamOption {
   divisionId: string;
   venueId: string | null;
 }
@@ -49,7 +49,7 @@ export interface LeagueStore {
   divisions: Division[];
   teams: TeamRow[];
   players: PlayerRow[];
-  venues: VenueRef[];
+  venues: VenueOption[];
   teamMatches: TeamMatchRow[];
   individualMatches: IndividualMatchRow[];
 }

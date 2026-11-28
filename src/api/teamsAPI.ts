@@ -3,7 +3,7 @@ import type {
   BulkDeleteTeamsResult,
   CreateTeamInput,
   DivisionTeam,
-  RosterEntryRef,
+  RosterEntryKey,
   RosterListParams,
   RosterPlayer,
   Team,
@@ -21,7 +21,7 @@ const normaliseTeamCode = (teamCode: string): string => {
   return teamCode.trim().toUpperCase();
 };
 
-const rosterPlayerURL = (ref: RosterEntryRef): string => {
+const rosterPlayerURL = (ref: RosterEntryKey): string => {
   return withQuery(`${ENDPOINTS.TEAMS_ROSTER}/${ref.teamId}/${ref.playerId}`, {
     division_id: ref.divisionId,
   });
@@ -112,7 +112,7 @@ class BaseTeamsAPI extends BaseAPI {
     });
   }
 
-  async addRosterPlayer(ref: RosterEntryRef): Promise<RosterPlayer> {
+  async addRosterPlayer(ref: RosterEntryKey): Promise<RosterPlayer> {
     const url = withQuery(`${ENDPOINTS.TEAMS_ROSTER}/${ref.teamId}`, {
       division_id: ref.divisionId,
     });
@@ -124,7 +124,7 @@ class BaseTeamsAPI extends BaseAPI {
   // Closes the player's entry and opens one on the target team in one transaction. The
   // captain cannot be transferred (409).
   async transferRosterPlayer(
-    ref: RosterEntryRef,
+    ref: RosterEntryKey,
     input: TransferRosterPlayerInput,
   ): Promise<RosterPlayer> {
     const { data } = await this.patch<ApiEnvelope<RosterPlayer>>(rosterPlayerURL(ref), input);
@@ -133,7 +133,7 @@ class BaseTeamsAPI extends BaseAPI {
   }
 
   // 204. The captain cannot be removed (409).
-  async removeRosterPlayer(ref: RosterEntryRef): Promise<void> {
+  async removeRosterPlayer(ref: RosterEntryKey): Promise<void> {
     await this.delete<void>(rosterPlayerURL(ref));
   }
 }

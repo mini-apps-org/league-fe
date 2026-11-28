@@ -9,7 +9,7 @@ import type {
   BulkDeleteTeamsResult,
   CreateTeamInput,
   DivisionTeam,
-  RosterEntryRef,
+  RosterEntryKey,
   RosterPlayer,
   Team,
   TransferRosterPlayerInput,
@@ -27,7 +27,7 @@ export interface TeamDivisionVariables {
 }
 
 export interface TransferRosterPlayerVariables {
-  ref: RosterEntryRef;
+  ref: RosterEntryKey;
   input: TransferRosterPlayerInput;
 }
 
@@ -161,11 +161,11 @@ export const useRemoveTeamDivision = (): UseMutationResult<
 export const useAddRosterPlayer = (): UseMutationResult<
   RosterPlayer,
   ApiRequestError,
-  RosterEntryRef
+  RosterEntryKey
 > => {
   const queryClient = useQueryClient();
 
-  return useMutation<RosterPlayer, ApiRequestError, RosterEntryRef>({
+  return useMutation<RosterPlayer, ApiRequestError, RosterEntryKey>({
     mutationFn: (ref) => {
       return TeamsAPI.addRosterPlayer(ref);
     },
@@ -196,11 +196,11 @@ export const useTransferRosterPlayer = (): UseMutationResult<
 export const useRemoveRosterPlayer = (): UseMutationResult<
   void,
   ApiRequestError,
-  RosterEntryRef
+  RosterEntryKey
 > => {
   const queryClient = useQueryClient();
 
-  return useMutation<void, ApiRequestError, RosterEntryRef>({
+  return useMutation<void, ApiRequestError, RosterEntryKey>({
     mutationFn: (ref) => {
       return TeamsAPI.removeRosterPlayer(ref);
     },
