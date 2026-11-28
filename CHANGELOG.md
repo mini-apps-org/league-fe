@@ -1,4 +1,4 @@
-## [TBD](https://github.com/mini-apps-org/league-fe/releases/tag/TBD) - 2026-11-28
+## [0.4.0](https://github.com/mini-apps-org/league-fe/releases/tag/0.4.0) - 2026-11-28
 - [#PR13](https://github.com/mini-apps-org/league-fe/pull/13)
   - feat(team): pick divisions and venues from a select instead of pasting their IDs
   - feat(team): fall back to the ID input until league-be lists divisions and venues
