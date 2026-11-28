@@ -62,10 +62,26 @@ export function toApiError(err: unknown): ApiRequestError {
   return new ApiRequestError(0, ERROR_CODE.INTERNAL, maybeAxios?.message ?? 'Unknown error');
 }
 
+export const isConflictError = (err: unknown): boolean => {
+  return isApiError(err) && err.code === ERROR_CODE.CONFLICT;
+};
+
+export const isNotFoundError = (err: unknown): boolean => {
+  return isApiError(err) && err.code === ERROR_CODE.NOT_FOUND;
+};
+
 export const messageFor = (err: unknown): string => {
   const code = isApiError(err) ? err.code : ERROR_CODE.INTERNAL;
 
   return i18next.t(`apiError.${code}`);
+};
+
+// For a code that arrives as data rather than as a failed request, such as one entry of a
+// bulk delete's `failed[]`.
+export const messageForCode = (code: number): string => {
+  const knownCode = KNOWN_CODES.has(code) ? (code as ErrorCode) : ERROR_CODE.INTERNAL;
+
+  return i18next.t(`apiError.${knownCode}`);
 };
 
 const KNOWN_LOGIN_REASONS: ReadonlySet<string> = new Set(Object.values(LOGIN_ERROR));

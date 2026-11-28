@@ -365,6 +365,239 @@
     "captain": "Đội trưởng",
     "noTeam": "Chưa có đội"
   },
+  "teams": {
+    "list": {
+      "subtitle": "Tất cả đội trong giải. Mở một đội để quản lý bảng đấu, danh sách và đội trưởng.",
+      "columns": {
+        "team": "Đội",
+        "captain": "Đội trưởng",
+        "created": "Ngày tạo",
+        "actions": "Thao tác"
+      },
+      "selectAll": "Chọn tất cả đội trên trang này",
+      "select": "Chọn {{name}}",
+      "actions": "Thao tác cho {{name}}",
+      "open": "Mở đội",
+      "showing": "Đang hiển thị {{shown}} / {{total}} đội",
+      "allLoaded_one": "Đã tải hết {{count}} đội",
+      "allLoaded_other": "Đã tải hết {{count}} đội",
+      "emptyTitle": "Chưa có đội nào",
+      "emptyBody": "Tạo một đội trong bảng đấu gốc để bắt đầu lập danh sách và lịch thi đấu.",
+      "noMatchesTitle": "Không có đội phù hợp",
+      "noMatchesBody": "Thử tìm kiếm khác hoặc xoá bộ lọc.",
+      "errorTitle": "Không tải được danh sách đội",
+      "errorBody": "Máy chủ không phản hồi. Kiểm tra kết nối rồi thử lại."
+    },
+    "filters": {
+      "search": "Tìm đội theo tên hoặc mã",
+      "divisionId": "ID bảng đấu",
+      "venueId": "ID địa điểm",
+      "invalidId": "Dán ID đầy đủ, ví dụ 7b1f0a52-2c6e-4d0a-9a3e-1f0c2b9d4e11.",
+      "sort": "Sắp xếp đội",
+      "clear": "Xoá bộ lọc"
+    },
+    "sort": {
+      "team_code": "Mã, A đến Z",
+      "-team_code": "Mã, Z đến A",
+      "name": "Tên, A đến Z",
+      "-name": "Tên, Z đến A",
+      "-created_at": "Mới nhất trước",
+      "created_at": "Cũ nhất trước"
+    },
+    "paging": {
+      "perPage": "Mỗi trang"
+    },
+    "captain": {
+      "set": "Đã có đội trưởng",
+      "needed": "Cần đội trưởng"
+    },
+    "bulk": {
+      "region": "Các đội đã chọn",
+      "selected_one": "Đã chọn {{count}} đội",
+      "selected_other": "Đã chọn {{count}} đội",
+      "clear": "Bỏ chọn",
+      "delete_one": "Xoá {{count}} đội",
+      "delete_other": "Xoá {{count}} đội",
+      "confirmTitle_one": "Xoá {{count}} đội?",
+      "confirmTitle_other": "Xoá {{count}} đội?",
+      "confirmBody": "Các đội sẽ biến mất khỏi giải và cơ thủ được tự do gia nhập đội khác. Lịch đấu và kết quả vẫn được giữ.",
+      "resultDeleted_one": "Đã xoá {{count}} đội.",
+      "resultDeleted_other": "Đã xoá {{count}} đội.",
+      "resultFailed_one": "{{count}} đội không xoá được.",
+      "resultFailed_other": "{{count}} đội không xoá được.",
+      "resultPlayersFreed": "Cơ thủ của các đội này có thể gia nhập đội khác.",
+      "dismiss": "Đóng"
+    },
+    "create": {
+      "open": "Đội mới",
+      "title": "Đội mới",
+      "description": "Đội được đăng ký vào bảng đấu gốc. Bạn có thể thêm bảng đấu khác sau.",
+      "submit": "Tạo đội",
+      "success": "Đã tạo {{name}}.",
+      "failed": "Không tạo được đội này",
+      "captainLater": "Bạn sẽ chọn đội trưởng sau khi thêm cơ thủ. Đội trưởng phải có trong danh sách đang thi đấu."
+    },
+    "edit": {
+      "open": "Sửa đội",
+      "title": "Sửa đội",
+      "description": "Thay đổi được áp dụng ngay.",
+      "submit": "Lưu thay đổi",
+      "success": "Đã lưu {{name}}."
+    },
+    "delete": {
+      "action": "Xoá {{name}}",
+      "title": "Xoá {{name}}?",
+      "description": "Đội {{code}}",
+      "impactTitle": "Khi xoá đội này:",
+      "impactHidden": "đội bị ẩn khỏi toàn bộ giải",
+      "impactPlayers": "cơ thủ được tự do gia nhập đội khác",
+      "impactFixtures": "lịch đấu và kết quả vẫn được giữ",
+      "permanent": "Xoá vĩnh viễn",
+      "permanentHint": "Chỉ áp dụng cho đội chưa có lịch đấu. Không thể hoàn tác.",
+      "submit": "Xoá đội",
+      "success": "Đã xoá {{name}}.",
+      "permanentFailed": "Đã xoá {{name}} nhưng không xoá vĩnh viễn được: {{reason}}"
+    },
+    "form": {
+      "divisionId": "ID bảng đấu gốc",
+      "divisionIdHint": "Danh sách và lịch đấu thuộc về lượt tham gia của đội trong bảng đấu này.",
+      "venueId": "ID địa điểm (không bắt buộc)",
+      "venueIdHint": "Mã địa điểm là phần giữa của mã đội.",
+      "venueIdEditHint": "Dán ID địa điểm khác để chuyển đội. Không thể bỏ địa điểm ở đây.",
+      "teamCode": "Mã đội",
+      "teamCodeHint": "Khu vực, địa điểm, số đội (XXyyA). Không trùng trong bảng đấu.",
+      "teamCodePlaceholder": "41504",
+      "name": "Tên đội",
+      "namePlaceholder": "VD: Corner Pocket Crew",
+      "captain": "Đội trưởng",
+      "captainPlaceholder": "Chọn đội trưởng",
+      "captainHint": "Chỉ cơ thủ trong danh sách bên dưới mới làm đội trưởng được.",
+      "captainNoRoster": "Chọn một bảng đấu có cơ thủ bên dưới để chọn đội trưởng.",
+      "errors": {
+        "teamCode": "Dùng 5 ký tự theo dạng XXyyA, ví dụ 41504.",
+        "duplicateCode": "Mã này đã được dùng trong bảng đấu.",
+        "nameRequired": "Nhập tên đội.",
+        "nameTooLong": "Tối đa 100 ký tự.",
+        "divisionId": "Dán ID đầy đủ của bảng đấu.",
+        "id": "Dán ID đầy đủ hoặc để trống.",
+        "targetTeam": "Chọn đội muốn chuyển đến."
+      }
+    },
+    "codeRules": {
+      "open": "Cách đặt mã đội",
+      "title": "Cách đặt mã đội",
+      "region": "XX · Khu vực",
+      "venue": "yy · Địa điểm",
+      "team": "A · Đội",
+      "regionBody": "Khu vực (XX). 2 số đầu mã bưu chính của quận nơi đặt địa điểm. Sài Gòn dùng 41 hoặc 50–59.",
+      "venueBody": "Địa điểm (yy). Mã 2 số của địa điểm tổ chức.",
+      "teamBody": "Đội (A). Số thứ tự của đội tại địa điểm, từ 0 đến 9.",
+      "capacityBody": "Mỗi mã địa điểm có tối đa 10 đội. Khi đủ, địa điểm được cấp thêm mã mới cho đội mới. Mã đội không được trùng trong bảng đấu."
+    },
+    "conflict": {
+      "create": "Bảng đấu này đã có đội dùng mã này.",
+      "update": "Một đội khác trong bảng đấu đã dùng mã này.",
+      "deletePermanently": "Đội đã có trận được xếp hoặc đã đấu nên không thể xoá vĩnh viễn.",
+      "addDivision": "Đội đã tham gia bảng đấu này.",
+      "removeDivision": "Đội đã có trận trong bảng đấu này nên không thể rời.",
+      "addPlayer": "Cơ thủ này đã ở một đội trong bảng đấu này.",
+      "transfer": "Không thể chuyển cơ thủ này: họ là đội trưởng, hoặc đã ở một đội trong bảng đấu đó.",
+      "removePlayer": "Cơ thủ này là đội trưởng. Hãy chọn đội trưởng mới trước."
+    },
+    "detail": {
+      "title": "Chi tiết đội",
+      "updated": "Cập nhật {{date}}.",
+      "captain": "Đội trưởng",
+      "captainDetail": "Phải có trong danh sách đang thi đấu",
+      "captainMissing": "Chọn một người từ danh sách",
+      "activePlayers": "Cơ thủ đang thi đấu",
+      "activePlayersDetail": "Trong bảng đấu bên dưới",
+      "created": "Ngày tạo",
+      "createdDetail": "Mỗi đội giữ một mã suốt đời",
+      "notFoundTitle": "Không tìm thấy đội",
+      "notFoundBody": "Đội này đã bị xoá hoặc đường dẫn sai. Đội đã xoá không xuất hiện ở đâu trong giải.",
+      "backToTeams": "Quay lại danh sách đội"
+    },
+    "roster": {
+      "title": "Danh sách theo bảng đấu",
+      "chooseDivisionTitle": "Chọn bảng đấu",
+      "chooseDivisionBody": "Mỗi bảng đấu có danh sách riêng. Dán ID bảng đấu ở trên để xem.",
+      "notEnteredTitle": "Đội không tham gia bảng đấu này",
+      "notEnteredBody": "Thêm đội vào bảng đấu để lập danh sách tại đó.",
+      "emptyTitle": "Bảng đấu này chưa có cơ thủ",
+      "emptyBody": "Mỗi bảng đấu có danh sách riêng. Thêm cơ thủ tại đây rồi chọn đội trưởng.",
+      "columns": {
+        "player": "Cơ thủ",
+        "skill": "Trình độ",
+        "fees": "Phí",
+        "played": "Đã đấu",
+        "won": "Thắng",
+        "winRate": "% thắng",
+        "points": "Điểm",
+        "joined": "Ngày vào",
+        "actions": "Thao tác"
+      },
+      "captain": "Đội trưởng",
+      "paid": "Đã đóng",
+      "unpaid": "Chưa đóng",
+      "cardStats": "Thắng {{record}} · {{winRate}} · {{points}} điểm",
+      "actions": "Thao tác cho {{name}}",
+      "makeCaptain": "Làm đội trưởng",
+      "isCaptain": "Đang là đội trưởng",
+      "transfer": "Chuyển đội",
+      "captainNoTransfer": "Không thể chuyển đội trưởng",
+      "remove": "Xoá khỏi danh sách",
+      "captainNoRemove": "Không thể xoá đội trưởng",
+      "captainChanged": "{{name}} giờ là đội trưởng.",
+      "showing": "Đang hiển thị {{shown}} / {{total}} cơ thủ · Theo ngày vào",
+      "allLoaded_one": "Đã tải hết {{count}} cơ thủ",
+      "allLoaded_other": "Đã tải hết {{count}} cơ thủ",
+      "captainNote": "Không thể xoá hoặc chuyển đội trưởng. Hãy chọn đội trưởng mới trước."
+    },
+    "addPlayer": {
+      "title": "Thêm cơ thủ",
+      "description": "Vào {{team}} trong bảng đấu này.",
+      "playerId": "ID cơ thủ",
+      "playerIdHint": "Mỗi cơ thủ chỉ ở một đội trong một bảng đấu.",
+      "submit": "Thêm vào danh sách",
+      "success": "Đã thêm {{name}} vào {{team}}."
+    },
+    "transfer": {
+      "title": "Chuyển cơ thủ",
+      "description": "Chuyển {{name}} sang đội khác.",
+      "playerSummary": "{{name}} · SL{{skill}} · đã đấu {{played}} · thuộc {{team}}",
+      "targetTeam": "Chuyển đến đội",
+      "targetTeamPlaceholder": "Chọn một đội trong bảng đấu này",
+      "division": "ID bảng đấu (không bắt buộc)",
+      "divisionHint": "Để trống để giữ bảng đấu hiện tại của cơ thủ.",
+      "impactTitle": "Điều sẽ xảy ra",
+      "impactLeaves": "{{name}} rời {{team}} từ hôm nay",
+      "impactStats": "các trận và điểm vẫn tính cho {{team}}",
+      "impactFresh": "cơ thủ bắt đầu lại từ đầu ở đội mới",
+      "submit": "Chuyển cơ thủ",
+      "success": "Đã chuyển {{name}}."
+    },
+    "removePlayer": {
+      "title": "Xoá {{name}}?",
+      "description": "Cơ thủ rời danh sách của {{team}} trong bảng đấu này. Các trận đã đấu vẫn được lưu.",
+      "submit": "Xoá cơ thủ",
+      "success": "Đã xoá {{name}}."
+    },
+    "addDivision": {
+      "title": "Thêm vào bảng đấu",
+      "description": "Đăng ký {{team}} vào bảng đấu hoặc mùa giải khác.",
+      "note": "Lượt tham gia mới bắt đầu với danh sách trống và chưa có lịch đấu. Mỗi cơ thủ chỉ ở một đội trong một bảng đấu.",
+      "submit": "Thêm bảng đấu",
+      "success": "Đã thêm {{team}} vào bảng đấu."
+    },
+    "removeDivision": {
+      "open": "Rút đội khỏi bảng đấu này",
+      "title": "Rút {{team}} khỏi bảng đấu này?",
+      "description": "Danh sách của đội trong bảng đấu này sẽ đóng. Chỉ được khi đội chưa có trận nào ở đây.",
+      "submit": "Rút khỏi bảng đấu",
+      "success": "{{team}} đã rời bảng đấu."
+    }
+  },
   "shell": {
     "breadcrumbs": "Đường dẫn",
     "role": {

@@ -40,6 +40,7 @@ export const ROUTES = {
   ADMIN_SESSION: '/admin/sessions/:sessionId',
   ADMIN_SESSION_MATCH: '/admin/sessions/:sessionId/matches/:matchId',
   ADMIN_TEAMS: '/admin/teams',
+  ADMIN_TEAM: '/admin/teams/:id',
   ADMIN_DIVISIONS: '/admin/divisions',
   ADMIN_FEES: '/admin/fees',
   ADMIN_AUDIT: '/admin/audit',

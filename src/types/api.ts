@@ -13,3 +13,6 @@ export interface ApiEnvelope<T> {
   data: T;
   metadata?: ApiMetadata;
 }
+
+// One page of a cursor-paged list, where `metadata` is always present.
+export type ApiPage<T> = Required<ApiEnvelope<T[]>>;
